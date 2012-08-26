@@ -7,7 +7,7 @@
 #   * Starts by building the makefile; taz.make (soon)
 #
 #   * Automatically creates settings file and files directories and sets
-      the correct permissions on them.
+#     the correct permissions on them.
 #
 #   * Creates mysql user and database and sets permissions
 #
