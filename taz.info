@@ -1,0 +1,38 @@
+name = Taz
+description = Installation profile for quickly spinning up a Drupal 7 site with common modules pre-configured. Taz, spinning, get it?
+core = 7.x
+
+; Core.
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+;dependencies[] = overlay
+dependencies[] = path
+dependencies[] = rdf
+dependencies[] = shortcut
+dependencies[] = taxonomy
+
+; Contrib.
+;dependencies[] = apps
+dependencies[] = admin_menu_toolbar
+dependencies[] = filter_perms
+dependencies[] = module_filter
+dependencies[] = pathauto
+dependencies[] = token
+dependencies[] = transliteration
+dependencies[] = views_ui
+
+; Taz.
+;dependencies[] = taz_dev
+
+files[] = taz.profile
