@@ -9,6 +9,8 @@ Core
 Includes the following modules for general-purpose site building:
 
 * Apps
+* Address Field
+* Address Field Static Map
 * Autocomplete Deluxe
 * Bean
 * Bundle Inherit
