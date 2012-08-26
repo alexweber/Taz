@@ -6,6 +6,7 @@ It includes a shell script, makfile and installation profile.
 
 ## Getting started
 
+* Download or clone the "bin" branch or latest tag.
 * Copy "taz.make" and "taz.sh" into an empty directory
 * Run ```sh taz.sh``` and watch in awe.
 
@@ -13,14 +14,17 @@ It includes a shell script, makfile and installation profile.
 
 ### Shell Script
 
-This is where the magic happens. See the code comments in taz.sh for a closer look at what's going on.
+This is where the magic happens. It's in the "bin" branch.
+See the code comments in taz.sh for a closer look at what's going on.
 
 ### Profile
 
+This is in the "profile" branch.
 The profile pre-installs some development modules, sets up an admin theme, preconfigures the WYSIWYG editor and a bunch of other cool stuff and sensible defaults.
 
 ### Makefile
 
+This is in the "bin" branch.
 Don't be alarmed by the number of modules we download; almost all of them are disabled by default.
 They do, however, have their recommended versions and sometimes even patches applied so that, when you do need them, you'll have right one.
 
