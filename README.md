@@ -1,10 +1,30 @@
-Taz
-===
+# Taz
 
-Installation profile for quickly spinning up a Drupal 7 (Pressflow) site with common modules pre-configured. Taz, spinning, get it?
+Taz is a tool for VERY quickly spinning up Drupal 7 sites with a bunch of stuff preconfigured to save you time! Taz, spinning, get it?
 
-Core
----
+It includes a shell script, makfile and installation profile.
+
+## Getting started
+
+* Copy "taz.make" and "taz.sh" into an empty directory
+* Run ```sh taz.sh``` and watch in awe.
+
+## Read more
+
+### Shell Script
+
+This is where the magic happens. See the code comments in taz.sh for a closer look at what's going on.
+
+### Profile
+
+The profile pre-installs some development modules, sets up an admin theme, preconfigures the WYSIWYG editor and a bunch of other cool stuff and sensible defaults.
+
+### Makefile
+
+Don't be alarmed by the number of modules we download; almost all of them are disabled by default.
+The modules have their recommended versions and sometimes even patches applied so that, when you do need them, you'll have right one.
+
+#### Core
 
 Includes the following modules for general-purpose site building:
 
@@ -55,8 +75,7 @@ Includes the following modules for general-purpose site building:
 * Views Slideshow
 * Webform
 
-Development
----
+#### Development
 
 Includes the following modules for development:
 
@@ -71,8 +90,7 @@ Includes the following modules for development:
 * Module Filter
 * Omega Tools
 
-Administration
----
+#### Administration
 
 Includes the following modules for improving site administration:
 
@@ -85,8 +103,7 @@ Includes the following modules for improving site administration:
 * Views Bulk Operations (VBO)
 * WYSIWYG
 
-SEO
----
+#### SEO
 
 Includes the following modules:
 
@@ -96,8 +113,7 @@ Includes the following modules:
 * Search 404
 * XML sitemap
 
-Performance
----
+#### Performance
 
 Includes the following modules:
 
