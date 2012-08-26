@@ -67,6 +67,8 @@ if [ "$RESP" = "y" ]; then
   fi
 fi
 
+# Remove makefile.
+rm -rf taz.make
 
 ####################################
 ### Create MySQL User & Database ###
