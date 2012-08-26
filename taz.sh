@@ -69,51 +69,49 @@ fi
 ### Create MySQL User & Database ###
 ####################################
 
-echo "What's your database user?"
-read -i "taz" DBUSER
+read -p "Create MySQL database and user? (y/n) " RESP
+if [ "$RESP" = "y" ]; then
+  # Create database user.
+  read -e -p "Enter your database user:" -i "taz" DBUSER
+  mysql -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
 
-# Create database user.
-mysql -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
+  # Create database.
+  read -e -p "Enter your database name:" -i "taz" DBNAME
+  mysql -e "CREATE DATABASE $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
-echo "What's your database name?"
-read -i "taz" DBNAME
-
-# Create database.
-mysql -e "CREATE DATABASE $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
-
-# Set permissions.
-mysql -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
-mysql -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost';
+  # Set permissions.
+  mysql -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
+  mysql -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost';
+fi
 
 
 ####################
 ### Install site ###
 ####################
 
-# Get site name.
-echo "What's your site name?"
-read -i "Taz" SITENAME
+read -p "Install site? (y/n) " RESP
+if [ "$RESP" = "y" ]; then
+  # Get site name.
+  read -e -p "Enter your site name?" -i "Taz" SITENAME
 
-# Get site email.
-echo "What's your site's email?"
-read EMAIL
+  # Get site email.
+  read -e -p "Enter your site email?" EMAIL
 
-# Install site.
-# We use a purpously unconventional name for user 1.
-drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-email=$EMAIL --site-name="$SITENAME"
+  # Install site.
+  # We use a purpously unconventional name for user 1.
+  drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-email=$EMAIL --site-name="$SITENAME"
 
-# Make settings read-only.
-chmod 644 sites/default/settings.php
-
+  # Make settings read-only.
+  chmod 644 sites/default/settings.php
+fi
 
 #############################
 ### Create Omega Subtheme ###
 #############################
 
-echo "Create Omega Subtheme?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) echo "What's your subtheme's name?"; read SUBTHEME; drush en omega_tools -y; omega subtheme $SUBTHEME -y;
-        No ) return;;
-    esac
-done
+read -p "Create Omega Subtheme? (y/n) " RESP
+if [ "$RESP" = "y" ]; then
+  read -e -p "Enter your subtheme name?" -i "Taz Theme" SUBTHEME
+  drush en omega_tools -y
+  omega subtheme $SUBTHEME -y
+fi
