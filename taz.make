@@ -12,3 +12,4 @@ projects[drupal][patch][] = http://drupal.org/files/1356276-make-D7-21.patch
 projects[taz][type] = profile
 projects[taz][download][type] = git
 projects[taz][download][url] = git@github.com:alexweber/Taz.git
+projects[taz][download][branch] = profile
