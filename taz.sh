@@ -77,16 +77,18 @@ rm -rf taz.make
 read -p "Create MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
   # Create database user.
-  read -e -p "Enter your database user:" -i "taz" DBUSER
+  read -p "Enter your database user [taz]: " DBUSER
+  DBUSER=${DBUSER:-taz}
   mysql -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
 
   # Create database.
-  read -e -p "Enter your database name:" -i "taz" DBNAME
+  read -p "Enter your database name [taz]: " DBNAME
+  DBNAME=${DBNAME:-taz}
   mysql -e "CREATE DATABASE $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
   # Set permissions.
   mysql -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
-  mysql -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost';
+  mysql -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost'";
 fi
 
 
@@ -97,10 +99,11 @@ fi
 read -p "Install site? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
   # Get site name.
-  read -e -p "Enter your site name?" -i "Taz" SITENAME
+  read -p "Enter your site name [Taz]: " SITENAME
+  SITENAME=${SITENAME:-Taz}
 
   # Get site email.
-  read -e -p "Enter your site email?" EMAIL
+  read -p "Enter your site name: " EMAIL
 
   # Install site.
   # We use a purpously unconventional name for user 1.
@@ -116,7 +119,8 @@ fi
 
 read -p "Create Omega Subtheme? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
-  read -e -p "Enter your subtheme name?" -i "Taz Theme" SUBTHEME
+  read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
+  SUBTHEME=${SUBTHEME:-Taz Theme}
   drush en omega_tools -y
   omega subtheme $SUBTHEME -y
 fi
