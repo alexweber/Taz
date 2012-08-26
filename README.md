@@ -22,7 +22,7 @@ The profile pre-installs some development modules, sets up an admin theme, preco
 ### Makefile
 
 Don't be alarmed by the number of modules we download; almost all of them are disabled by default.
-The modules have their recommended versions and sometimes even patches applied so that, when you do need them, you'll have right one.
+They do, however, have their recommended versions and sometimes even patches applied so that, when you do need them, you'll have right one.
 
 #### Core
 
