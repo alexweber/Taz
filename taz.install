@@ -69,6 +69,9 @@ function taz_install() {
 
   // Enable dynamic module filter button placement.
   variable_set('module_filter_dynamic_save_position', 1);
+
+  // Enable Display Suite extras.
+  variable_set('ds_extras_field_template', 1);
 }
 
 /**
