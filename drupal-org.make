@@ -1,7 +1,7 @@
 api = 2
 core = 7.x
 
-; Core
+; Base
 
 projects[addressfield][version] = 1.0-beta3
 projects[addressfield][type] = module
