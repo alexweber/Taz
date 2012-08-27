@@ -35,6 +35,7 @@ dependencies[] = entity_token
 dependencies[] = file_entity
 dependencies[] = features
 dependencies[] = jquery_update
+dependencies[] = libraries
 dependencies[] = media
 dependencies[] = pathauto
 dependencies[] = strongarm
