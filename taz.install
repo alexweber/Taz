@@ -64,7 +64,9 @@ function taz_install() {
   // Enable dynamic module filter button placement.
   variable_set('module_filter_dynamic_save_position', 1);
 
-  taz_set_backup_migrate();
+  if (module_exists('backup_migrate')) {
+    taz_set_backup_migrate();
+  }
 }
 
 /**
