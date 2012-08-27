@@ -103,11 +103,11 @@ if [ "$RESP" = "y" ]; then
   SITENAME=${SITENAME:-Taz}
 
   # Get site email.
-  read -p "Enter your site name: " EMAIL
+  read -p "Enter your site email: " EMAIL
 
   # Install site.
   # We use a purpously unconventional name for user 1.
-  drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-email=$EMAIL --site-name="$SITENAME"
+  drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-mail="$EMAIL" --site-name="$SITENAME"
 
   # Make settings read-only.
   chmod 644 sites/default/settings.php
@@ -122,5 +122,5 @@ if [ "$RESP" = "y" ]; then
   read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
   SUBTHEME=${SUBTHEME:-Taz Theme}
   drush en omega_tools -y
-  omega subtheme $SUBTHEME -y
+  drush omega subtheme $SUBTHEME -y
 fi
