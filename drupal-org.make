@@ -318,10 +318,17 @@ projects[entitycache][subdir] = contrib
 
 ; Themes
 
-projects[tao] = 3.0-beta4
-projects[rubik] = 4.0-beta8
-projects[fubik] = 1.23
-projects[omega] = 3.1
+projects[tao][version] = 3.0-beta4
+projects[tao][type] = theme
+
+projects[rubik][version] = 4.0-beta4
+projects[rubik][type] = theme
+
+projects[fubik][version] = 1.23
+projects[fubik][type] = theme
+
+projects[omega][version] = 3.1
+projects[omega][type] = theme
 
 ; External Libraries
 
