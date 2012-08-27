@@ -16,11 +16,8 @@ function taz_install() {
   variable_set("node_admin_theme", '1');
   theme_enable(array("bartik"));
 
-  taz_add_default_text_formats_and_perms();
-
-  if (module_exists('wysiwyg')) {
-    taz_set_wysiwyg_settings();
-  }
+  taz_set_default_text_formats_and_perms();
+  taz_set_wysiwyg_settings();
 
   // Set up date defaults so it doesn't yell at us anymore.
   variable_set('date_first_day', 0);
@@ -33,13 +30,15 @@ function taz_install() {
 
   // Don't allow visitor accounts.
   variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
+
+  // Set other default variables.
+  variable_set('admin_menu_cache_client', 1);
 }
 
 /**
  * Provides default text formats for Taz.
- * Borrowed from OpenPublish.
  */
-function taz_add_default_text_formats_and_perms() {
+function taz_set_default_text_formats_and_perms() {
   // Add text formats.
   $filtered_html_format = array(
     'format' => 'filtered_html',
@@ -53,17 +52,22 @@ function taz_add_default_text_formats_and_perms() {
       ),
       // HTML filter.
       'filter_html' => array(
-        'weight' => 1,
+        'weight' => -10,
         'status' => 1,
       ),
       // Line break filter.
       'filter_autop' => array(
-        'weight' => 2,
+        'weight' => 0,
         'status' => 1,
       ),
       // HTML corrector filter.
       'filter_htmlcorrector' => array(
         'weight' => 10,
+        'status' => 1,
+      ),
+      // Media filter.
+      'media_filter' => array(
+        'weight' => 2,
         'status' => 1,
       ),
     ),
@@ -81,14 +85,24 @@ function taz_add_default_text_formats_and_perms() {
         'weight' => 0,
         'status' => 1,
       ),
+      // HTML filter.
+      'filter_html' => array(
+        'weight' => -10,
+        'status' => 1,
+      ),
       // Line break filter.
       'filter_autop' => array(
-        'weight' => 1,
+        'weight' => 0,
         'status' => 1,
       ),
       // HTML corrector filter.
       'filter_htmlcorrector' => array(
         'weight' => 10,
+        'status' => 1,
+      ),
+      // Media filter.
+      'media_filter' => array(
+        'weight' => 2,
         'status' => 1,
       ),
     ),
@@ -98,7 +112,8 @@ function taz_add_default_text_formats_and_perms() {
 
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', $filtered_html_permission));
+  // Don't allow anonymous user to use Filtered HTML.
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', $filtered_html_permission));
 
   // Create a default role for site administrators, with all available permissions assigned.
@@ -121,42 +136,37 @@ function taz_add_default_text_formats_and_perms() {
  * Sets default WYSIWYG settings for OpenPublish
  */
 function taz_set_wysiwyg_settings() {
-  $settings = array(
+  $settings_full = array(
     'default' => 1,
-    'user_choose' => 1,
+    'user_choose' => 0,
     'show_toggle' => 1,
     'theme' => 'advanced',
     'language' => 'en',
     'buttons' => array(
       'default' => array(
-        'Bold' => 1,
-        'Italic' => 1,
-        'Underline' => 1,
-        'Strike' => 1,
-        'JustifyLeft' => 1,
-        'JustifyCenter' => 1,
-        'JustifyRight' => 1,
-        'BulletedList' => 1,
-        'NumberedList' => 1,
-        'Undo' => 1,
-        'Redo' => 1,
-        'Link' => 1,
-        'Unlink' => 1,
-        'Anchor' => 1,
-        'Image' => 1,
-        'Superscript' => 1,
-        'Subscript' => 1,
-        'Blockquote' => 1,
-        'HorizontalRule' => 1,
-        'Cut' => 1,
-        'Copy' => 1,
-        'Paste' => 1,
-        'PasteFromWord' => 1,
-        'RemoveFormat' => 1,
-        'SpecialChar' => 1,
-        'Format' => 1,
-        'Table' => 1,
-        'Maximize' => 1,
+        'bold' => 1,
+        'italic' => 1,
+        'underline' => 1,
+        'justifyleft' => 1,
+        'justifycenter' => 1,
+        'justifyright' => 1,
+        'justifyfull' => 1,
+        'bullist' => 1,
+        'numlist' => 1,
+        'undo' => 1,
+        'redo' => 1,
+        'forecolor' => 1,
+        'backcolor' => 1,
+        'blockquote' => 1,
+      ),
+      'advimage' => array(
+        'advimage' => 1,
+      ),
+      'advlink' => array(
+        'advlink' => 1,
+      ),
+      'drupal' => array(
+        'media' => 1,
       ),
     ),
     'toolbar_loc' => 'top',
@@ -170,26 +180,72 @@ function taz_set_wysiwyg_settings() {
     'apply_source_formatting' => 0,
     'paste_auto_cleanup_on_paste' => 1,
     'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-    'css_setting' => 'self',
-    'css_path' => '%t/css/editor.css',
+    'css_setting' => 'theme',
+    'css_path' => '',
     'css_classes' => '',
   );
 
   $fields = array(
     'format' => 'full_html',
-    'editor' => 'ckeditor',
-    'settings' => serialize($settings),
+    'editor' => 'tinymce',
+    'settings' => serialize($settings_full),
+  );
+
+  db_insert('wysiwyg')->fields($fields)->execute();
+
+  $settings_filtered = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => 'en',
+    'buttons' => array(
+      'default' => array(
+        'bold' => 1,
+        'italic' => 1,
+        'underline' => 1,
+        'bullist' => 1,
+        'numlist' => 1,
+        'undo' => 1,
+        'redo' => 1,
+        'link' => 1,
+        'unlink' => 1,
+      ),
+      'drupal' => array(
+        'media' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+    'css_setting' => 'theme',
+    'css_path' => '',
+    'css_classes' => '',
+  );
+
+  $fields = array(
+    'format' => 'filtered_html',
+    'editor' => 'tinymce',
+    'settings' => serialize($settings_filtered),
   );
 
   db_insert('wysiwyg')->fields($fields)->execute();
 
   db_update('filter_format')
-  ->condition('format', 'filtered_html')
-  ->fields(array('weight' => 1))
-  ->execute();
+    ->condition('format', 'filtered_html')
+    ->fields(array('weight' => 1))
+    ->execute();
 
   db_update('filter_format')
-  ->condition('format', 'full_html')
-  ->fields(array('weight' => 0))
-  ->execute();
+    ->condition('format', 'full_html')
+    ->fields(array('weight' => 0))
+    ->execute();
 }
