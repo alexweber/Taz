@@ -283,6 +283,7 @@ projects[metatag][type] = module
 projects[metatag][subdir] = contrib
 
 projects[metatag_views][type] = module
+projects[metatag_views][subdir] = custom
 projects[metatag_views][download][type] = git
 projects[metatag_views][download][url] = http://git.drupal.org/sandbox/davereid/1281614.git
 projects[metatag_views][download][branch] = 7.x-1.x
