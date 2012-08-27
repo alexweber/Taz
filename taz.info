@@ -28,6 +28,7 @@ dependencies[] = taxonomy
 dependencies[] = context
 dependencies[] = context_ui
 dependencies[] = delta
+dependencies[] = delta_ui
 dependencies[] = ds
 dependencies[] = ds_extras
 dependencies[] = file_entity
