@@ -20,19 +20,51 @@ function taz_install() {
   taz_set_wysiwyg_settings();
 
   // Set up date defaults so it doesn't yell at us anymore.
-  variable_set('date_first_day', 0);
+  variable_set('date_first_day', 1);
   variable_set('date_format_long', 'l, F j, Y - H:i');
   variable_set('date_format_medium', 'D, Y-m-d H:i');
   variable_set('date_format_short', 'Y-m-d H:i');
+  variable_set('date_default_timezone', 'America/Denver');
+  variable_set('configurable_timezones', 0);
 
-  // Enable transliteration in Pathauto.
+  // Set private file path.
+  variable_set('file_private_path', 'private');
+
+  // Set media browser settings.
+  variable_set('media__wysiwyg_browser_plugins ', array(
+    'upload' => 'upload',
+    'media_default--media_browser_1' => 'media_default--media_browser_1',
+    'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+    'library' => 0,
+  ));
+
+  // Enable transliteration.
   variable_set('pathauto_transliterate', 1);
+  variable_set('transliteration_file_uploads', 1);
+  variable_set('transliteration_file_lowercase', 1);
+
+  // Set Pathauto default.
+  variable_set('pathauto_node_pattern', 'node/[node:nid]');
 
   // Don't allow visitor accounts.
   variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
 
-  // Set other default variables.
+  // Display all errors.
+  variable_set('error_level', 2);
+
+  // Enable backtrace error handler.
+  variable_set('devel_error_handlers', array(1 => 1, 4 => 4));
+
+  // Cache Admin menu.
   variable_set('admin_menu_cache_client', 1);
+
+  // Use easing with iToggle.
+  variable_set('itoggle_easing_use', 1);
+
+  // Enable dynamic module filter button placement.
+  variable_set('module_filter_dynamic_save_position', 1);
+
+  taz_set_backup_migrate();
 }
 
 /**
@@ -128,7 +160,6 @@ function taz_set_default_text_formats_and_perms() {
   filter_format_save($raw_html_format);
 
   // Only admin can use Raw HTML.
-
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
@@ -146,7 +177,7 @@ function taz_set_default_text_formats_and_perms() {
 }
 
 /**
- * Sets default WYSIWYG settings for OpenPublish
+ * Sets default WYSIWYG settings for Taz.
  */
 function taz_set_wysiwyg_settings() {
   $settings_full = array(
@@ -261,4 +292,116 @@ function taz_set_wysiwyg_settings() {
     ->condition('format', 'full_html')
     ->fields(array('weight' => 0))
     ->execute();
+}
+
+/**
+ * Sets Backup & Migrate destinations, profiles and schedules for Taz.
+ */
+function taz_set_backup_migrate() {
+  // Set destination.
+  $fields = array(
+    'destination_id' => 'db4568d60b719eff0860897b7d5f344f',
+    'name' => 'Dev Snapshot',
+    'type' => 'file',
+    'location' => 'private://backup_migrate/scheduled/snapshot',
+    'settings' => serialize(array()),
+  );
+
+  db_insert('backup_migrate_desinations')->fields($fields)->execute();
+
+  $filters = array(
+    'compression' => 'gzip',
+    'notify_success_enable' => 0,
+    'notify_failure_enable' => 0,
+    'utils_site_offline' => 0,
+    'utils_site_offline_message' => 'Taz is currently under maintenance. We should be back shortly. Thank you for your patience.',
+    'utils_description' => '',
+    'destinations' => array(
+      'db' => array(
+        'exclude_tables' => array(),
+        'nodata_tables' => array(
+          'cache' => 'cache',
+          'cache_admin_menu' => 'cache_admin_menu',
+          'cache_block' => 'cache_block',
+          'cache_bootstrap' => 'cache_bootstrap',
+          'cache_field' => 'cache_field',
+          'cache_filter' => 'cache_filter',
+          'cache_form' => 'cache_form',
+          'cache_image' => 'cache_image',
+          'cache_l10n_update' => 'cache_l10n_update',
+          'cache_media_xml' => 'cache_media_xml',
+          'cache_menu' => 'cache_menu',
+          'cache_page' => 'cache_page',
+          'cache_path' => 'cache_path',
+          'cache_token' => 'cache_token',
+          'cache_update' => 'cache_update',
+          'cache_views' => 'cache_views',
+          'cache_views_data' => 'cache_views_data',
+          'ctools_css_cache' => 'ctools_css_cache',
+          'ctools_object_cache' => 'ctools_object_cache',
+          'search_dataset' => 'search_dataset',
+          'search_index' => 'search_index',
+          'search_total' => 'search_total',
+          'sessions' => 'sessions',
+        ),
+        'utils_lock_tables' => 0,
+        'use_mysqldump' => 0,
+      ),
+    ),
+  );
+
+  // Set profiles.
+  $fields = array(
+    'profile_id' => '',
+    'name' => 'Dev Snapshot',
+    'filename' => '[site:name]',
+    'append_timestamp' => '0',
+    'timestamp_format' => 'Y-m-d\TH-i-s',
+    'filters' => serialize($filters),
+  );
+
+  db_insert('backup_migrate_profiles')->fields($fields)->execute();
+
+  $fields = array(
+    'profile_id' => 'default',
+    'name' => 'Default settings',
+    'filename' => '[site:name]',
+    'append_timestamp' => '1',
+    'timestamp_format' => 'Y-m-d\TH-i-s',
+    'filters' => serialize($filters),
+  );
+
+  db_update('backup_migrate_profiles')
+  ->condition('profile_id', 'default')
+  ->fields($fields)
+  ->execute();
+
+  // Set schedules.
+  $fields = array(
+    'schedule_id' => '5bd8bb83f92425d6fa282874dd7e3706',
+    'name' => 'Daily Backup',
+    'source_id' => 'db',
+    'destination_id' => 'scheduled',
+    'profile_id' => 'default',
+    'keep' => 90,
+    'period' => 28800,
+    'enabled' => 1,
+    'cron' => 1,
+  );
+
+  db_insert('backup_migrate_schedules')->fields($fields)->execute();
+
+  $fields = array(
+    'schedule_id' => '7b7474b0983cc65bc0ceab04e032a218',
+    'name' => 'Dev Snapshot',
+    'source_id' => 'db',
+    'destination_id' => 'db4568d60b719eff0860897b7d5f344f',
+    'profile_id' => 'c448b0b687b26069640579b972675991',
+    'keep' => 7,
+    'period' => 43200,
+    'enabled' => 1,
+    'cron' => 1,
+  );
+
+  db_insert('backup_migrate_schedules')->fields($fields)->execute();
 }
