@@ -19,18 +19,36 @@ dependencies[] = options
 ;dependencies[] = overlay
 dependencies[] = path
 dependencies[] = rdf
-dependencies[] = shortcut
+;dependencies[] = shortcut
 dependencies[] = taxonomy
+;dependencies[] = toolbar
 
-; Contrib.
+; Contrib base.
 ;dependencies[] = apps
-dependencies[] = admin_menu_toolbar
-dependencies[] = filter_perms
-dependencies[] = module_filter
+dependencies[] = context
+dependencies[] = context_ui
+dependencies[] = delta
+dependencies[] = file_entity
+dependencies[] = features
+dependencies[] = jquery_update
+dependencies[] = media
 dependencies[] = pathauto
+dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = transliteration
 dependencies[] = views_ui
+dependencies[] = wysiwyg
+
+; Contrib administration.
+dependencies[] = admin_menu_toolbar
+dependencies[] = advanced_help
+dependencies[] = backup_migrate
+
+; Contrib development.
+dependencies[] = devel
+dependencies[] = filter_perms
+dependencies[] = module_filter
+dependencies[] = omega_tools
 
 ; Taz.
 ;dependencies[] = taz_dev
