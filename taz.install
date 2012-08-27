@@ -15,7 +15,8 @@ function taz_install() {
   taz_set_tags();
   taz_set_fields();
   taz_set_default_text_formats_and_perms();
-  taz_set_wysiwyg_settings();
+  taz_set_wysiwyg();
+  taz_set_backup_migrate();
   taz_set_menu();
 
   // Set the default and admin themes
@@ -379,7 +380,7 @@ function taz_set_default_text_formats_and_perms() {
 /**
  * Sets default WYSIWYG settings for Taz.
  */
-function taz_set_wysiwyg_settings() {
+function taz_set_wysiwyg() {
   $settings_full = array(
     'default' => 1,
     'user_choose' => 0,
@@ -492,6 +493,118 @@ function taz_set_wysiwyg_settings() {
     ->condition('format', 'full_html')
     ->fields(array('weight' => 0))
     ->execute();
+}
+
+/**
+ * Set Backup & Migrate config.
+ */
+function taz_set_backup_migrate() {
+  // Set destination.
+  $fields = array(
+    'destination_id' => 'db4568d60b719eff0860897b7d5f344f',
+    'name' => 'Dev Snapshot',
+    'type' => 'file',
+    'location' => 'private://backup_migrate/scheduled/snapshot',
+    'settings' => serialize(array()),
+  );
+
+  db_insert('backup_migrate_destinations')->fields($fields)->execute();
+
+  $filters = array(
+    'compression' => 'gzip',
+    'notify_success_enable' => 0,
+    'notify_failure_enable' => 0,
+    'utils_site_offline' => 0,
+    'utils_site_offline_message' => 'Taz is currently under maintenance. We should be back shortly. Thank you for your patience.',
+    'utils_description' => '',
+    'destinations' => array(
+      'db' => array(
+        'exclude_tables' => array(),
+        'nodata_tables' => array(
+          'cache' => 'cache',
+          'cache_admin_menu' => 'cache_admin_menu',
+          'cache_block' => 'cache_block',
+          'cache_bootstrap' => 'cache_bootstrap',
+          'cache_field' => 'cache_field',
+          'cache_filter' => 'cache_filter',
+          'cache_form' => 'cache_form',
+          'cache_image' => 'cache_image',
+          'cache_l10n_update' => 'cache_l10n_update',
+          'cache_media_xml' => 'cache_media_xml',
+          'cache_menu' => 'cache_menu',
+          'cache_page' => 'cache_page',
+          'cache_path' => 'cache_path',
+          'cache_token' => 'cache_token',
+          'cache_update' => 'cache_update',
+          'cache_views' => 'cache_views',
+          'cache_views_data' => 'cache_views_data',
+          'ctools_css_cache' => 'ctools_css_cache',
+          'ctools_object_cache' => 'ctools_object_cache',
+          'search_dataset' => 'search_dataset',
+          'search_index' => 'search_index',
+          'search_total' => 'search_total',
+          'sessions' => 'sessions',
+        ),
+        'utils_lock_tables' => 0,
+        'use_mysqldump' => 0,
+      ),
+    ),
+  );
+
+  // Set profiles.
+  $fields = array(
+    'profile_id' => '',
+    'name' => 'Dev Snapshot',
+    'filename' => '[site:name]',
+    'append_timestamp' => '0',
+    'timestamp_format' => 'Y-m-d\TH-i-s',
+    'filters' => serialize($filters),
+  );
+
+  db_insert('backup_migrate_profiles')->fields($fields)->execute();
+
+  $fields = array(
+    'profile_id' => 'default',
+    'name' => 'Default settings',
+    'filename' => '[site:name]',
+    'append_timestamp' => '1',
+    'timestamp_format' => 'Y-m-d\TH-i-s',
+    'filters' => serialize($filters),
+  );
+
+  db_update('backup_migrate_profiles')
+    ->condition('profile_id', 'default')
+    ->fields($fields)
+    ->execute();
+
+  // Set schedules.
+  $fields = array(
+    'schedule_id' => '5bd8bb83f92425d6fa282874dd7e3706',
+    'name' => 'Daily Backup',
+    'source_id' => 'db',
+    'destination_id' => 'scheduled',
+    'profile_id' => 'default',
+    'keep' => 90,
+    'period' => 28800,
+    'enabled' => 1,
+    'cron' => 1,
+  );
+
+  db_insert('backup_migrate_schedules')->fields($fields)->execute();
+
+  $fields = array(
+    'schedule_id' => '7b7474b0983cc65bc0ceab04e032a218',
+    'name' => 'Dev Snapshot',
+    'source_id' => 'db',
+    'destination_id' => 'db4568d60b719eff0860897b7d5f344f',
+    'profile_id' => 'c448b0b687b26069640579b972675991',
+    'keep' => 7,
+    'period' => 43200,
+    'enabled' => 1,
+    'cron' => 1,
+  );
+
+  db_insert('backup_migrate_schedules')->fields($fields)->execute();
 }
 
 /**
