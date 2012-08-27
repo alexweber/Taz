@@ -93,42 +93,44 @@ if [ "$RESP" = "y" ]; then
   # Set permissions.
   mysql -u$MYROOT -p$MYPASS -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
   mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost'";
-fi
 
+  ####################
+  ### Install site ###
+  ####################
 
-####################
-### Install site ###
-####################
+  read -p "Install site? (y/n) " RESP
+  if [ "$RESP" = "y" ]; then
+    # Get site name.
+    read -p "Enter your site name [Taz]: " SITENAME
+    SITENAME=${SITENAME:-Taz}
 
-read -p "Install site? (y/n) " RESP
-if [ "$RESP" = "y" ]; then
-  # Get site name.
-  read -p "Enter your site name [Taz]: " SITENAME
-  SITENAME=${SITENAME:-Taz}
+    # Get site email.
+    read -p "Enter your site email: " EMAIL
 
-  # Get site email.
-  read -p "Enter your site email: " EMAIL
+    # Install site.
+    # We use a purpously unconventional name for user 1.
+    drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
 
-  # Install site.
-  # We use a purpously unconventional name for user 1.
-  drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-mail="$EMAIL" --site-name="$SITENAME"
+    # Make settings read-only.
+    chmod 644 sites/default/settings.php
 
-  # Make settings read-only.
-  chmod 644 sites/default/settings.php
+    # Display message.
+    echo "Drupal has been installed! User #1 is 'root_$DBNAME' and password id '$DBUSER'."
+    echo "Please change your password!"
 
-  # Display message.
-  echo "Drupal has been installed! User #1 is 'root_$DBNAME' and password id '$DBNAME'."
-  echo "Please change your password!"
-fi
+    #############################
+    ### Create Omega Subtheme ###
+    #############################
 
-#############################
-### Create Omega Subtheme ###
-#############################
+    read -p "Create Omega Subtheme? (y/n) " RESP
+    if [ "$RESP" = "y" ]; then
+      read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
+      SUBTHEME=${SUBTHEME:-Taz Theme}
+      drush en omega_tools -y
+      drush omega-subtheme "$SUBTHEME" -y
+    fi
 
-read -p "Create Omega Subtheme? (y/n) " RESP
-if [ "$RESP" = "y" ]; then
-  read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
-  SUBTHEME=${SUBTHEME:-Taz Theme}
-  drush en omega_tools -y
-  drush omega-subtheme "$SUBTHEME" -y
+    # Login as admin.
+    open `drush user-login root_$DBNAME`
+  fi
 fi
