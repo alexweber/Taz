@@ -76,19 +76,23 @@ rm -rf taz.make
 
 read -p "Create MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
+  # Get MySQL root username & password.
+  read -p "Enter your MySQL admin user: " MYROOT
+  read -p "Enter your MySQL admin password: " MYPASS
+
   # Create database user.
   read -p "Enter your database user [taz]: " DBUSER
   DBUSER=${DBUSER:-taz}
-  mysql -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
+  mysql -u$MYROOT -p$MYPASS -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
 
   # Create database.
   read -p "Enter your database name [taz]: " DBNAME
   DBNAME=${DBNAME:-taz}
-  mysql -e "CREATE DATABASE $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
+  mysql -u$MYROOT -p$MYPASS -e "CREATE DATABASE IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
   # Set permissions.
-  mysql -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
-  mysql -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost'";
+  mysql -u$MYROOT -p$MYPASS -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
+  mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost'";
 fi
 
 
