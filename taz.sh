@@ -126,5 +126,5 @@ if [ "$RESP" = "y" ]; then
   read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
   SUBTHEME=${SUBTHEME:-Taz Theme}
   drush en omega_tools -y
-  drush omega subtheme $SUBTHEME -y
+  drush omega-subtheme "$SUBTHEME" -y
 fi
