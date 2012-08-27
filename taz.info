@@ -31,6 +31,7 @@ dependencies[] = delta
 dependencies[] = delta_ui
 dependencies[] = ds
 dependencies[] = ds_extras
+dependencies[] = entity_token
 dependencies[] = file_entity
 dependencies[] = features
 dependencies[] = jquery_update
