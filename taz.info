@@ -46,6 +46,7 @@ dependencies[] = wysiwyg
 
 ; Contrib administration.
 dependencies[] = admin_menu_toolbar
+dependencies[] = admin_views
 dependencies[] = advanced_help
 dependencies[] = backup_migrate
 
