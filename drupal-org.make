@@ -51,7 +51,7 @@ projects[ds][version] = 1.5
 projects[ds][type] = module
 projects[ds][subdir] = contrib
 
-projects[email][version] = 1.1
+projects[email][version] = 1.2
 projects[email][type] = module
 projects[email][subdir] = contrib
 
