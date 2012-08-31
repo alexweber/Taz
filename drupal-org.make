@@ -178,7 +178,7 @@ projects[transliteration][version] = 3.1
 projects[transliteration][type] = module
 projects[transliteration][subdir] = contrib
 
-projects[variable][version] = 1.2
+projects[variable][version] = 2.1
 projects[variable][type] = module
 projects[variable][subdir] = contrib
 
