@@ -60,7 +60,9 @@ function taz_install() {
   variable_set('error_level', 2);
 
   // Enable backtrace error handler.
-  variable_set('devel_error_handlers', array(1 => 1, 4 => 4));
+  // UPDATE: When running strict mode this can break some AJAX because of
+  // the backtrace markup being mixed with responses.
+//  variable_set('devel_error_handlers', array(1 => 1, 4 => 4));
 
   // Cache Admin menu.
   variable_set('admin_menu_cache_client', 1);
