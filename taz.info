@@ -1,5 +1,5 @@
 name = Taz
-description = Installation profile for quickly spinning up a Drupal 7 site with common modules pre-configured. Taz, spinning, get it?
+description = Installation profile for quickly spinning up a Drupal 7 site with common modules pre-configured.
 core = 7.x
 
 ; Core.
