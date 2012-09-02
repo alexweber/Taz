@@ -70,11 +70,20 @@ function taz_install() {
   // Use easing with iToggle.
   variable_set('itoggle_easing_use', 1);
 
-  // Enable dynamic module filter button placement.
+  // Module filter dynamic button placement.
   variable_set('module_filter_dynamic_save_position', 1);
 
-  // Enable Display Suite extras.
+  // Display Suite extras settings.
   variable_set('ds_extras_field_template', 1);
+  variable_set('ft-default', 'theme_ds_field_minimal');
+  variable_set('ds_extras_fields_extra', 1);
+  variable_set('ds_extras_contextual', 1);
+
+  // Views UI development settings.
+  variable_set('views_ui_show_listing_filters', 1);
+  variable_set('views_ui_show_advanced_help_warning', 0);
+  variable_set('views_ui_show_advanced_column', 1);
+  variable_set('views_ui_show_sql_query', 1);
 }
 
 /**
