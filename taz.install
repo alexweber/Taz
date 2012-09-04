@@ -422,6 +422,10 @@ function taz_set_default_text_formats_and_perms() {
       'filter_html' => array(
         'weight' => -10,
         'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <p>',
+          'filter_html_help' => 0,
+        ),
       ),
       // Line break filter.
       'filter_autop' => array(
