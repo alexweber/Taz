@@ -1,5 +1,5 @@
 name = Taz
-description = Quickly spin up a Drupal 7 site with common modules pre-configured.
+description = Quickly spin up a Drupal 7 site with common contributed modules and themes pre-configured.
 core = 7.x
 
 ; Core.
