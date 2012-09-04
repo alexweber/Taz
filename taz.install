@@ -5,6 +5,11 @@
  */
 
 /**
+ * Role ID for administrator users; should match what's in the "role" table.
+ */
+define('TAZ_ADMIN_RID', 3);
+
+/**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.
@@ -488,7 +493,9 @@ function taz_set_default_text_formats_and_perms() {
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
 
+  $full_html_permission = filter_permission_name($full_html_format);
   // Only admin can use Full HTML.
+  user_role_grant_permissions(TAZ_ADMIN_RID, array('access content', $full_html_permission));
 
   $raw_html_format = array(
     'format' => 'raw_html',
@@ -499,7 +506,9 @@ function taz_set_default_text_formats_and_perms() {
   $raw_html_format = (object) $raw_html_format;
   filter_format_save($raw_html_format);
 
-  // Only admin can use Raw HTML.
+  $raw_html_permission = filter_permission_name($raw_html_format);
+  // Only admin can use Full HTML.
+  user_role_grant_permissions(TAZ_ADMIN_RID, array('access content', $raw_html_permission));
 }
 
 /**
