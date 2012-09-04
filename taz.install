@@ -20,6 +20,7 @@ function taz_install() {
   taz_set_wysiwyg();
   taz_set_backup_migrate();
   taz_set_menu();
+  taz_set_contexts();
 
   // Set the default and admin themes
   variable_set('theme_default', 'bartik');
@@ -757,4 +758,18 @@ function taz_set_menu() {
   menu_link_save($item);
   // Update menu router information.
   menu_rebuild();
+}
+
+/**
+ * Setup default contexts.
+ *
+ * This is necessary because hook_context_default_contexts() doesn't get
+ * invoked automatically when the installation profile is "installed".
+ */
+function taz_set_contexts() {
+  include_once 'taz.context.inc';
+
+  foreach (taz_context_default_contexts() as $context) {
+    context_save($context);
+  }
 }
