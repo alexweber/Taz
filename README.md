@@ -17,7 +17,19 @@ This is where the magic happens. See the code comments in taz.sh for a closer lo
 
 ### Profile
 
-The profile pre-installs some development modules, sets up an admin theme, preconfigures the WYSIWYG editor and a bunch of other cool stuff and sensible defaults.
+The profile installs and configures a bunch of stuff automatically to save you time:
+
+* Enables Fubik Admin theme
+* Enables Admin Menu, Admin Views, Devel, Module Filter and some other nice dev modules and settings
+* Configures TinyMCE editor and WYSIWYG profiles and text formats
+* Configures Backup & Migrate profiles, destinations and schedules
+* Sets default Pathauto patterns for nodes in general and Basic pages
+* Enables transliteration on both file uploads and pathauto aliases
+* Creates default Contexts for administrative pages, user-facing pages and the front page
+* Introduces 2 new useful API functions:
+** user_has_role() - checks whether a given user has a given role
+** string_to_slug() - converts a string into a slug for use in CSS classes and ids as well as paths
+* More stuff I can't remeber right now! :)
 
 ### Makefile
 
