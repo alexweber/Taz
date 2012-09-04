@@ -84,6 +84,9 @@ function taz_install() {
   variable_set('views_ui_show_advanced_help_warning', 0);
   variable_set('views_ui_show_advanced_column', 1);
   variable_set('views_ui_show_sql_query', 1);
+
+  // Enable Apps Dev console.
+  variable_set('apps_enable_dev_console', 1);
 }
 
 /**
