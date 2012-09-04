@@ -5,11 +5,6 @@
  */
 
 /**
- * Role ID for administrator users; should match what's in the "role" table.
- */
-define('TAZ_ADMIN_RID', 3);
-
-/**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.

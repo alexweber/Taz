@@ -5,6 +5,11 @@
  */
 
 /**
+ * Role ID for administrator users; should match what's in the "role" table.
+ */
+define('TAZ_ADMIN_RID', 3);
+
+/**
  * Implements hook_admin_paths().
  *
  * Make user pages use admin theme.
