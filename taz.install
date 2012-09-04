@@ -570,9 +570,6 @@ function taz_set_wysiwyg() {
         'link' => 1,
         'unlink' => 1,
       ),
-      'drupal' => array(
-        'media' => 1,
-      ),
     ),
     'toolbar_loc' => 'top',
     'toolbar_align' => 'left',
