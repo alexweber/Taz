@@ -299,6 +299,10 @@ projects[search404][version] = 1.2
 projects[search404][type] = module
 projects[search404][subdir] = contrib
 
+projects[schemaorg][version] = 1.0-beta3
+projects[schemaorg][type] = module
+projects[schemaorg][subdir] = contrib
+
 projects[xmlsitemap][version] = 2.0-rc1
 projects[xmlsitemap][type] = module
 projects[xmlsitemap][subdir] = contrib
