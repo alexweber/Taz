@@ -56,14 +56,15 @@ function taz_install() {
   variable_set('transliteration_file_uploads', 1);
   variable_set('transliteration_file_lowercase', 1);
 
+  // Set Pathauto default node pattern.
+  variable_set('pathauto_node_pattern', 'node/[node:nid]');
+  variable_set('pathauto_node_page_pattern', '[node:title]');
+
   // Set sensible caching defaults.
   variable_set('cache', 1);
   variable_set('block_cache', 1);
   variable_set('cache_lifetime', 600);
   variable_set('page_compression', 1);
-
-  // Set Pathauto default node pattern.
-  variable_set('pathauto_node_pattern', 'node/[node:nid]');
 
   // Don't allow visitor accounts.
   variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
