@@ -67,6 +67,8 @@ function taz_install() {
 
   // Don't allow visitor accounts.
   variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
+  // When cancelling a user account, block it and unpublish it's content.
+  variable_set('user_cancel_method', 'user_cancel_block_unpublish');
 
   // Display all errors.
   variable_set('error_level', 2);
