@@ -6,7 +6,7 @@ It includes a shell script, makfile and installation profile.
 
 ## Getting started
 
-* Copy "taz.make" and "taz.sh" into an empty directory
+* Dowload the "taz.make" and "taz.sh" from the "bin" branch into an empty directory
 * Run ```sh taz.sh``` and watch in awe.
 
 ## Read more
@@ -111,6 +111,7 @@ Includes the following modules:
 * Metatag Views (patched sandbox)
 * Redirect
 * Search 404
+* Schema.org
 * XML sitemap
 
 #### Performance
