@@ -64,6 +64,7 @@ Includes the following modules for general-purpose site building:
 * Field Group
 * File Entity
 * Flag
+* Geolocation
 * Internal Nodes
 * jQuery Update
 * Libraries API

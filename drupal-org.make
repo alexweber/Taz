@@ -89,6 +89,10 @@ projects[flag][version] = 2.0-beta8
 projects[flag][type] = module
 projects[flag][subdir] = contrib
 
+projects[geolocation][version] = 1.1
+projects[geolocation][type] = module
+projects[geolocation][subdir] = contrib
+
 projects[internal_nodes][version] = 1.2
 projects[internal_nodes][type] = module
 projects[internal_nodes][subdir] = contrib
