@@ -7,10 +7,6 @@ projects[addressfield][version] = 1.0-beta3
 projects[addressfield][type] = module
 projects[addressfield][subdir] = contrib
 
-projects[addressfield_staticmap][version] = 1.0-beta5
-projects[addressfield_staticmap][type] = module
-projects[addressfield_staticmap][subdir] = contrib
-
 projects[apps][version] = 1.0-beta7
 projects[apps][type] = module
 projects[apps][subdir] = contrib
