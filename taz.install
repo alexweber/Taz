@@ -263,12 +263,13 @@ function taz_set_content_types() {
     rdf_mapping_save($rdf_mapping);
   }
 
-  // Default "Basic page" to not be promoted and have comments disabled.
+  // Default "Basic page" settings.
   variable_set('node_options_page', array('status'));
   variable_set('comment_page', COMMENT_NODE_HIDDEN);
-
-  // Don't display date and author information for "Basic page" nodes by default.
   variable_set('node_submitted_page', FALSE);
+
+  // Default "Article" settings.
+  variable_set('menu_options_article', array());
 }
 
 /**
