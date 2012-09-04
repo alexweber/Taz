@@ -134,3 +134,6 @@ if [ "$RESP" = "y" ]; then
     open `drush user-login root_$DBNAME`
   fi
 fi
+
+# Remove the script when we're done.
+rm $0
