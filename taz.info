@@ -19,7 +19,7 @@ dependencies[] = options
 ;dependencies[] = overlay
 dependencies[] = path
 dependencies[] = rdf
-;dependencies[] = shortcut
+dependencies[] = shortcut
 dependencies[] = taxonomy
 ;dependencies[] = toolbar
 
