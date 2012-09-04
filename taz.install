@@ -15,6 +15,7 @@ function taz_install() {
   taz_set_content_types();
   taz_set_tags();
   taz_set_fields();
+  taz_set_roles();
   taz_set_default_text_formats_and_perms();
   taz_set_wysiwyg();
   taz_set_backup_migrate();
@@ -383,7 +384,27 @@ function taz_set_fields() {
 }
 
 /**
- * Provides default text formats for Taz.
+ * Provides a default administrator role with all permissions
+ */
+function taz_set_roles() {
+  // Create a default role for site administrators, with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = 'administrator';
+  $admin_role->weight = 2;
+  user_role_save($admin_role);
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+
+  // Set this as the administrator role.
+  variable_set('user_admin_role', $admin_role->rid);
+
+  // Assign user 1 the "administrator" role.
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
+}
+
+/**
+ * Provides default text formats.
  */
 function taz_set_default_text_formats_and_perms() {
   // Add text formats.
@@ -475,20 +496,6 @@ function taz_set_default_text_formats_and_perms() {
   filter_format_save($raw_html_format);
 
   // Only admin can use Raw HTML.
-  // Create a default role for site administrators, with all available permissions assigned.
-  $admin_role = new stdClass();
-  $admin_role->name = 'administrator';
-  $admin_role->weight = 2;
-  user_role_save($admin_role);
-  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
-
-  // Set this as the administrator role.
-  variable_set('user_admin_role', $admin_role->rid);
-
-  // Assign user 1 the "administrator" role.
-  db_insert('users_roles')
-    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
-    ->execute();
 }
 
 /**
