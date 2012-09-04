@@ -33,8 +33,11 @@ The profile installs and configures a bunch of stuff automatically to save you t
 
 ### Makefile
 
-Don't be alarmed by the number of modules we download; almost all of them are disabled by default.
+Don't be alarmed by the number of modules we download; almost all of them are disabled by default!
 They do, however, have their recommended versions and sometimes even patches applied so that, when you do need them, you'll have right one.
+
+This makefile also applies a couple core patches to fix some lingering issues.
+These patches are used by Phase2's OpenPublic and are therefore considered safe.
 
 #### Core
 
