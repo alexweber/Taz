@@ -27,8 +27,8 @@ The profile installs and configures a bunch of stuff automatically to save you t
 * Enables transliteration on both file uploads and pathauto aliases
 * Creates default Contexts for administrative pages, user-facing pages and the front page
 * Introduces 2 new useful API functions:
-** user_has_role() - checks whether a given user has a given role
-** string_to_slug() - converts a string into a slug for use in CSS classes and ids as well as paths
+    * user_has_role() - checks whether a given user has a given role
+    * string_to_slug() - converts a string into a slug for use in CSS classes and ids as well as paths
 * More stuff I can't remeber right now! :)
 
 ### Makefile
@@ -120,7 +120,7 @@ Includes the following modules for improving site administration:
 
 #### SEO
 
-Includes the following modules:
+Includes the following modules for SEO:
 
 * Metatag
 * Metatag Views (patched sandbox)
@@ -131,7 +131,7 @@ Includes the following modules:
 
 #### Performance
 
-Includes the following modules:
+Includes the following modules for performance:
 
 * Boost
 * Core Library
