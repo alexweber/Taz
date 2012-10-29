@@ -244,14 +244,6 @@ projects[advanced_help][version] = 1.0
 projects[advanced_help][type] = module
 projects[advanced_help][subdir] = contrib
 
-projects[coffee][version] = 1.0
-projects[coffee][type] = module
-projects[coffee][subdir] = contrib
-
-projects[defaultcontent][version] = 1.0-alpha6
-projects[defaultcontent][type] = module
-projects[defaultcontent][subdir] = contrib
-
 projects[devel][version] = 1.3
 projects[devel][type] = module
 projects[devel][subdir] = contrib
