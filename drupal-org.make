@@ -15,7 +15,7 @@ projects[autocomplete_deluxe][version] = 2.0-beta2
 projects[autocomplete_deluxe][type] = module
 projects[autocomplete_deluxe][subdir] = contrib
 
-projects[bean][version] = 1.0-rc5
+projects[bean][version] = 1.0-rc6
 projects[bean][type] = module
 projects[bean][subdir] = contrib
 
@@ -23,7 +23,7 @@ projects[bundle_inherit][version] = 1.x-dev
 projects[bundle_inherit][type] = module
 projects[bundle_inherit][subdir] = contrib
 
-projects[colorbox][version] = 1.3
+projects[colorbox][version] = 1.4
 projects[colorbox][type] = module
 projects[colorbox][subdir] = contrib
 
@@ -43,7 +43,7 @@ projects[delta][version] = 3.0-beta11
 projects[delta][type] = module
 projects[delta][subdir] = contrib
 
-projects[ds][version] = 1.5
+projects[ds][version] = 1.6
 projects[ds][type] = module
 projects[ds][subdir] = contrib
 
@@ -55,11 +55,11 @@ projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
 projects[entity][subdir] = contrib
 
-projects[entityreference][version] = 1.0-rc3
+projects[entityreference][version] = 1.0-rc5
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
-projects[facetapi][version] = 1.1
+projects[facetapi][version] = 1.2
 projects[facetapi][type] = module
 projects[facetapi][subdir] = contrib
 
@@ -85,7 +85,7 @@ projects[file_entity][version] = 2.0-unstable6
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 
-projects[flag][version] = 2.0-beta8
+projects[flag][version] = 2.0
 projects[flag][type] = module
 projects[flag][subdir] = contrib
 
@@ -137,7 +137,7 @@ projects[pathauto][version] = 1.2
 projects[pathauto][type] = module
 projects[pathauto][subdir] = contrib
 
-projects[print][version] = 1.1
+projects[print][version] = 1.2
 projects[print][type] = module
 projects[print][subdir] = contrib
 
@@ -158,7 +158,7 @@ projects[search_api_page][version] = 1.0-beta2
 projects[search_api_page][type] = module
 projects[search_api_page][subdir] = contrib
 
-projects[search_api_saved_searches][version] = 1.0-beta5
+projects[search_api_saved_searches][version] = 1.0
 projects[search_api_saved_searches][type] = module
 projects[search_api_saved_searches][subdir] = contrib
 
@@ -170,7 +170,7 @@ projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
 projects[strongarm][subdir] = contrib
 
-projects[token][version] = 1.2
+projects[token][version] = 1.4
 projects[token][type] = module
 projects[token][subdir] = contrib
 
@@ -204,7 +204,7 @@ projects[admin_menu][version] = 3.x-dev
 projects[admin_menu][type] = module
 projects[admin_menu][subdir] = contrib
 
-projects[admin_views][version] = 1.x-dev
+projects[admin_views][version] = 1.0
 projects[admin_views][type] = module
 projects[admin_views][subdir] = contrib
 
@@ -212,7 +212,7 @@ projects[backup_migrate][version] = 2.4
 projects[backup_migrate][type] = module
 projects[backup_migrate][subdir] = contrib
 
-projects[better_exposed_filters][version] = 3.0-beta1
+projects[better_exposed_filters][version] = 3.0-beta3
 projects[better_exposed_filters][type] = module
 projects[better_exposed_filters][subdir] = contrib
 
@@ -224,15 +224,14 @@ projects[itoggle][version] = 2.3
 projects[itoggle][type] = module
 projects[itoggle][subdir] = contrib
 
-projects[views_bulk_operations][version] = 3.0-rc1
+projects[views_bulk_operations][version] = 3.0
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 projects[views_bulk_operations][patch][] = http://drupal.org/files/views_bulk_operations-empty-text-wrapper-1683146-1.patch
 
-projects[wysiwyg][version] = 2.1
+projects[wysiwyg][version] = 2.2
 projects[wysiwyg][type] = module
 projects[wysiwyg][subdir] = contrib
-projects[wysiwyg][patch][] = http://drupal.org/files/issues/wysiwyg-835682-12.patch
 
 ; Development
 
@@ -270,7 +269,7 @@ projects[omega_tools][subdir] = contrib
 
 ; SEO
 
-projects[metatag][version] = 1.0-alpha8
+projects[metatag][version] = 1.x-dev
 projects[metatag][type] = module
 projects[metatag][subdir] = contrib
 
@@ -283,11 +282,11 @@ projects[metatag_views][patch][] = http://drupal.org/files/1560024-views_metatag
 projects[metatag_views][patch][] = http://drupal.org/files/1560088-display_extender-export.patch
 projects[metatag_views][patch][] = http://drupal.org/files/1361158-html_output.patch
 
-projects[redirect][version] = 1.0-beta4
+projects[redirect][version] = 1.0-rc1
 projects[redirect][type] = module
 projects[redirect][subdir] = contrib
 
-projects[search404][version] = 1.2
+projects[search404][version] = 1.3
 projects[search404][type] = module
 projects[search404][subdir] = contrib
 
@@ -318,7 +317,7 @@ projects[entitycache][subdir] = contrib
 projects[tao][version] = 3.0-beta4
 projects[tao][type] = theme
 
-projects[rubik][version] = 4.0-beta4
+projects[rubik][version] = 4.0-beta8
 projects[rubik][type] = theme
 
 projects[fubik][version] = 1.24
@@ -326,6 +325,9 @@ projects[fubik][type] = theme
 
 projects[omega][version] = 3.1
 projects[omega][type] = theme
+
+projects[zen][version] = 3.1
+projects[zen][type] = theme
 
 ; External Libraries
 
