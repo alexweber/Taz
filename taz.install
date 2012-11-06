@@ -21,6 +21,7 @@ function taz_install() {
   taz_set_backup_migrate();
   taz_set_menu();
   taz_set_contexts();
+  taz_set_admin_views();
 
   // Set the default and admin themes
   variable_set('theme_default', 'bartik');
@@ -771,5 +772,21 @@ function taz_set_contexts() {
 
   foreach (taz_context_default_contexts() as $context) {
     context_save($context);
+  }
+}
+
+/**
+ * Override default admin view provided by the Admin Views module.
+ */
+function taz_set_admin_views() {
+  include_once 'taz.views_default.inc';
+
+  foreach (taz_views_default_views() as $view) {
+    if ($old_view = views_get_view($view->name, TRUE)) {
+      // Delete current View.
+      $old_view->delete();
+      // Replace it with out own.
+      $view->save();
+    }
   }
 }
