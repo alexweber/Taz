@@ -1,0 +1,7 @@
+core = 7.x
+description = Tools for dealing with different server environments such as Development, Staging and Production.
+name = Taz Environment
+package = Taz
+version = 7.x-1.0-beta1
+project = taz_env
+configure = admin/config/development

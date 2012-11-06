@@ -1,0 +1,212 @@
+<?php
+/**
+ * @file
+ * Taz Env module.
+ */
+
+/**
+ * Constants for environments.
+ */
+define('TAZ_ENV_DEV', 'development');
+define('TAZ_ENV_STAGE', 'staging');
+define('TAZ_ENV_PROD', 'production');
+
+/**
+ * Implements hook_permission().
+ */
+function taz_env_permission() {
+  return array(
+    'administer taz_env' => array(
+      'title' => t('Administer Taz Env'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function taz_env_menu() {
+  $items = array();
+
+  $items['admin/config/development/taz_env'] = array(
+    'title' => 'Taz Env',
+    'description' => 'Configure settings for Taz Env',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('taz_env_settings_form'),
+    'file' => 'taz_env.admin.inc',
+    'access arguments' => array('administer taz_env'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function taz_env_block_info() {
+  return array(
+    'current' => array(
+      'info' => 'Taz Env: Current Environment',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function taz_env_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'current':
+      $block['subject'] = '';
+      $block['content'] = array(
+        '#markup' => '<div class="messages warning">' . t('Currently in %name environment.', array('%name' => variable_get('taz_env', TAZ_ENV_DEV))) . '</div>',
+      );
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Set an environment.
+ *
+ * @param string
+ *   One of 'development', 'staging' or 'production'.
+ */
+function taz_env_set($environment) {
+  $modules = array(
+    'dev' => array(
+      'context_ui',
+      'devel',
+      'devel_generate',
+      'devel_node_access',
+      'drupal_ipsum',
+      'drupal_ipsum_devel_generate',
+      'field_ui',
+      'filter_perms',
+      'module_filter',
+      'views_ui',
+    ),
+    'stage' => array(),
+    'prod' => array(),
+  );
+
+  drupal_alter('taz_env_modules', $modules);
+
+  $variables = array(
+    'dev' => array(
+      'block_cache' => 0,
+      'cache' => 0,
+      'devel_error_handlers' => array(1 => 1),
+//      'devel_rebuild_theme_registry' => 1,
+      'devel_raw_names' => 1,
+      'error_level' => 2,
+      'page_compression' => 0,
+      'preprocess_css' => 0,
+      'preprocess_js' => 0,
+      'jquery_update_jquery_cdn' => 'none',
+    ),
+    'stage' => array(),
+    'prod' => array(
+      'block_cache' => 1,
+      'page_compression' => 1,
+      'devel_error_handlers' => array(0 => 0),
+      'devel_rebuild_theme_registry' => 0,
+      'devel_raw_names' => 0,
+      'error_level' => 0,
+      'jquery_update_jquery_cdn' => 'google',
+    ),
+  );
+
+  // If Boost is disabled, enable standard Drupal cache variables for production mode.
+  if (!function_exists('boost_menu')) {
+    $variables['prod']['cache'] = 1;
+    $variables['prod']['preprocess_css'] = 1;
+    $variables['prod']['preprocess_js'] = 1;
+  }
+
+  drupal_alter('taz_env_variables', $variables);
+
+  if ($environment === TAZ_ENV_PROD) {
+    // Enable/disable modules.
+    foreach ($modules as $env => $list) {
+      foreach ($list as $module) {
+        if ($env === TAZ_ENV_DEV) {
+          if (module_exists($module)) {
+            module_disable($module);
+          }
+        }
+        else {
+          if (module_exists($module)) {
+            module_enable($module);
+          }
+        }
+      }
+    }
+
+    // Set variables.
+    foreach ($variables as $env => $var) {
+      if ($env === TAZ_ENV_PROD) {
+        foreach ($var as $name => $value) {
+          variable_set($name, $value);
+        }
+      }
+    }
+
+    variable_set('taz_env', TAZ_ENV_PROD);
+  }
+  else {
+    // Enable/disable modules.
+    foreach ($modules as $env => $list) {
+      foreach ($list as $module) {
+        if ($env === TAZ_ENV_DEV) {
+          if (module_exists($module)) {
+            module_enable($list);
+          }
+        }
+        else {
+          if (module_exists($module)) {
+            module_disable($list);
+          }
+        }
+      }
+    }
+
+    // Set variables.
+    foreach ($variables as $env => $var) {
+      if ($env === TAZ_ENV_DEV) {
+        foreach ($var as $name => $value) {
+          variable_set($name, $value);
+        }
+      }
+    }
+
+    if ($environment === TAZ_ENV_STAGE) {
+      // Enable/disable extra modules.
+      foreach ($modules as $env => $list) {
+        if ($env === TAZ_ENV_STAGE) {
+          if (module_exists($module)) {
+            module_enable($list);
+          }
+        }
+      }
+
+      // Set extra variables.
+      foreach ($variables as $env => $var) {
+        if ($env === TAZ_ENV_STAGE) {
+          foreach ($var as $name => $value) {
+            variable_set($name, $value);
+          }
+        }
+      }
+
+      variable_set('taz_env', TAZ_ENV_STAGE);
+    }
+    else {
+      variable_set('taz_env', TAZ_ENV_DEV);
+    }
+  }
+}
