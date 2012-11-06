@@ -58,8 +58,8 @@ function taz_install() {
   variable_set('pathauto_node_page_pattern', '[node:title]');
 
   // Set sensible caching defaults.
-  variable_set('cache', 1);
-  variable_set('block_cache', 1);
+  variable_set('cache', 0);
+  variable_set('block_cache', 0);
   variable_set('cache_lifetime', 600);
   variable_set('page_compression', 1);
 
