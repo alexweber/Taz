@@ -28,7 +28,8 @@
 #
 ################################################################################
 
-# @TODO download makefile automatically from git repo
+curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
+
 drush make taz.make .
 
 #################################
