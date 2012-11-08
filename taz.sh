@@ -116,6 +116,8 @@ if [ "$RESP" = "y" ]; then
 
   read -p "Install site? (y/n) " RESP
   if [ "$RESP" = "y" ]; then
+    DIRNAME=${PWD##*/}
+
     # Get site name.
     read -p "Enter your site name [Taz]: " SITENAME
     SITENAME=${SITENAME:-Taz}
@@ -124,8 +126,8 @@ if [ "$RESP" = "y" ]; then
     read -p "Enter your site email: " EMAIL
 
     # Get site vhost.
-    read -p "Enter your site's virtual host [${PWD##*/}]: " VHOST
-    VHOST=${VHOST:-${PWD##*/}}
+    read -p "Enter your site's virtual host [$DIRNAME]: " VHOST
+    VHOST=${VHOST:-$DIRNAME}
 
     # Install site.
     drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name="User One" --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
