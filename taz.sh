@@ -4,20 +4,22 @@
 #
 #   This simple script gets a Drupal 7 site installed in seconds:
 #
-#   * Starts by building the makefile; taz.make (soon)
+#   * Starts by building the makefile; taz.make
 #
 #   * Automatically creates settings file and files directories and sets
 #     the correct permissions on them.
 #
-#   * Creates mysql user and database and sets permissions
+#   * Creates mysql user and database (if necessary) and sets permissions
 #
-#   * Asks for site name and email
+#   * Asks for site name, email and url
 #
 #   * Installs the site using the Taz profile
 #
 #   * Makes settings.php read-only
 #
-#   * Asks for theme name and creates Omega Subtheme
+#   * Asks for theme name and creates Omega Subtheme (optional)
+#
+#   * Opens the website on password recovery screen
 #
 #   The entire process only takes a few seconds and can save your team hours
 #   of work, time and time again.
@@ -26,6 +28,7 @@
 #
 ################################################################################
 
+# @TODO download makefile automatically from git repo
 drush make taz.make .
 
 #################################
