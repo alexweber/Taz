@@ -28,7 +28,10 @@
 #
 ################################################################################
 
-curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
+if [ ! -f taz.make ];
+then
+  curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
+fi
 
 drush make taz.make .
 
