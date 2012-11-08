@@ -363,3 +363,6 @@ libraries[tinymce][download][url] = http://github.com/downloads/tinymce/tinymce/
 
 libraries[jquery.coolinput][download][type] = file
 libraries[jquery.coolinput][download][url] = https://github.com/alexweber/jquery.coolinput/tarball/2.0.1
+
+libraries[chosen][download][type] = file
+libraries[chosen][download][url] = https://github.com/harvesthq/chosen/archive/v0.9.8.tar.gz
