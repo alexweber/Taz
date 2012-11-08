@@ -111,6 +111,9 @@ if [ "$RESP" = "y" ]; then
     # Get site email.
     read -p "Enter your site email: " EMAIL
 
+    # Get site vhost.
+    read -p "Enter your site's virtual host: " VHOST
+
     # Install site.
     # We use a purpously unconventional name for user 1.
     drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name="User One" --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
@@ -135,7 +138,6 @@ if [ "$RESP" = "y" ]; then
     fi
 
     # Login as admin.
-    read -p "Enter your site's virtual host: " VHOST
     open `drush user-login "User One" -l $VHOST`
   fi
 fi
