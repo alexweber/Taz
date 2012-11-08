@@ -33,7 +33,10 @@ then
   curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
 fi
 
-drush make taz.make .
+read -p "Build website using Drush make? (y/n) " RESP
+if [ "$RESP" = "y" ]; then
+  drush make taz.make .
+fi
 
 #################################
 ### Directories & Permissions ###
