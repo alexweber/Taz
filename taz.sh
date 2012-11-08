@@ -115,7 +115,6 @@ if [ "$RESP" = "y" ]; then
     read -p "Enter your site's virtual host: " VHOST
 
     # Install site.
-    # We use a purpously unconventional name for user 1.
     drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name="User One" --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
 
     # Make settings read-only.
