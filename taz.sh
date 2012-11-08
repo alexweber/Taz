@@ -80,10 +80,11 @@ fi
 
 read -p "Create MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
-  # Get MySQL root username & password.
-  read -p "Enter your MySQL admin user: " MYROOT
+  # Get MySQL root username.
+  read -p "Enter your MySQL root user: " MYROOT
 
-  echo "Enter your MySQL admin password: "
+  # Get MySQL root password (hidden user input).
+  echo "Enter your MySQL root password:"
   stty -echo
   read MYPASS
   stty echo
