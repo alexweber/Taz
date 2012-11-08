@@ -86,7 +86,7 @@ if [ "$RESP" = "y" ]; then
   # Create database user.
   read -p "Enter your database user [taz]: " DBUSER
   DBUSER=${DBUSER:-taz}
-  mysql -u$MYROOT -p$MYPASS -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
+  #mysql -u$MYROOT -p$MYPASS -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
 
   # Create database.
   read -p "Enter your database name [taz]: " DBNAME
