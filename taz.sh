@@ -134,7 +134,8 @@ if [ "$RESP" = "y" ]; then
     fi
 
     # Login as admin.
-    open `drush user-login root_$DBNAME`
+    read -p "Enter your site's virtual host: " VHOST
+    open `drush user-login root_$DBNAME -l $VHOST`
   fi
 fi
 
