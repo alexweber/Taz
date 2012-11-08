@@ -137,6 +137,17 @@ if [ "$RESP" = "y" ]; then
       drush omega-subtheme "$SUBTHEME" -y
     fi
 
+    #############################
+    ### Create Zen Subtheme ###
+    #############################
+
+    read -p "Create Zen Subtheme? (y/n) " RESP
+    if [ "$RESP" = "y" ]; then
+      read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
+      SUBTHEME=${SUBTHEME:-Taz Theme}
+      drush zen "$SUBTHEME" -y
+    fi
+
     # Login as admin.
     open `drush user-login "User One" -l $VHOST`
   fi
