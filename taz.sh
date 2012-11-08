@@ -115,7 +115,7 @@ if [ "$RESP" = "y" ]; then
     chmod 644 sites/default/settings.php
 
     # Display message.
-    echo "Drupal has been installed! User #1 is 'root_$DBNAME' and password id '$DBUSER'."
+    echo "Drupal has been installed! User #1 is 'root_$DBNAME' and password is '$DBUSER'."
     echo "Please change your password!"
 
     #############################
