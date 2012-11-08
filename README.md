@@ -4,7 +4,7 @@ This branch includes the executable files that glue everything together.
 
 ## Quickstart:
 
-Copy both files into an empty directory, make the shellscript executable and run it:
+Copy taz.sh intp an empty directory, make the it executable and run it:
 
 ```chmod u+x taz.sh```
 
