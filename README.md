@@ -6,8 +6,8 @@ It includes a shell script, makfile and installation profile.
 
 ## Getting started
 
-* Download or clone the "bin" branch or latest tag.
-* Copy "taz.make" and "taz.sh" into an empty directory
+* Download or clone the "bin" branch.
+* Copy "taz.sh" into an empty directory
 * Run ```sh taz.sh``` and watch in awe.
 
 ## Read more
