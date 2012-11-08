@@ -286,7 +286,7 @@ projects[redirect][version] = 1.0-rc1
 projects[redirect][type] = module
 projects[redirect][subdir] = contrib
 
-projects[search404][version] = 1.3
+projects[search404][version] = 1.2
 projects[search404][type] = module
 projects[search404][subdir] = contrib
 
