@@ -138,5 +138,6 @@ if [ "$RESP" = "y" ]; then
   fi
 fi
 
-# Remove the script when we're done.
+# Remove the scripts when we're done.
+rm taz.make
 rm $0
