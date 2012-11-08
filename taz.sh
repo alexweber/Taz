@@ -82,7 +82,11 @@ read -p "Create MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
   # Get MySQL root username & password.
   read -p "Enter your MySQL admin user: " MYROOT
-  read -p "Enter your MySQL admin password: " MYPASS
+
+  echo "Enter your MySQL admin password: "
+  stty -echo
+  read MYPASS
+  stty echo
 
   # Create database user.
   read -p "Enter your database user [taz]: " DBUSER
