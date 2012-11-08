@@ -112,13 +112,13 @@ if [ "$RESP" = "y" ]; then
 
     # Install site.
     # We use a purpously unconventional name for user 1.
-    drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name=root_$DBNAME --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
+    drush si taz --db-url=mysql://$DBUSER:$DBUSER@127.0.0.1/$DBNAME --account-name="User One" --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
 
     # Make settings read-only.
     chmod 644 sites/default/settings.php
 
     # Display message.
-    echo "Drupal has been installed! User #1 is 'root_$DBNAME' and password is '$DBUSER'."
+    echo "Drupal has been installed! User #1 is 'User One' and password is '$DBUSER'."
     echo "Please change your password!"
 
     #############################
