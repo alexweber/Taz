@@ -127,7 +127,8 @@ if [ "$RESP" = "y" ]; then
     SITENAME=${SITENAME:-Taz}
 
     # Get site email.
-    read -p "Enter your site email: " EMAIL
+    read -p "Enter your site email [alexweber15@gmail.com]: " EMAIL
+    EMAIL=${EMAIL:-alexweber15@gmail.com}
 
     # Get site vhost.
     read -p "Enter your site's virtual host [$DIRNAME]: " VHOST
