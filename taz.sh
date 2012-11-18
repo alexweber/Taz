@@ -96,23 +96,29 @@ if [ "$RESP" = "y" ]; then
   read MYPASS
   stty echo
 
-  # Create database user.
-  read -p "Enter your database user [taz]: " DBUSER
+  # Get Drupal database user.
+  read -p "Enter your Drupal database user [taz]: " DBUSER
   DBUSER=${DBUSER:-taz}
 
-  # New user password.
-  read -p "Enter your database password [taz123]: " DBPASS
+  # Get Drupal database password.
+  read -p "Enter your Drupal database password [taz123]: " DBPASS
   DBPASS=${DBPASS:-taz123}
 
-  # Create database.
-  read -p "Enter your database name [taz]: " DBNAME
+  # Get Drupal database name.
+  read -p "Enter your Drupal database name [taz]: " DBNAME
   DBNAME=${DBNAME:-taz}
 
+  read -p "Create Drupal database user? (y/n) " RESP
+  if [ "$RESP" = "y" ]; then
+    mysql -u$MYROOT -p$MYPASS -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
+    mysql -u$MYROOT -p$MYPASS -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost';"
+  fi
+
+  # Create database.
   mysql -u$MYROOT -p$MYPASS -e "CREATE DATABASE IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
   # Set permissions.
-  mysql -u$MYROOT -p$MYPASS -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost' IDENTIFIED BY '$DBPASS';"
-  mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME . * TO '$DBUSER'@'localhost'";
+  mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME .* TO '$DBUSER'@'localhost';"
 
   ####################
   ### Install site ###
