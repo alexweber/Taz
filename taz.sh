@@ -28,13 +28,17 @@
 #
 ################################################################################
 
-if [ ! -f taz.make ];
-then
-  curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
-fi
+##################
+### Drush Make ###
+##################
 
-read -p "Build website using Drush make? (y/n) " RESP
+read -p "Download makefile and build website using Drush make? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
+
+  if [ ! -f taz.make ]; then
+    curl -0 https://raw.github.com/alexweber/Taz/bin/taz.make > taz.make
+  fi
+
   drush make taz.make .
 fi
 
