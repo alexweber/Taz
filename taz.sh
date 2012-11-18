@@ -143,6 +143,13 @@ if [ "$RESP" = "y" ]; then
     echo "Drupal has been installed! User #1 is 'User One' and password is '$DBUSER'."
     echo "Please change your password!"
 
+    ################################
+    ### Refactor files directory ###
+    ################################
+
+    mv sites/default/files sites/files
+    drush vset file_public_path "sites/files" -l $VHOST
+
     #############################
     ### Create Omega Subtheme ###
     #############################
