@@ -89,6 +89,10 @@ projects[flag][version] = 2.0
 projects[flag][type] = module
 projects[flag][subdir] = contrib
 
+projects[flexslider][version] = 1.0-rc3
+projects[flexslider][type] = module
+projects[flexslider][subdir] = contrib
+
 projects[geolocation][version] = 1.1
 projects[geolocation][type] = module
 projects[geolocation][subdir] = contrib
@@ -354,6 +358,9 @@ libraries[jquery.hoverintent][download][url] = http://cherne.net/brian/resources
 
 libraries[jquery.cycle][download][type] = file
 libraries[jquery.cycle][download][url] = http://malsup.github.com/jquery.cycle.all.js
+
+libraries[flexslider][download][type] = file
+libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/zipball/master
 
 libraries[jcarousel][download][type] = file
 libraries[jcarousel][download][url] = https://github.com/jsor/jcarousel/tarball/0.2.8
