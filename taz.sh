@@ -69,6 +69,7 @@ if [ "$RESP" = "y" ]; then
   # Create private files directory.
   if [ ! -d "private" ]; then
     mkdir private
+    chmod -R 777 private
   fi
 
   # Set permissions on private files directory.
