@@ -6,8 +6,8 @@
 #
 #   * Starts by building the makefile; taz.make
 #
-#   * Automatically creates settings file and files directories and sets
-#     the correct permissions on them.
+#   * Automatically creates private file directory and contrib/custom modules
+#     subdirectories.
 #
 #   * Creates mysql user and database (if necessary) and sets permissions
 #
@@ -46,33 +46,24 @@ fi
 ### Directories & Permissions ###
 #################################
 
-read -p "Create files directories and settings file? (y/n) " RESP
-if [ "$RESP" = "y" ]; then
-  # Create modules contrib subdirectory.
-  if [ ! -d "sites/all/modules/contrib" ]; then
-    mkdir sites/all/modules/contrib
-  fi
-
-  # Create modules custom subdirectory.
-  if [ ! -d "sites/all/modules/custom" ]; then
-    mkdir sites/all/modules/custom
-  fi
-
-  # Create private files directory.
-  if [ ! -d "private" ]; then
-    mkdir private
-    chmod -R 777 private
-  fi
-
-  # Set permissions on private files directory.
-  chmod -R 777 private
-
-  # Copy settings file.
-  if [ ! -f "sites/default/settings.php" ]; then
-    cp sites/default/default.settings.php sites/default/settings.php
-    chmod -R 777 sites/default/settings.php
-  fi
+# Create modules contrib subdirectory.
+if [ ! -d "sites/all/modules/contrib" ]; then
+  mkdir sites/all/modules/contrib
 fi
+
+# Create modules custom subdirectory.
+if [ ! -d "sites/all/modules/custom" ]; then
+  mkdir sites/all/modules/custom
+fi
+
+# Create private files directory.
+if [ ! -d "private" ]; then
+  mkdir private
+  chmod -R 777 private
+fi
+
+# Set permissions on private files directory.
+chmod -R 777 private
 
 #############################
 ### MySQL User & Database ###
