@@ -183,5 +183,9 @@ if [ "$RESP" = "y" ]; then
 fi
 
 # Remove the scripts when we're done.
-rm taz.make
+
+if [ -f taz.make ]; then
+  rm taz.make
+fi
+
 rm $0
