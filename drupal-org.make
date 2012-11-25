@@ -304,6 +304,10 @@ projects[xmlsitemap][subdir] = contrib
 
 ; Performance
 
+projects[bootstrap_optimizer][version] = 1.0-beta2
+projects[bootstrap_optimizer][type] = module
+projects[bootstrap_optimizer][subdir] = contrib
+
 projects[boost][version] = 1.0-beta2
 projects[boost][type] = module
 projects[boost][subdir] = contrib
