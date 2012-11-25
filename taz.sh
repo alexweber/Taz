@@ -155,7 +155,7 @@ if [ "$RESP" = "y" ]; then
       BASETHEME=${BASETHEME:-z}
 
       if [ "$BASETHEME" = "z" ]; then
-        drush zen "$SUBTHEME" -y
+        drush zen "$SUBTHEME" --without-rtl -y
       else
         drush en omega_tools -y
         drush omega-subtheme "$SUBTHEME" -y
