@@ -56,9 +56,8 @@ dependencies[] = backup_migrate
 dependencies[] = devel
 dependencies[] = filter_perms
 dependencies[] = module_filter
-dependencies[] = omega_tools
 
 ; Taz.
-;dependencies[] = taz_dev
+;dependencies[] = taz_env
 
 files[] = taz.profile
