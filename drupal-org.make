@@ -331,7 +331,7 @@ projects[tao][type] = theme
 projects[rubik][version] = 4.0-beta8
 projects[rubik][type] = theme
 
-projects[fubik][version] = 1.24
+projects[fubik][version] = 1.25
 projects[fubik][type] = theme
 
 projects[omega][version] = 3.1
