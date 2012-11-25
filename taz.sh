@@ -58,11 +58,6 @@ if [ "$RESP" = "y" ]; then
     mkdir sites/all/modules/custom
   fi
 
-  # Create default files directory.
-  if [ ! -d "sites/default/files" ]; then
-    mkdir sites/default/files
-  fi
-
   # Set permissions on default files directory.
   chmod -R 777 sites/default/files
 
