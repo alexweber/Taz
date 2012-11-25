@@ -55,7 +55,7 @@ projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
 projects[entity][subdir] = contrib
 
-projects[entityreference][version] = 1.0-rc5
+projects[entityreference][version] = 1.0
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
@@ -150,11 +150,11 @@ projects[rules][type] = module
 projects[rules][subdir] = contrib
 projects[rules][patch][] = http://drupal.org/files/rules-operations-link-class-1655534-1.patch
 
-projects[search_api][version] = 1.2
+projects[search_api][version] = 1.3
 projects[search_api][type] = module
 projects[search_api][subdir] = contrib
 
-projects[search_api_db][version] = 1.0-beta3
+projects[search_api_db][version] = 1.0-beta4
 projects[search_api_db][type] = module
 projects[search_api_db][subdir] = contrib
 
@@ -231,7 +231,6 @@ projects[itoggle][subdir] = contrib
 projects[views_bulk_operations][version] = 3.0
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
-projects[views_bulk_operations][patch][] = http://drupal.org/files/views_bulk_operations-empty-text-wrapper-1683146-1.patch
 
 projects[wysiwyg][version] = 2.2
 projects[wysiwyg][type] = module
@@ -259,7 +258,7 @@ projects[filter_perms][version] = 1.0
 projects[filter_perms][type] = module
 projects[filter_perms][subdir] = contrib
 
-projects[masquerade][version] = 1.0-rc4
+projects[masquerade][version] = 1.0-rc5
 projects[masquerade][type] = module
 projects[masquerade][subdir] = contrib
 
