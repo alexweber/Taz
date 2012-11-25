@@ -58,9 +58,6 @@ if [ "$RESP" = "y" ]; then
     mkdir sites/all/modules/custom
   fi
 
-  # Set permissions on default files directory.
-  chmod -R 777 sites/default/files
-
   # Create private files directory.
   if [ ! -d "private" ]; then
     mkdir private
