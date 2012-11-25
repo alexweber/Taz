@@ -87,15 +87,6 @@ fi
 
 read -p "Setup MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
-  # Get MySQL root username.
-  read -p "Enter your MySQL root user: " MYROOT
-
-  # Get MySQL root password (hidden user input).
-  echo "Enter your MySQL root password:"
-  stty -echo
-  read MYPASS
-  stty echo
-
   # Get Drupal database user.
   read -p "Enter your Drupal database user [taz]: " DBUSER
   DBUSER=${DBUSER:-taz}
@@ -110,15 +101,25 @@ if [ "$RESP" = "y" ]; then
 
   read -p "Create Drupal database user? (y/n) " RESP
   if [ "$RESP" = "y" ]; then
+    # Get MySQL root username.
+    read -p "Enter your MySQL root user: " MYROOT
+
+    # Get MySQL root password (hidden user input).
+    echo "Enter your MySQL root password:"
+    stty -echo
+    read MYPASS
+    stty echo
+
+    # Create user.
     mysql -u$MYROOT -p$MYPASS -e "CREATE USER '$DBUSER'@'localhost' IDENTIFIED BY '$DBUSER';"
     mysql -u$MYROOT -p$MYPASS -e "GRANT USAGE ON * . * TO '$DBUSER'@'localhost';"
+
+    # Create database.
+    mysql -u$MYROOT -p$MYPASS -e "CREATE DATABASE IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
+
+    # Set permissions.
+    mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME .* TO '$DBUSER'@'localhost';"
   fi
-
-  # Create database.
-  mysql -u$MYROOT -p$MYPASS -e "CREATE DATABASE IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
-
-  # Set permissions.
-  mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME .* TO '$DBUSER'@'localhost';"
 
   ####################
   ### Install site ###
@@ -154,7 +155,7 @@ if [ "$RESP" = "y" ]; then
     ### Refactor files directory ###
     ################################
 
-    mv sites/default/files sites/files
+    sudo mv sites/default/files sites
     drush vset file_public_path "sites/files" -l $VHOST
 
     #######################
