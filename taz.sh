@@ -157,27 +157,24 @@ if [ "$RESP" = "y" ]; then
     mv sites/default/files sites/files
     drush vset file_public_path "sites/files" -l $VHOST
 
-    #############################
-    ### Create Omega Subtheme ###
-    #############################
+    #######################
+    ### Create Subtheme ###
+    #######################
 
-    read -p "Create Omega Subtheme? (y/n) " RESP
+    read -p "Create a Subtheme? (y/n) " RESP
     if [ "$RESP" = "y" ]; then
       read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
       SUBTHEME=${SUBTHEME:-Taz Theme}
-      drush en omega_tools -y
-      drush omega-subtheme "$SUBTHEME" -y
-    fi
 
-    #############################
-    ### Create Zen Subtheme ###
-    #############################
+      read -p "Pick either Omega (o) or Zen (z) [z]: " BASETHEME
+      BASETHEME=${BASETHEME:-z}
 
-    read -p "Create Zen Subtheme? (y/n) " RESP
-    if [ "$RESP" = "y" ]; then
-      read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
-      SUBTHEME=${SUBTHEME:-Taz Theme}
-      drush zen "$SUBTHEME" -y
+      if [ "$BASETHEME" = "z"]; then
+        drush zen "$SUBTHEME" -y
+      else
+        drush en omega_tools -y
+        drush omega-subtheme "$SUBTHEME" -y
+      fi
     fi
 
     # Login as admin.
