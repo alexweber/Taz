@@ -17,7 +17,7 @@
 #
 #   * Makes settings.php read-only
 #
-#   * Asks for theme name and creates Omega Subtheme (optional)
+#   * Asks for theme name and creates Omega or Zen Subtheme
 #
 #   * Opens the website on password recovery screen
 #
