@@ -169,7 +169,7 @@ if [ "$RESP" = "y" ]; then
       read -p "Pick either Omega (o) or Zen (z) [z]: " BASETHEME
       BASETHEME=${BASETHEME:-z}
 
-      if [ "$BASETHEME" = "z"]; then
+      if [ "$BASETHEME" = "z" ]; then
         drush zen "$SUBTHEME" -y
       else
         drush en omega_tools -y
