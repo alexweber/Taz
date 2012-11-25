@@ -140,6 +140,7 @@ if [ "$RESP" = "y" ]; then
     ################################
 
     sudo mv sites/default/files sites
+    sudo chmod -R 777 sites/files
     drush vset file_public_path "sites/files" -l $VHOST
 
     #######################
