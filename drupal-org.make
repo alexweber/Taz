@@ -290,6 +290,10 @@ projects[redirect][version] = 1.0-rc1
 projects[redirect][type] = module
 projects[redirect][subdir] = contrib
 
+projects[rich_snippets][version] = 1.0-alpha2
+projects[rich_snippets][type] = module
+projects[rich_snippets][subdir] = contrib
+
 projects[search404][version] = 1.2
 projects[search404][type] = module
 projects[search404][subdir] = contrib
