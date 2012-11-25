@@ -81,11 +81,11 @@ if [ "$RESP" = "y" ]; then
   fi
 fi
 
-####################################
-### Create MySQL User & Database ###
-####################################
+#############################
+### MySQL User & Database ###
+#############################
 
-read -p "Create MySQL database and user? (y/n) " RESP
+read -p "Setup MySQL database and user? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
   # Get MySQL root username.
   read -p "Enter your MySQL root user: " MYROOT
