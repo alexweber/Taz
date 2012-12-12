@@ -27,7 +27,7 @@ projects[colorbox][version] = 1.4
 projects[colorbox][type] = module
 projects[colorbox][subdir] = contrib
 
-projects[context][version] = 3.0-beta4
+projects[context][version] = 3.0-beta5
 projects[context][type] = module
 projects[context][subdir] = contrib
 
@@ -228,7 +228,7 @@ projects[itoggle][version] = 2.3
 projects[itoggle][type] = module
 projects[itoggle][subdir] = contrib
 
-projects[views_bulk_operations][version] = 3.0
+projects[views_bulk_operations][version] = 3.1
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 
