@@ -96,6 +96,10 @@ projects[geolocation][version] = 1.1
 projects[geolocation][type] = module
 projects[geolocation][subdir] = contrib
 
+projects[honeypot][version] = 1.13
+projects[honeypot][type] = module
+projects[honeypot][subdir] = contrib
+
 projects[internal_nodes][version] = 1.2
 projects[internal_nodes][type] = module
 projects[internal_nodes][subdir] = contrib
