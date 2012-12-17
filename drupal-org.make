@@ -199,7 +199,7 @@ projects[admin_menu][version] = 3.x-dev
 projects[admin_menu][type] = module
 projects[admin_menu][subdir] = contrib
 
-projects[admin_views][version] = 1.0
+projects[admin_views][version] = 1.1
 projects[admin_views][type] = module
 projects[admin_views][subdir] = contrib
 
