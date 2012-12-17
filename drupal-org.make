@@ -15,10 +15,6 @@ projects[bean][version] = 1.0-rc6
 projects[bean][type] = module
 projects[bean][subdir] = contrib
 
-;projects[bundle_inherit][version] = 1.x-dev
-;projects[bundle_inherit][type] = module
-;projects[bundle_inherit][subdir] = contrib
-
 projects[colorbox][version] = 1.4
 projects[colorbox][type] = module
 projects[colorbox][subdir] = contrib
