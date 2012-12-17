@@ -304,7 +304,7 @@ projects[schemaorg][version] = 1.0-beta3
 projects[schemaorg][type] = module
 projects[schemaorg][subdir] = contrib
 
-projects[xmlsitemap][version] = 2.0-rc1
+projects[xmlsitemap][version] = 2.0-rc2
 projects[xmlsitemap][type] = module
 projects[xmlsitemap][subdir] = contrib
 
