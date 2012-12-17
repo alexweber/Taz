@@ -7,10 +7,6 @@ projects[addressfield][version] = 1.0-beta3
 projects[addressfield][type] = module
 projects[addressfield][subdir] = contrib
 
-projects[apps][version] = 1.0-beta7
-projects[apps][type] = module
-projects[apps][subdir] = contrib
-
 projects[autocomplete_deluxe][version] = 2.0-beta2
 projects[autocomplete_deluxe][type] = module
 projects[autocomplete_deluxe][subdir] = contrib
@@ -107,10 +103,6 @@ projects[internal_nodes][subdir] = contrib
 projects[jquery_update][version] = 2.2
 projects[jquery_update][type] = module
 projects[jquery_update][subdir] = contrib
-
-;projects[levelten_apps][version] = 1.0-rc2
-;projects[levelten_apps][type] = module
-;projects[levelten_apps][subdir] = contrib
 
 projects[libraries][version] = 2.0
 projects[libraries][type] = module
