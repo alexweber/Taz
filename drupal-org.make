@@ -52,9 +52,9 @@ projects[entityreference][version] = 1.0
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
-projects[facetapi][version] = 1.2
-projects[facetapi][type] = module
-projects[facetapi][subdir] = contrib
+;projects[facetapi][version] = 1.2
+;projects[facetapi][type] = module
+;projects[facetapi][subdir] = contrib
 
 projects[features][version] = 1.0
 projects[features][type] = module
@@ -145,21 +145,21 @@ projects[rules][type] = module
 projects[rules][subdir] = contrib
 projects[rules][patch][] = http://drupal.org/files/rules-operations-link-class-1655534-1.patch
 
-projects[search_api][version] = 1.3
-projects[search_api][type] = module
-projects[search_api][subdir] = contrib
+;projects[search_api][version] = 1.3
+;projects[search_api][type] = module
+;projects[search_api][subdir] = contrib
 
-projects[search_api_db][version] = 1.0-beta4
-projects[search_api_db][type] = module
-projects[search_api_db][subdir] = contrib
+;projects[search_api_db][version] = 1.0-beta4
+;projects[search_api_db][type] = module
+;projects[search_api_db][subdir] = contrib
 
-projects[search_api_page][version] = 1.0-beta2
-projects[search_api_page][type] = module
-projects[search_api_page][subdir] = contrib
+;projects[search_api_page][version] = 1.0-beta2
+;projects[search_api_page][type] = module
+;projects[search_api_page][subdir] = contrib
 
-projects[search_api_solr][version] = 1.0-rc2
-projects[search_api_solr][type] = module
-projects[search_api_solr][subdir] = contrib
+;projects[search_api_solr][version] = 1.0-rc2
+;projects[search_api_solr][type] = module
+;projects[search_api_solr][subdir] = contrib
 
 projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
@@ -284,9 +284,9 @@ projects[rich_snippets][version] = 1.0-alpha2
 projects[rich_snippets][type] = module
 projects[rich_snippets][subdir] = contrib
 
-projects[search404][version] = 1.2
-projects[search404][type] = module
-projects[search404][subdir] = contrib
+;projects[search404][version] = 1.2
+;projects[search404][type] = module
+;projects[search404][subdir] = contrib
 
 projects[schemaorg][version] = 1.0-beta3
 projects[schemaorg][type] = module
