@@ -157,10 +157,6 @@ projects[search_api_page][version] = 1.0-beta2
 projects[search_api_page][type] = module
 projects[search_api_page][subdir] = contrib
 
-projects[search_api_saved_searches][version] = 1.0
-projects[search_api_saved_searches][type] = module
-projects[search_api_saved_searches][subdir] = contrib
-
 projects[search_api_solr][version] = 1.0-rc2
 projects[search_api_solr][type] = module
 projects[search_api_solr][subdir] = contrib
