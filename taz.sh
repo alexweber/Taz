@@ -154,15 +154,45 @@ if [ "$RESP" = "y" ]; then
     if [ "$RESP" = "y" ]; then
       read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
       SUBTHEME=${SUBTHEME:-Taz Theme}
+    ###################
+    ### Theme Setup ###
+    ###################
 
-      read -p "Pick either Omega (o) or Zen (z) [z]: " BASETHEME
-      BASETHEME=${BASETHEME:-z}
+    read -p "Pick a base theme: Omega (o), Zen (z), Aurora (a) or None (n) [z]: " BASETHEME
+    BASETHEME=${BASETHEME:-z}
 
-      if [ "$BASETHEME" = "z" ]; then
-        drush zen "$SUBTHEME" --without-rtl -y
-      else
-        drush en omega_tools -y
-        drush omega-subtheme "$SUBTHEME" -y
+    if [ "$BASETHEME" = "z" ]; then
+        drush dl zen --destination=profiles/taz/themes
+    elif [ "$BASETHEME" = "o" ]; then
+      drush dl omega --destination=profiles/taz/themes
+      drush dl omega_tools delta --destination=profiles/taz/modules/contrib
+    elif [ "$BASETHEME" = "a" ]; then
+      drush dl aurora --destination=profiles/taz/themes
+    fi
+
+    if [ "$BASETHEME" != "n" ]; then
+      read -p "Create a Subtheme? (y/n) " RESP
+      if [ "$RESP" = "y" ]; then
+        read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
+        SUBTHEME=${SUBTHEME:-Taz Theme}
+
+        if [ "$BASETHEME" = "z" ]; then
+          drush zen "$SUBTHEME" --without-rtl -y
+        elif [ "$BASETHEME" = "o" ]; then
+          drush en omega_tools -y
+          drush omega-subtheme "$SUBTHEME" -y
+        elif [ "$BASETHEME" = "a" ]; then
+          read -p "Pick a grid system: Susy (su), Singularity (si) or None (n) [su]: " AURORAGRID
+          AURORAGRID=${AURORAGRID:-su}
+
+          if [ "$AURORAGRID" = "su" ]; then
+            compass create "$SUBTHEME" -r aurora --using aurora/susy
+          elif [ "$AURORAGRID" = "si" ]; then
+            compass create "$SUBTHEME" -r aurora --using aurora/singularity
+          else
+            compass create "$SUBTHEME" -r aurora --using aurora
+          fi
+        fi
       fi
     fi
 
