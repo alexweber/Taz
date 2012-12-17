@@ -253,6 +253,18 @@ projects[masquerade][version] = 1.0-rc5
 projects[masquerade][type] = module
 projects[masquerade][subdir] = contrib
 
+projects[migrate][version] = 2.5
+projects[migrate][type] = module
+projects[migrate][subdir] = contrib
+
+projects[migrate_d2d][version] = 2.0
+projects[migrate_d2d][type] = module
+projects[migrate_d2d][subdir] = contrib
+
+projects[migrate_extras][version] = 2.5
+projects[migrate_extras][type] = module
+projects[migrate_extras][subdir] = contrib
+
 projects[module_filter][version] = 1.7
 projects[module_filter][type] = module
 projects[module_filter][subdir] = contrib
