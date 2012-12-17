@@ -43,7 +43,7 @@ projects[delta][version] = 3.0-beta11
 projects[delta][type] = module
 projects[delta][subdir] = contrib
 
-projects[ds][version] = 1.6
+projects[ds][version] = 2.0
 projects[ds][type] = module
 projects[ds][subdir] = contrib
 
