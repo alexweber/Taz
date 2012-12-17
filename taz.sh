@@ -197,7 +197,7 @@ if [ "$RESP" = "y" ]; then
           drush en omega_tools -y
           drush omega-subtheme "$SUBTHEME" -y
         elif [ "$BASETHEME" = "a" ]; then
-          read -p "Pick a grid system: Susy (su), Singularity (si) or None (n) [su]: " AURORAGRID
+          read -p "Pick a grid system: Susy (su), Singularity (si) or None (n) [su] (Requires Aurora Compass extension): " AURORAGRID
           AURORAGRID=${AURORAGRID:-su}
 
           if [ "$AURORAGRID" = "su" ]; then
