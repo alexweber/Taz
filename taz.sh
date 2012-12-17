@@ -45,6 +45,9 @@ if [ "$RESP" = "y" ]; then
   fi
 
   drush make taz.make .
+
+  # Remove profile's default .gitignore (used for dev only)
+  rm -rf profiles/taz/.gitignore
 fi
 
 #################################
