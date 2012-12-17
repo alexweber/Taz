@@ -32,9 +32,9 @@ projects[date][version] = 2.6
 projects[date][type] = module
 projects[date][subdir] = contrib
 
-projects[delta][version] = 3.0-beta11
-projects[delta][type] = module
-projects[delta][subdir] = contrib
+;projects[delta][version] = 3.0-beta11
+;projects[delta][type] = module
+;projects[delta][subdir] = contrib
 
 projects[ds][version] = 2.0
 projects[ds][type] = module
@@ -261,9 +261,9 @@ projects[module_filter][version] = 1.7
 projects[module_filter][type] = module
 projects[module_filter][subdir] = contrib
 
-projects[omega_tools][version] = 3.0-rc4
-projects[omega_tools][type] = module
-projects[omega_tools][subdir] = contrib
+;projects[omega_tools][version] = 3.0-rc4
+;projects[omega_tools][type] = module
+;projects[omega_tools][subdir] = contrib
 
 ; SEO
 
@@ -329,11 +329,11 @@ projects[rubik][type] = theme
 projects[fubik][version] = 1.25
 projects[fubik][type] = theme
 
-projects[omega][version] = 3.1
-projects[omega][type] = theme
+;projects[omega][version] = 3.1
+;projects[omega][type] = theme
 
-projects[zen][version] = 5.1
-projects[zen][type] = theme
+;projects[zen][version] = 5.1
+;projects[zen][type] = theme
 
 ; External Libraries
 
