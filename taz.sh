@@ -196,7 +196,7 @@ if [ "$RESP" = "y" ]; then
     if [ "$BASETHEME" != "n" ]; then
       read -p "Create a Subtheme? (y/n) " RESP
       if [ "$RESP" = "y" ]; then
-        read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
+        read -p "Enter your subtheme machine name [taz_theme]: " SUBTHEME
         SUBTHEME=${SUBTHEME:-Taz Theme}
 
         if [ "$BASETHEME" = "z" ]; then
