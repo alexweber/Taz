@@ -154,6 +154,16 @@ if [ "$RESP" = "y" ]; then
     if [ "$RESP" = "y" ]; then
       read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
       SUBTHEME=${SUBTHEME:-Taz Theme}
+    ##################
+    ### i18n Setup ###
+    ##################
+
+    read -p "Setup multilingual site? (y/n): " RESP
+    if [ "$RESP" = "y" ]; then
+      drush dl i18n l10n_update language_cookie languageicons i18nviews translation_overview l10n_client i18n_contrib --destination=profiles/taz/modules/contrib -y
+      drush en i18n l10n_update -y
+    fi
+
     ###################
     ### Theme Setup ###
     ###################
