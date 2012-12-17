@@ -275,7 +275,7 @@ projects[omega_tools][subdir] = contrib
 
 ; SEO
 
-projects[metatag][version] = 1.x-dev
+projects[metatag][version] = 1.0-beta4
 projects[metatag][type] = module
 projects[metatag][subdir] = contrib
 
