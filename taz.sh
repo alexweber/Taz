@@ -156,6 +156,7 @@ if [ "$RESP" = "y" ]; then
       drush en search_api -y
     else
       drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
+      drush en search -y
     fi
 
     ##################
