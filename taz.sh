@@ -147,7 +147,7 @@ if [ "$RESP" = "y" ]; then
     ### Refactor files directory ###
     ################################
 
-    read -p "Move files directory to sites root? (y/n): " RESP
+    read -p "Move files directory to sites root? Note: This will prompt you for your root password. (y/n): " RESP
     if [ "$RESP" = "y" ]; then
       sudo mv sites/default/files sites
       sudo chmod -R 777 sites/files
