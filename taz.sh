@@ -14,7 +14,9 @@
 #   * Asks for site name, email and url and installs the site using the Taz
 #     profile
 #
-#   * Makes settings.php read-only and moves files folder to "sites" root
+#   * Makes settings.php read-only
+#
+#   * Moves files folder to "sites" root (optional)
 #
 #   * Chose between Search API or Core Drupal Search and download extra modules
 #
@@ -142,9 +144,12 @@ if [ "$RESP" = "y" ]; then
     ### Refactor files directory ###
     ################################
 
-    sudo mv sites/default/files sites
-    sudo chmod -R 777 sites/files
-    drush vset file_public_path "sites/files" -l $VHOST
+    read -p "Move files directory to sites root? (y/n): " RESP
+    if [ "$RESP" = "y" ]; then
+      sudo mv sites/default/files sites
+      sudo chmod -R 777 sites/files
+      drush vset file_public_path "sites/files" -l $VHOST
+    fi
 
     ####################
     ### Search Setup ###
