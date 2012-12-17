@@ -146,14 +146,18 @@ if [ "$RESP" = "y" ]; then
     sudo chmod -R 777 sites/files
     drush vset file_public_path "sites/files" -l $VHOST
 
-    #######################
-    ### Create Subtheme ###
-    #######################
+    ####################
+    ### Search Setup ###
+    ####################
 
-    read -p "Create a Subtheme? (y/n) " RESP
+    read -p "Use Search API? (y/n): " RESP
     if [ "$RESP" = "y" ]; then
-      read -p "Enter your subtheme name [Taz Theme]: " SUBTHEME
-      SUBTHEME=${SUBTHEME:-Taz Theme}
+      drush dl search_api search_api_solr search_api_db search_api_page facetapi --destination=profiles/taz/modules/contrib -y
+      drush en search_api -y
+    else
+      drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
+    fi
+
     ##################
     ### i18n Setup ###
     ##################
