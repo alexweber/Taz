@@ -18,7 +18,7 @@
 #
 #   * Moves files folder to "sites" root (optional)
 #
-#   * Chose between Search API or Core Drupal Search and download extra modules
+#   * Choose between Search API or Core Drupal Search and download extra modules
 #
 #   * Downloads modules for multilingual sites (optional)
 #
