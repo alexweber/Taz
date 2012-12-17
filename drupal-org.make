@@ -69,6 +69,7 @@ projects[features][type] = module
 projects[features][subdir] = contrib
 projects[features][patch] = http://drupal.org/files/features_986968_20_shortcut_sets.patch
 projects[features][patch] = http://drupal.org/files/features-1272586-32.patch
+projects[features][patch] = http://drupal.org/files/1064472_features_field_split_23.patch
 
 projects[features_override][version] = 2.0-beta1
 projects[features_override][type] = module
