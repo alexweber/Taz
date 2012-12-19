@@ -217,12 +217,15 @@ if [ "$RESP" = "y" ]; then
           if [ "$AURORAGRID" = "su" ]; then
             cd sites/all/themes
             compass create "$SUBTHEME" -r aurora --using aurora/susy
+            cd ../../..
           elif [ "$AURORAGRID" = "si" ]; then
             cd sites/all/themes
             compass create "$SUBTHEME" -r aurora --using aurora/singularity
+            cd ../../..
           else
             cd sites/all/themes
             compass create "$SUBTHEME" -r aurora --using aurora
+            cd ../../..
           fi
         fi
       fi
