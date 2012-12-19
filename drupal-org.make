@@ -125,6 +125,9 @@ projects[media_youtube][type] = module
 projects[media_youtube][subdir] = contrib
 
 projects[override_node_options][version] = 1.12
+;projects[media_vimeo][version] = 1.0-beta5
+projects[media_vimeo][type] = module
+projects[media_vimeo][subdir] = contrib
 projects[override_node_options][type] = module
 projects[override_node_options][subdir] = contrib
 
