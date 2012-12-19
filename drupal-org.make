@@ -307,41 +307,41 @@ projects[rich_snippets][subdir] = contrib
 ;projects[search404][type] = module
 ;projects[search404][subdir] = contrib
 
-projects[schemaorg][version] = 1.0-beta3
+;projects[schemaorg][version] = 1.0-beta3
 projects[schemaorg][type] = module
 projects[schemaorg][subdir] = contrib
 
-projects[xmlsitemap][version] = 2.0-rc2
+;projects[xmlsitemap][version] = 2.0-rc2
 projects[xmlsitemap][type] = module
 projects[xmlsitemap][subdir] = contrib
 
 ; Performance
 
-projects[bootstrap_optimizer][version] = 1.0-beta2
+;projects[bootstrap_optimizer][version] = 1.0-beta2
 projects[bootstrap_optimizer][type] = module
 projects[bootstrap_optimizer][subdir] = contrib
 
-projects[boost][version] = 1.0-beta2
+;projects[boost][version] = 1.0-beta2
 projects[boost][type] = module
 projects[boost][subdir] = contrib
 
-projects[core_library][version] = 1.0-beta12
+;projects[core_library][version] = 1.0-beta12
 projects[core_library][type] = module
 projects[core_library][subdir] = contrib
 
-projects[entitycache][version] = 1.1
+;projects[entitycache][version] = 1.1
 projects[entitycache][type] = module
 projects[entitycache][subdir] = contrib
 
 ; Themes
 
-projects[tao][version] = 3.0-beta4
+;projects[tao][version] = 3.0-beta4
 projects[tao][type] = theme
 
-projects[rubik][version] = 4.0-beta8
+;projects[rubik][version] = 4.0-beta8
 projects[rubik][type] = theme
 
-projects[fubik][version] = 1.25
+;projects[fubik][version] = 1.25
 projects[fubik][type] = theme
 
 ;projects[omega][version] = 3.1
