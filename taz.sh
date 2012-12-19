@@ -185,12 +185,12 @@ if [ "$RESP" = "y" ]; then
     BASETHEME=${BASETHEME:-z}
 
     if [ "$BASETHEME" = "z" ]; then
-        drush dl zen --destination=profiles/taz/themes
+        drush dl zen --destination=profiles/taz/themes -y
     elif [ "$BASETHEME" = "o" ]; then
-      drush dl omega --destination=profiles/taz/themes
-      drush dl omega_tools delta --destination=profiles/taz/modules/contrib
+      drush dl omega --destination=profiles/taz/themes -y
+      drush dl omega_tools delta --destination=profiles/taz/modules/contrib -y
     elif [ "$BASETHEME" = "a" ]; then
-      drush dl aurora --destination=profiles/taz/themes
+      drush dl aurora --destination=profiles/taz/themes -y
     fi
 
     if [ "$BASETHEME" != "n" ]; then
