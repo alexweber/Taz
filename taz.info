@@ -34,6 +34,7 @@ dependencies[] = itoggle
 dependencies[] = itoggle_views
 dependencies[] = file_entity
 dependencies[] = features
+dependencies[] = globalredirect
 dependencies[] = jquery_update
 dependencies[] = libraries
 dependencies[] = media
