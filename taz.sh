@@ -231,12 +231,11 @@ if [ "$RESP" = "y" ]; then
 
   # Login as admin.
   open `drush user-login "User One" -l $VHOST`
+
+  # Remove the scripts when we're done.
+  if [ -f taz.make ]; then
+    rm taz.make
+  fi
+
+  rm $0
 fi
-
-# Remove the scripts when we're done.
-
-if [ -f taz.make ]; then
-  rm taz.make
-fi
-
-rm $0
