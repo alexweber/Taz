@@ -134,7 +134,7 @@ if [ "$RESP" = "y" ]; then
     VHOST=${VHOST:-$DIRNAME}
 
     # Install site.
-    drush si taz --db-url=mysql://$DBUSER:$DBPASS@127.0.0.1/$DBNAME --account-name="User One" --account-pass=$DBUSER --account-mail=$EMAIL --site-name=$SITENAME
+    drush si taz --db-url=mysql://$DBUSER:$DBPASS@127.0.0.1/$DBNAME --account-name="User One" --account-pass="$DBUSER" --account-mail="$EMAIL" --site-name="$SITENAME"
 
     # Make settings read-only.
     chmod 644 sites/default/settings.php
