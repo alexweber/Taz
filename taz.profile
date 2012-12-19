@@ -62,6 +62,90 @@ function taz_form_install_configure_form_alter(&$form, $form_state) {
 }
 
 /**
+ * Implements hook_backup_migrate_profiles().
+ */
+function taz_backup_migrate_profiles() {
+  return array(
+    'dev_snapshot' => backup_migrate_crud_create_item('profile', array(
+      'name' => t("Dev Snapshot"),
+      'profile_id' => 'dev_snapshot',
+      'filename' => '[site:name]',
+      'append_timestamp' => '0',
+      'filters' => array(
+        'compression' => 'gzip',
+        'notify_success_enable' => 0,
+        'notify_failure_enable' => 0,
+        'utils_site_offline' => 0,
+        'utils_site_offline_message' => 'This website is currently under maintenance. We should be back shortly. Thank you for your patience.',
+        'utils_description' => '',
+        'destinations' => array(
+          'db' => array(
+            'exclude_tables' => array(),
+            'nodata_tables' => array(
+              'cache' => 'cache',
+              'cache_admin_menu' => 'cache_admin_menu',
+              'cache_block' => 'cache_block',
+              'cache_bootstrap' => 'cache_bootstrap',
+              'cache_field' => 'cache_field',
+              'cache_filter' => 'cache_filter',
+              'cache_form' => 'cache_form',
+              'cache_image' => 'cache_image',
+              'cache_l10n_update' => 'cache_l10n_update',
+              'cache_libraries' => 'cache_libraries',
+              'cache_media_xml' => 'cache_media_xml',
+              'cache_menu' => 'cache_menu',
+              'cache_page' => 'cache_page',
+              'cache_path' => 'cache_path',
+              'cache_token' => 'cache_token',
+              'cache_update' => 'cache_update',
+              'cache_views' => 'cache_views',
+              'cache_views_data' => 'cache_views_data',
+              'ctools_css_cache' => 'ctools_css_cache',
+              'ctools_object_cache' => 'ctools_object_cache',
+              'search_dataset' => 'search_dataset',
+              'search_index' => 'search_index',
+              'search_total' => 'search_total',
+              'sessions' => 'sessions',
+              'watchdog' => 'watchdog',
+            ),
+            'utils_lock_tables' => 0,
+            'use_mysqldump' => 0,
+          ),
+        ),
+      ),
+    )),
+  );
+}
+
+/**
+ * Implements hook_backup_migrate_schedules().
+ */
+function taz_backup_migrate_schedules() {
+  return array(
+    'daily' => backup_migrate_crud_create_item('schedule', array(
+      'name' => 'Daily Backup',
+      'source_id' => 'db',
+      'destination_id' => 'scheduled',
+      'profile_id' => 'default',
+      'keep' => 90,
+      'period' => 28800,
+      'enabled' => 1,
+      'cron' => 1,
+    )),
+    'snapshot' => backup_migrate_crud_create_item('schedule', array(
+      'name' => 'Dev Snapshopt',
+      'source_id' => 'db',
+      'destination_id' => 'manual',
+      'profile_id' => 'dev_snapshot',
+      'keep' => 7,
+      'period' => 43200,
+      'enabled' => 1,
+      'cron' => 1,
+    )),
+  );
+}
+
+/**
  * Determine whether a user has a particular role.
  * Accepts both the role's ID (recommended) or name.
  * If no user is specified we use the current user.
