@@ -1,0 +1,27 @@
+diff --git a/.gitignore b/.gitignore
+index baff153..13e7316 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,6 +1,19 @@
++# This is a new .gitignore that replaces the standard one that ships with Drupal core.
++# Reason is that we DO actually want to version user-uploaded content but ignore other temporary files.
++# The default .gitignore is commented out at the bottom of this file in case you want to revert anything.
++
++cache/
++sites/default/settings.php
++sites/files/css
++sites/files/js
++sites/files/languages
++sites/files/styles
++sites/files/xmlsitemap
++private/backup_migrate/scheduled
++
+ # Ignore configuration files that may contain sensitive information.
+-sites/*/settings*.php
++#sites/*/settings*.php
+ 
+ # Ignore paths that contain user-generated content.
+-sites/*/files
+-sites/*/private
++#sites/*/files
++#sites/*/private

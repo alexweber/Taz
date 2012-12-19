@@ -8,3 +8,4 @@ projects[drupal][patch][] = http://drupal.org/files/issues/992540-3-reset_flood_
 projects[drupal][patch][] = http://drupal.org/files/drupal-actions-985814-11-D7.patch
 projects[drupal][patch][] = http://drupal.org/files/1356276-base-profile-d7-39-do-not-test.patch
 projects[drupal][patch][] = https://raw.github.com/alexweber/Taz/profile/patches/htaccess-rewrite-base.patch
+projects[drupal][patch][] = https://raw.github.com/alexweber/Taz/profile/patches/gitignore-override.patch
