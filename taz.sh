@@ -197,7 +197,7 @@ if [ "$RESP" = "y" ]; then
       read -p "Create a Subtheme? (y/n) " RESP
       if [ "$RESP" = "y" ]; then
         read -p "Enter your subtheme machine name [taz_theme]: " SUBTHEME
-        SUBTHEME=${SUBTHEME:-Taz Theme}
+        SUBTHEME=${SUBTHEME:-taz_theme}
 
         if [ "$BASETHEME" = "z" ]; then
           drush zen "$SUBTHEME" --without-rtl -y
