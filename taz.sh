@@ -73,6 +73,11 @@ fi
 # Set permissions on private files directory.
 chmod -R 777 private
 
+# Set permissions on default settings file if it exists (for reinstalling).
+if [ -f sites/default/settings.php ]; then
+  chmod 777 sites/default/settings.php
+fi
+
 #############################
 ### MySQL User & Database ###
 #############################
