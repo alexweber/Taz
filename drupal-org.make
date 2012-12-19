@@ -3,23 +3,23 @@ core = 7.x
 
 ; Base
 
-projects[addressfield][version] = 1.0-beta3
+;projects[addressfield][version] = 1.0-beta3
 projects[addressfield][type] = module
 projects[addressfield][subdir] = contrib
 
-projects[autocomplete_deluxe][version] = 2.0-beta2
+;projects[autocomplete_deluxe][version] = 2.0-beta2
 projects[autocomplete_deluxe][type] = module
 projects[autocomplete_deluxe][subdir] = contrib
 
-projects[bean][version] = 1.0-rc6
+;projects[bean][version] = 1.0-rc6
 projects[bean][type] = module
 projects[bean][subdir] = contrib
 
-projects[colorbox][version] = 1.4
+;projects[colorbox][version] = 1.4
 projects[colorbox][type] = module
 projects[colorbox][subdir] = contrib
 
-projects[context][version] = 3.0-beta5
+;projects[context][version] = 3.0-beta5
 projects[context][type] = module
 projects[context][subdir] = contrib
 
@@ -28,7 +28,7 @@ projects[ctools][type] = module
 projects[ctools][subdir] = contrib
 projects[ctools][patch][] = http://drupal.org/files/ctools-dependent-js-broken-with-jquery-1.7-1494860-30.patch
 
-projects[date][version] = 2.6
+;projects[date][version] = 2.6
 projects[date][type] = module
 projects[date][subdir] = contrib
 
@@ -36,19 +36,19 @@ projects[date][subdir] = contrib
 ;projects[delta][type] = module
 ;projects[delta][subdir] = contrib
 
-projects[ds][version] = 2.0
+;projects[ds][version] = 2.0
 projects[ds][type] = module
 projects[ds][subdir] = contrib
 
-projects[email][version] = 1.2
+;projects[email][version] = 1.2
 projects[email][type] = module
 projects[email][subdir] = contrib
 
-projects[entity][version] = 1.0-rc3
+;projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
 projects[entity][subdir] = contrib
 
-projects[entityreference][version] = 1.0
+;projects[entityreference][version] = 1.0
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
@@ -63,7 +63,7 @@ projects[features][patch] = http://drupal.org/files/features_986968_20_shortcut_
 projects[features][patch] = http://drupal.org/files/features-1272586-32.patch
 projects[features][patch] = http://drupal.org/files/1064472_features_field_split_23.patch
 
-projects[features_override][version] = 2.0-beta1
+;projects[features_override][version] = 2.0-beta1
 projects[features_override][type] = module
 projects[features_override][subdir] = contrib
 
@@ -72,7 +72,7 @@ projects[field_collection][type] = module
 projects[field_collection][subdir] = contrib
 projects[field_collection][patch][] = http://drupal.org/files/issue_1329856_1.patch
 
-projects[field_group][version] = 1.1
+;projects[field_group][version] = 1.1
 projects[field_group][type] = module
 projects[field_group][subdir] = contrib
 
@@ -80,35 +80,35 @@ projects[file_entity][version] = 2.0-unstable7
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 
-projects[flag][version] = 2.0
+;projects[flag][version] = 2.0
 projects[flag][type] = module
 projects[flag][subdir] = contrib
 
-projects[flexslider][version] = 1.0-rc3
+;projects[flexslider][version] = 1.0-rc3
 projects[flexslider][type] = module
 projects[flexslider][subdir] = contrib
 
-projects[geolocation][version] = 1.1
+;projects[geolocation][version] = 1.1
 projects[geolocation][type] = module
 projects[geolocation][subdir] = contrib
 
-projects[honeypot][version] = 1.13
+;projects[honeypot][version] = 1.13
 projects[honeypot][type] = module
 projects[honeypot][subdir] = contrib
 
-projects[internal_nodes][version] = 1.2
+;projects[internal_nodes][version] = 1.2
 projects[internal_nodes][type] = module
 projects[internal_nodes][subdir] = contrib
 
-projects[jquery_update][version] = 2.2
+;projects[jquery_update][version] = 2.2
 projects[jquery_update][type] = module
 projects[jquery_update][subdir] = contrib
 
-projects[libraries][version] = 2.0
+;projects[libraries][version] = 2.0
 projects[libraries][type] = module
 projects[libraries][subdir] = contrib
 
-projects[link][version] = 1.0
+;projects[link][version] = 1.0
 projects[link][type] = module
 projects[link][subdir] = contrib
 
@@ -116,30 +116,31 @@ projects[media][version] = 2.0-unstable7
 projects[media][type] = module
 projects[media][subdir] = contrib
 
-projects[media_colorbox][version] = 1.0-rc3
+;projects[media_colorbox][version] = 1.0-rc3
 projects[media_colorbox][type] = module
 projects[media_colorbox][subdir] = contrib
 
-projects[media_youtube][version] = 1.0-beta3
+;projects[media_youtube][version] = 1.0-beta3
 projects[media_youtube][type] = module
 projects[media_youtube][subdir] = contrib
 
-projects[override_node_options][version] = 1.12
 ;projects[media_vimeo][version] = 1.0-beta5
 projects[media_vimeo][type] = module
 projects[media_vimeo][subdir] = contrib
+
+;projects[override_node_options][version] = 1.12
 projects[override_node_options][type] = module
 projects[override_node_options][subdir] = contrib
 
-projects[panels][version] = 3.3
+;projects[panels][version] = 3.3
 projects[panels][type] = module
 projects[panels][subdir] = contrib
 
-projects[pathauto][version] = 1.2
+;projects[pathauto][version] = 1.2
 projects[pathauto][type] = module
 projects[pathauto][subdir] = contrib
 
-projects[print][version] = 1.2
+;projects[print][version] = 1.2
 projects[print][type] = module
 projects[print][subdir] = contrib
 
@@ -164,111 +165,111 @@ projects[rules][patch][] = http://drupal.org/files/rules-operations-link-class-1
 ;projects[search_api_solr][type] = module
 ;projects[search_api_solr][subdir] = contrib
 
-projects[strongarm][version] = 2.0
+;projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
 projects[strongarm][subdir] = contrib
 
-projects[token][version] = 1.4
+;projects[token][version] = 1.4
 projects[token][type] = module
 projects[token][subdir] = contrib
 
-projects[transliteration][version] = 3.1
+;projects[transliteration][version] = 3.1
 projects[transliteration][type] = module
 projects[transliteration][subdir] = contrib
 
-projects[variable][version] = 2.1
+;projects[variable][version] = 2.1
 projects[variable][type] = module
 projects[variable][subdir] = contrib
 
-projects[views][version] = 3.5
+;projects[views][version] = 3.5
 projects[views][type] = module
 projects[views][subdir] = contrib
 
-projects[views_arguments_extras][version] = 1.0-beta1
+;projects[views_arguments_extras][version] = 1.0-beta1
 projects[views_arguments_extras][type] = module
 projects[views_arguments_extras][subdir] = contrib
 
-projects[views_slideshow][version] = 3.0
+;projects[views_slideshow][version] = 3.0
 projects[views_slideshow][type] = module
 projects[views_slideshow][subdir] = contrib
 
-projects[webform][version] = 3.18
+;projects[webform][version] = 3.18
 projects[webform][type] = module
 projects[webform][subdir] = contrib
 
 ; Administration
 
-projects[admin_menu][version] = 3.x-dev
+;projects[admin_menu][version] = 3.0-rc3
 projects[admin_menu][type] = module
 projects[admin_menu][subdir] = contrib
 
-projects[admin_views][version] = 1.1
+;projects[admin_views][version] = 1.1
 projects[admin_views][type] = module
 projects[admin_views][subdir] = contrib
 
-projects[backup_migrate][version] = 2.4
+;projects[backup_migrate][version] = 2.4
 projects[backup_migrate][type] = module
 projects[backup_migrate][subdir] = contrib
 
-projects[better_exposed_filters][version] = 3.0-beta3
+;projects[better_exposed_filters][version] = 3.0-beta3
 projects[better_exposed_filters][type] = module
 projects[better_exposed_filters][subdir] = contrib
 
-projects[draggableviews][version] = 2.0
+;projects[draggableviews][version] = 2.0
 projects[draggableviews][type] = module
 projects[draggableviews][subdir] = contrib
 
-projects[itoggle][version] = 2.3
+;projects[itoggle][version] = 2.3
 projects[itoggle][type] = module
 projects[itoggle][subdir] = contrib
 
-projects[views_bulk_operations][version] = 3.1
+;projects[views_bulk_operations][version] = 3.1
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 
-projects[wysiwyg][version] = 2.2
+;projects[wysiwyg][version] = 2.2
 projects[wysiwyg][type] = module
 projects[wysiwyg][subdir] = contrib
 
 ; Development
 
-projects[addanother][version] = 2.1
+;projects[addanother][version] = 2.1
 projects[addanother][type] = module
 projects[addanother][subdir] = contrib
 
-projects[advanced_help][version] = 1.0
+;projects[advanced_help][version] = 1.0
 projects[advanced_help][type] = module
 projects[advanced_help][subdir] = contrib
 
-projects[devel][version] = 1.3
+;projects[devel][version] = 1.3
 projects[devel][type] = module
 projects[devel][subdir] = contrib
 
-projects[drupal_ipsum][version] = 2.1
+;projects[drupal_ipsum][version] = 2.1
 projects[drupal_ipsum][type] = module
 projects[drupal_ipsum][subdir] = contrib
 
-projects[filter_perms][version] = 1.0
+;projects[filter_perms][version] = 1.0
 projects[filter_perms][type] = module
 projects[filter_perms][subdir] = contrib
 
-projects[masquerade][version] = 1.0-rc5
+;projects[masquerade][version] = 1.0-rc5
 projects[masquerade][type] = module
 projects[masquerade][subdir] = contrib
 
-projects[migrate][version] = 2.5
+;projects[migrate][version] = 2.5
 projects[migrate][type] = module
 projects[migrate][subdir] = contrib
 
-projects[migrate_d2d][version] = 2.0
+;projects[migrate_d2d][version] = 2.0
 projects[migrate_d2d][type] = module
 projects[migrate_d2d][subdir] = contrib
 
-projects[migrate_extras][version] = 2.5
+;projects[migrate_extras][version] = 2.5
 projects[migrate_extras][type] = module
 projects[migrate_extras][subdir] = contrib
 
-projects[module_filter][version] = 1.7
+;projects[module_filter][version] = 1.7
 projects[module_filter][type] = module
 projects[module_filter][subdir] = contrib
 
@@ -276,13 +277,17 @@ projects[module_filter][subdir] = contrib
 ;projects[omega_tools][type] = module
 ;projects[omega_tools][subdir] = contrib
 
+;projects[boealis][version] = 1.0-rc8
+;projects[borealis][type] = module
+;projects[borealis][subdir] = contrib
+
 ; SEO
 
-projects[globalredirect][version] = 1.5
+;projects[globalredirect][version] = 1.5
 projects[globalredirect][type] = module
 projects[globalredirect][subdir] = contrib
 
-projects[metatag][version] = 1.0-beta4
+;projects[metatag][version] = 1.0-beta4
 projects[metatag][type] = module
 projects[metatag][subdir] = contrib
 
@@ -295,11 +300,11 @@ projects[metatag_views][patch][] = http://drupal.org/files/1560024-views_metatag
 projects[metatag_views][patch][] = http://drupal.org/files/1560088-display_extender-export.patch
 projects[metatag_views][patch][] = http://drupal.org/files/1361158-html_output.patch
 
-projects[redirect][version] = 1.0-rc1
+;projects[redirect][version] = 1.0-rc1
 projects[redirect][type] = module
 projects[redirect][subdir] = contrib
 
-projects[rich_snippets][version] = 1.0-alpha2
+;projects[rich_snippets][version] = 1.0-alpha2
 projects[rich_snippets][type] = module
 projects[rich_snippets][subdir] = contrib
 
@@ -349,6 +354,9 @@ projects[fubik][type] = theme
 
 ;projects[zen][version] = 5.1
 ;projects[zen][type] = theme
+
+;projects[aurora][version] = 2.6
+;projects[aurora][type] = theme
 
 ; External Libraries
 
