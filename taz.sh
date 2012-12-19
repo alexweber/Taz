@@ -191,6 +191,7 @@ if [ "$RESP" = "y" ]; then
       drush dl omega_tools delta --destination=profiles/taz/modules/contrib -y
     elif [ "$BASETHEME" = "a" ]; then
       drush dl aurora --destination=profiles/taz/themes -y
+      drush dl borealis --destination=profiles/taz/modules/contrib -y
     fi
 
     if [ "$BASETHEME" != "n" ]; then
