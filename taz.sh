@@ -82,7 +82,7 @@ fi
 ### MySQL User & Database ###
 #############################
 
-read -p "Setup MySQL database and user? (y/n) " RESP
+read -p "Install site? (y/n) " RESP
 if [ "$RESP" = "y" ]; then
   # Get Drupal database user.
   read -p "Enter your Drupal database user [taz]: " DBUSER
@@ -118,122 +118,119 @@ if [ "$RESP" = "y" ]; then
     mysql -u$MYROOT -p$MYPASS -e "GRANT ALL PRIVILEGES ON $DBNAME .* TO '$DBUSER'@'localhost';"
   fi
 
-  ####################
-  ### Install site ###
-  ####################
+  #############################
+  ### Actually Install site ###
+  #############################
 
-  read -p "Install site? (y/n) " RESP
+  DIRNAME=${PWD##*/}
+
+  # Get site name.
+  read -p "Enter your site name [Taz]: " SITENAME
+  SITENAME=${SITENAME:-Taz}
+
+  # Get site email.
+  read -p "Enter your site email [alexweber15@gmail.com]: " EMAIL
+  EMAIL=${EMAIL:-alexweber15@gmail.com}
+
+  # Get site vhost.
+  read -p "Enter your site's virtual host [$DIRNAME]: " VHOST
+  VHOST=${VHOST:-$DIRNAME}
+
+  # Install site.
+  drush si taz --db-url=mysql://$DBUSER:$DBPASS@127.0.0.1/$DBNAME --account-name="User One" --account-pass="$DBUSER" --account-mail="$EMAIL" --site-name="$SITENAME"
+
+  # Make settings read-only.
+  chmod 644 sites/default/settings.php
+
+  # Display message.
+  echo "Drupal has been installed! User #1 is 'User One' and password is '$DBUSER'."
+  echo "Please change your password!"
+
+  ################################
+  ### Refactor files directory ###
+  ################################
+
+  read -p "Move files directory to sites root? Note: This will prompt you for your root password. (y/n): " RESP
   if [ "$RESP" = "y" ]; then
-    DIRNAME=${PWD##*/}
+    sudo mv sites/default/files sites
+    sudo chmod -R 777 sites/files
+    drush vset file_public_path "sites/files" -l $VHOST
+  fi
 
-    # Get site name.
-    read -p "Enter your site name [Taz]: " SITENAME
-    SITENAME=${SITENAME:-Taz}
+  ####################
+  ### Search Setup ###
+  ####################
 
-    # Get site email.
-    read -p "Enter your site email [alexweber15@gmail.com]: " EMAIL
-    EMAIL=${EMAIL:-alexweber15@gmail.com}
+  read -p "Use Search API? (y/n): " RESP
+  if [ "$RESP" = "y" ]; then
+    drush dl search_api search_api_solr search_api_db search_api_page facetapi --destination=profiles/taz/modules/contrib -y
+    drush en search_api -y
+  else
+    drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
+    drush en search -y
+  fi
 
-    # Get site vhost.
-    read -p "Enter your site's virtual host [$DIRNAME]: " VHOST
-    VHOST=${VHOST:-$DIRNAME}
+  ##################
+  ### i18n Setup ###
+  ##################
 
-    # Install site.
-    drush si taz --db-url=mysql://$DBUSER:$DBPASS@127.0.0.1/$DBNAME --account-name="User One" --account-pass="$DBUSER" --account-mail="$EMAIL" --site-name="$SITENAME"
+  read -p "Setup multilingual site? (y/n): " RESP
+  if [ "$RESP" = "y" ]; then
+    drush dl i18n l10n_update language_cookie languageicons i18nviews translation_overview l10n_client i18n_contrib --destination=profiles/taz/modules/contrib -y
+    drush en i18n l10n_update -y
+  fi
 
-    # Make settings read-only.
-    chmod 644 sites/default/settings.php
+  ###################
+  ### Theme Setup ###
+  ###################
 
-    # Display message.
-    echo "Drupal has been installed! User #1 is 'User One' and password is '$DBUSER'."
-    echo "Please change your password!"
+  read -p "Pick a base theme: Omega (o), Zen (z), Aurora (a) or None (n) [z]: " BASETHEME
+  BASETHEME=${BASETHEME:-z}
 
-    ################################
-    ### Refactor files directory ###
-    ################################
+  if [ "$BASETHEME" = "z" ]; then
+      drush dl zen --destination=profiles/taz/themes -y
+  elif [ "$BASETHEME" = "o" ]; then
+    drush dl omega --destination=profiles/taz/themes -y
+    drush dl omega_tools delta --destination=profiles/taz/modules/contrib -y
+  elif [ "$BASETHEME" = "a" ]; then
+    drush dl aurora --destination=profiles/taz/themes -y
+    drush dl borealis --destination=profiles/taz/modules/contrib -y
+  fi
 
-    read -p "Move files directory to sites root? Note: This will prompt you for your root password. (y/n): " RESP
+  if [ "$BASETHEME" != "n" ]; then
+    read -p "Create a Subtheme? (y/n) " RESP
     if [ "$RESP" = "y" ]; then
-      sudo mv sites/default/files sites
-      sudo chmod -R 777 sites/files
-      drush vset file_public_path "sites/files" -l $VHOST
-    fi
+      read -p "Enter your subtheme machine name [taz_theme]: " SUBTHEME
+      SUBTHEME=${SUBTHEME:-taz_theme}
 
-    ####################
-    ### Search Setup ###
-    ####################
+      if [ "$BASETHEME" = "z" ]; then
+        drush zen "$SUBTHEME" --without-rtl -y
+      elif [ "$BASETHEME" = "o" ]; then
+        drush en omega_tools -y
+        drush omega-subtheme "$SUBTHEME" -y
+      elif [ "$BASETHEME" = "a" ]; then
+        read -p "Pick a grid system: Susy (su), Singularity (si) or None (n) [su] (Requires Aurora Compass extension): " AURORAGRID
+        AURORAGRID=${AURORAGRID:-su}
 
-    read -p "Use Search API? (y/n): " RESP
-    if [ "$RESP" = "y" ]; then
-      drush dl search_api search_api_solr search_api_db search_api_page facetapi --destination=profiles/taz/modules/contrib -y
-      drush en search_api -y
-    else
-      drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
-      drush en search -y
-    fi
-
-    ##################
-    ### i18n Setup ###
-    ##################
-
-    read -p "Setup multilingual site? (y/n): " RESP
-    if [ "$RESP" = "y" ]; then
-      drush dl i18n l10n_update language_cookie languageicons i18nviews translation_overview l10n_client i18n_contrib --destination=profiles/taz/modules/contrib -y
-      drush en i18n l10n_update -y
-    fi
-
-    ###################
-    ### Theme Setup ###
-    ###################
-
-    read -p "Pick a base theme: Omega (o), Zen (z), Aurora (a) or None (n) [z]: " BASETHEME
-    BASETHEME=${BASETHEME:-z}
-
-    if [ "$BASETHEME" = "z" ]; then
-        drush dl zen --destination=profiles/taz/themes -y
-    elif [ "$BASETHEME" = "o" ]; then
-      drush dl omega --destination=profiles/taz/themes -y
-      drush dl omega_tools delta --destination=profiles/taz/modules/contrib -y
-    elif [ "$BASETHEME" = "a" ]; then
-      drush dl aurora --destination=profiles/taz/themes -y
-      drush dl borealis --destination=profiles/taz/modules/contrib -y
-    fi
-
-    if [ "$BASETHEME" != "n" ]; then
-      read -p "Create a Subtheme? (y/n) " RESP
-      if [ "$RESP" = "y" ]; then
-        read -p "Enter your subtheme machine name [taz_theme]: " SUBTHEME
-        SUBTHEME=${SUBTHEME:-taz_theme}
-
-        if [ "$BASETHEME" = "z" ]; then
-          drush zen "$SUBTHEME" --without-rtl -y
-        elif [ "$BASETHEME" = "o" ]; then
-          drush en omega_tools -y
-          drush omega-subtheme "$SUBTHEME" -y
-        elif [ "$BASETHEME" = "a" ]; then
-          read -p "Pick a grid system: Susy (su), Singularity (si) or None (n) [su] (Requires Aurora Compass extension): " AURORAGRID
-          AURORAGRID=${AURORAGRID:-su}
-
-          if [ "$AURORAGRID" = "su" ]; then
-            cd sites/all/themes
-            compass create "$SUBTHEME" -r aurora --using aurora/susy
-            cd ../../..
-          elif [ "$AURORAGRID" = "si" ]; then
-            cd sites/all/themes
-            compass create "$SUBTHEME" -r aurora --using aurora/singularity
-            cd ../../..
-          else
-            cd sites/all/themes
-            compass create "$SUBTHEME" -r aurora --using aurora
-            cd ../../..
-          fi
+        if [ "$AURORAGRID" = "su" ]; then
+          cd sites/all/themes
+          compass create "$SUBTHEME" -r aurora --using aurora/susy
+          cd ../../..
+        elif [ "$AURORAGRID" = "si" ]; then
+          cd sites/all/themes
+          compass create "$SUBTHEME" -r aurora --using aurora/singularity
+          cd ../../..
+        else
+          cd sites/all/themes
+          compass create "$SUBTHEME" -r aurora --using aurora
+          cd ../../..
         fi
       fi
     fi
-
-    # Login as admin.
-    open `drush user-login "User One" -l $VHOST`
   fi
+
+  # Login as admin.
+  open `drush user-login "User One" -l $VHOST`
 fi
 
 # Remove the scripts when we're done.
