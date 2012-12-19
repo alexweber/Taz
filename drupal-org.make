@@ -275,6 +275,10 @@ projects[module_filter][subdir] = contrib
 
 ; SEO
 
+projects[globalredirect][version] = 1.5
+projects[globalredirect][type] = module
+projects[globalredirect][subdir] = contrib
+
 projects[metatag][version] = 1.0-beta4
 projects[metatag][type] = module
 projects[metatag][subdir] = contrib
