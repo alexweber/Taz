@@ -32,6 +32,7 @@ dependencies[] = ds_extras
 ;dependencies[] = entity_token
 dependencies[] = itoggle
 dependencies[] = itoggle_views
+dependencies[] = field_group
 dependencies[] = file_entity
 dependencies[] = features
 dependencies[] = globalredirect
