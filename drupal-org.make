@@ -67,10 +67,9 @@ projects[features][patch] = http://drupal.org/files/1064472_features_field_split
 projects[features_override][type] = module
 projects[features_override][subdir] = contrib
 
-projects[field_collection][version] = 1.0-beta4
+;projects[field_collection][version] = 1.0-beta5
 projects[field_collection][type] = module
 projects[field_collection][subdir] = contrib
-projects[field_collection][patch][] = http://drupal.org/files/issue_1329856_1.patch
 
 ;projects[field_group][version] = 1.1
 projects[field_group][type] = module
