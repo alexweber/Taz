@@ -241,6 +241,10 @@ projects[addanother][subdir] = contrib
 projects[advanced_help][type] = module
 projects[advanced_help][subdir] = contrib
 
+;projects[coder][version] = 2.0-beta1
+projects[coder][type] = module
+projects[coder][subdir] = contrib
+
 ;projects[devel][version] = 1.3
 projects[devel][type] = module
 projects[devel][subdir] = contrib
