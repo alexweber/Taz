@@ -5,6 +5,99 @@
  */
 
 /**
+ * Implements hook_install_tasks().
+ */
+function taz_install_tasks() {
+  // Increase maximum function nesting level to prevent install errors.
+  $max_nesting_level = ini_get('xdebug.max_nesting_level');
+  if ($max_nesting_level > 0 && $max_nesting_level <= '200') {
+    ini_set('xdebug.max_nesting_level', 200);
+  }
+
+  return array(
+    'taz_install_additional_modules' => array(
+      'display_name' => st('Install additional modules'),
+      'type' => 'batch',
+    ),
+  );
+}
+
+/**
+ * Task callback: uses Batch API to install additional modules that should
+ * be enabled by default but shouldn't be considered profile dependencies.
+ */
+function taz_install_additional_modules() {
+  $modules = array(
+    'admin_menu_toolbar',
+    'backup_migrate',
+    'context_ui',
+    'devel',
+    'ds',
+    'ds_extras',
+    'field_group',
+    'filter_perms',
+    'globalredirect',
+    'module_filter',
+    'pathauto',
+    'views_ui'
+  );
+
+  // Resolve the dependencies now, so that module_enable() doesn't need
+  // to do it later for each individual module (which kills performance).
+  $files = system_rebuild_module_data();
+  $modules_sorted = array();
+  foreach ($modules as $module) {
+    if ($files[$module]->requires) {
+      // Create a list of dependencies that haven't been installed yet.
+      $dependencies = array_keys($files[$module]->requires);
+      $dependencies = array_filter($dependencies, '_taz_filter_dependencies');
+      // Add them to the module list.
+      $modules = array_merge($modules, $dependencies);
+    }
+  }
+  $modules = array_unique($modules);
+  foreach ($modules as $module) {
+    $modules_sorted[$module] = $files[$module]->sort;
+  }
+  arsort($modules_sorted);
+
+  $operations = array();
+  // Enable the selected modules.
+  foreach ($modules_sorted as $module => $weight) {
+    $operations[] = array('_taz_enable_module', array($module, $files[$module]->info['name']));
+  }
+
+  $operations[] = array('_taz_flush_caches', array(t('Flushed caches.')));
+
+  $batch = array(
+    'title' => t('Installing additional modules'),
+    'operations' => $operations,
+  );
+
+  return $batch;
+}
+
+/**
+ * BatchAPI callback.
+ *
+ * @see taz_install_additional_modules()
+ */
+function _taz_enable_module($module, $module_name, &$context) {
+  module_enable(array($module), FALSE);
+  $context['message'] = st('Installed %module module.', array('%module' => $module_name));
+}
+
+/**
+ * BatchAPI callback.
+ *
+ * @see taz_install_additional_modules()
+ */
+function _taz_flush_caches($operation, &$context) {
+  $context['message'] = t('@operation', array('@operation' => $operation));
+  drupal_flush_all_caches();
+}
+
+/**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.
@@ -676,4 +769,11 @@ function taz_set_admin_views() {
       $view->save();
     }
   }
+}
+
+/**
+ * array_filter() callback used to filter out already installed dependencies.
+ */
+function _taz_filter_dependencies($dependency) {
+  return !module_exists($dependency);
 }

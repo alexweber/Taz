@@ -25,37 +25,19 @@ dependencies[] = taxonomy
 ;dependencies[] = toolbar
 
 ; Contrib base.
+dependencies[] = admin_views
 dependencies[] = context
-dependencies[] = context_ui
-dependencies[] = ds
-dependencies[] = ds_extras
-;dependencies[] = entity_token
 dependencies[] = itoggle
 dependencies[] = itoggle_views
-dependencies[] = field_group
 dependencies[] = file_entity
 dependencies[] = features
-dependencies[] = globalredirect
 dependencies[] = jquery_update
 dependencies[] = libraries
 dependencies[] = media
-dependencies[] = pathauto
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = transliteration
-dependencies[] = views_ui
 dependencies[] = wysiwyg
-
-; Contrib administration.
-dependencies[] = admin_menu_toolbar
-dependencies[] = admin_views
-;dependencies[] = advanced_help
-dependencies[] = backup_migrate
-
-; Contrib development.
-dependencies[] = devel
-dependencies[] = filter_perms
-dependencies[] = module_filter
 
 ; Taz.
 ;dependencies[] = taz_env
