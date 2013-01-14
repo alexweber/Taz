@@ -22,6 +22,17 @@ function taz_admin_paths() {
 }
 
 /**
+ * Set Taz as default install profile.
+ *
+ * Must use system as the hook module because taz is not active yet
+ */
+function system_form_install_select_profile_form_alter(&$form, $form_state) {
+  foreach($form['profile'] as $key => $element) {
+    $form['profile'][$key]['#value'] = 'taz';
+  }
+}
+
+/**
  * Implements hook_admin_paths_alter().
  * A trick to enforce page refresh when theme is changed from an overlay.
  */
