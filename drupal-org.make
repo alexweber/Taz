@@ -191,6 +191,7 @@ projects[advanced_help][subdir] = contrib
 
 projects[coder][type] = module
 projects[coder][subdir] = contrib
+projects[coder][patch][] = http://drupal.org/files/coder-silence_notice_from_bad_module-1828330-4.patch
 
 projects[devel][type] = module
 projects[devel][subdir] = contrib
