@@ -98,6 +98,13 @@ function _taz_flush_caches($operation, &$context) {
 }
 
 /**
+ * array_filter() callback used to filter out already installed dependencies.
+ */
+function _taz_filter_dependencies($dependency) {
+  return !module_exists($dependency);
+}
+
+/**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.
@@ -769,11 +776,4 @@ function taz_set_admin_views() {
       $view->save();
     }
   }
-}
-
-/**
- * array_filter() callback used to filter out already installed dependencies.
- */
-function _taz_filter_dependencies($dependency) {
-  return !module_exists($dependency);
 }
