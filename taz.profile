@@ -70,6 +70,66 @@ function taz_form_install_configure_form_alter(&$form, $form_state) {
   $form['site_information']['site_mail']['#default_value'] = 'admin@' . $_SERVER['HTTP_HOST'];
   $form['admin_account']['account']['name']['#default_value'] = 'admin';
   $form['admin_account']['account']['mail']['#default_value'] = 'admin@' . $_SERVER['HTTP_HOST'];
+
+  // Add elements for Taz install options.
+  $form['taz'] = array(
+    '#type' => 'fieldset',
+    '#title' => st('Taz settings'),
+    '#collapsible' => FALSE,
+    '#tree' => TRUE,
+  );
+
+  $form['taz']['search'] = array(
+    '#type' => 'select',
+    '#title' => st('Search settings'),
+    '#options' => array(
+      'core' => st('Drupal core'),
+      'search_api' => st('Search API'),
+    ),
+  );
+
+  $form['taz']['i18n'] = array(
+    '#type' => 'select',
+    '#title' => st('Internationalization'),
+    '#options' => array(
+      'none' => st('English only'),
+      'foreign' => st('Single language but not English'),
+      'i18n' => st('Multilingual'),
+    ),
+  );
+
+  $form['#submit'][] = 'taz_install_configure_form_submit';
+}
+
+/**
+ * Submit callback.
+ *
+ * Adds extra modules to installation queue.
+ */
+function taz_install_configure_form_submit(&$form, &$form_state) {
+  // Alias for convenience.
+  $values =& $form_state['values']['taz'];
+
+  $modules = array();
+
+  if ($values['search'] === 'core') {
+    $modules[] = 'search';
+    $modules[] = 'search_config';
+    $modules[] = 'search_404';
+  }
+  elseif ($values['search'] === 'search_api') {
+    $modules[] = 'search_api';
+  }
+
+  if ($values['i18n'] === 'foreign') {
+    $modules[] = 'l10n_update';
+  }
+  elseif ($values['i18n'] === 'i18n') {
+    $modules[] = 'i18n';
+  }
+
+  // Set variable to enable additional modules.
+  variable_set('taz_install_extra_modules', $modules);
 }
 
 /**
