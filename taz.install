@@ -34,6 +34,7 @@ function taz_install_additional_modules() {
     'devel',
     'ds',
     'ds_extras',
+    'ds_ui',
     'field_group',
     'filter_perms',
     'globalredirect',
