@@ -43,6 +43,15 @@ function taz_install_additional_modules() {
     'views_ui'
   );
 
+  if ($extra_modules = variable_get('taz_install_extra_modules')) {
+    if (is_array($extra_modules)) {
+      $modules += $extra_modules;
+      $modules = array_unique($modules);
+    }
+  }
+
+  variable_del('taz_install_extra_modules');
+
   // Resolve the dependencies now, so that module_enable() doesn't need
   // to do it later for each individual module (which kills performance).
   $files = system_rebuild_module_data();
