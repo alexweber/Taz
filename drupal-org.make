@@ -41,8 +41,8 @@ projects[entity][subdir] = contrib
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
-;projects[facetapi][type] = module
-;projects[facetapi][subdir] = contrib
+projects[facetapi][type] = module
+projects[facetapi][subdir] = contrib
 
 projects[features][version] = 1.0
 projects[features][type] = module
@@ -119,17 +119,17 @@ projects[rules][type] = module
 projects[rules][subdir] = contrib
 projects[rules][patch][] = http://drupal.org/files/rules-operations-link-class-1655534-1.patch
 
-;projects[search_api][type] = module
-;projects[search_api][subdir] = contrib
+projects[search_api][type] = module
+projects[search_api][subdir] = contrib
 
-;projects[search_api_db][type] = module
-;projects[search_api_db][subdir] = contrib
+projects[search_api_db][type] = module
+projects[search_api_db][subdir] = contrib
 
-;projects[search_api_page][type] = module
-;projects[search_api_page][subdir] = contrib
+projects[search_api_page][type] = module
+projects[search_api_page][subdir] = contrib
 
-;projects[search_api_solr][type] = module
-;projects[search_api_solr][subdir] = contrib
+projects[search_api_solr][type] = module
+projects[search_api_solr][subdir] = contrib
 
 projects[strongarm][type] = module
 projects[strongarm][subdir] = contrib
@@ -247,8 +247,8 @@ projects[redirect][subdir] = contrib
 projects[rich_snippets][type] = module
 projects[rich_snippets][subdir] = contrib
 
-;projects[search404][type] = module
-;projects[search404][subdir] = contrib
+projects[search404][type] = module
+projects[search404][subdir] = contrib
 
 projects[schemaorg][type] = module
 projects[schemaorg][subdir] = contrib
