@@ -155,6 +155,32 @@ projects[views_slideshow][subdir] = contrib
 projects[webform][type] = module
 projects[webform][subdir] = contrib
 
+; Internationalization
+
+projects[l10n_update][type] = module
+projects[l10n_update][subdir] = contrib
+
+projects[l10n_client][type] = module
+projects[l10n_client][subdir] = contrib
+
+projects[i18n][type] = module
+projects[i18n][subdir] = contrib
+
+projects[i18n_contrib][type] = module
+projects[i18n_contrib][subdir] = contrib
+
+projects[i18nviews][type] = module
+projects[i18nviews][subdir] = contrib
+
+projects[translation_overview][type] = module
+projects[translation_overview][subdir] = contrib
+
+projects[languageicons][type] = module
+projects[languageicons][subdir] = contrib
+
+projects[language_cookie][type] = module
+projects[language_cookie][subdir] = contrib
+
 ; Administration
 
 projects[admin_menu][type] = module
