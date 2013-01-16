@@ -203,3 +203,27 @@ function tpq(SelectQueryInterface $query) {
   include_once drupal_get_path('module', 'devel') . '/devel.module';
   return str_replace(array('{', '}'), '', dpq($query, TRUE));
 }
+
+/**
+ * Wrapper around krumo().
+ * This will manually include the Krumo class and is useful when:
+ *  - Testing as an anonymous user.
+ *  - Testing as a user without permissions to access krumo.
+ *  - Testing in certain places where krumo is not normally available.
+ */
+function tkr() {
+  include_once drupal_get_path('module', 'devel') . '/krumo/class.krumo.php';
+  krumo(func_get_args());
+}
+
+/**
+ * Wrapper around dpm().
+ * This will manually include the Krumo class and is useful when:
+ *  - Testing as an anonymous user.
+ *  - Testing as a user without permissions to access dpm.
+ *  - Testing in certain places where dpm is not normally available.
+ */
+function tpm() {
+  include_once drupal_get_path('module', 'devel') . '/devel.module';
+  dpm(func_get_args());
+}
