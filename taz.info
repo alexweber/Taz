@@ -4,9 +4,7 @@ core = 7.x
 
 ; Core.
 dependencies[] = block
-;dependencies[] = comment
 dependencies[] = contextual
-;dependencies[] = dashboard
 dependencies[] = dblog
 dependencies[] = field
 dependencies[] = field_ui
@@ -17,12 +15,10 @@ dependencies[] = list
 dependencies[] = menu
 dependencies[] = number
 dependencies[] = options
-;dependencies[] = overlay
 dependencies[] = path
 dependencies[] = rdf
 dependencies[] = shortcut
 dependencies[] = taxonomy
-;dependencies[] = toolbar
 
 ; Contrib base.
 dependencies[] = admin_views
