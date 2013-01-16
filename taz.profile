@@ -187,3 +187,19 @@ function string_to_slug($string) {
   $accents = '/&([A-Za-z]{1,2})(tilde|grave|acute|circ|cedil|uml|lig);/';
   return urlencode(strtolower(preg_replace($accents, '$1', htmlentities(utf8_decode($string)))));
 }
+
+/**
+ * Utility function for debugging queries using DBTNG. Accepts a query object
+ * and returns a string with all parameters filled in and curly brackets
+ * stripped out.
+ *
+ * @param SelectQueryInterface
+ *   An object that implements the SelectQueryInterface interface.
+ * @return string
+ */
+function tpq(SelectQueryInterface $query) {
+  // Make sure we have devel module loaded. Since this is a debugging function
+  // we don't care about performance here.
+  include_once drupal_get_path('module', 'devel') . '/devel.module';
+  return str_replace(array('{', '}'), '', dpq($query, TRUE));
+}
