@@ -787,3 +787,22 @@ function taz_set_admin_views() {
     }
   }
 }
+
+/**
+ * Returns an array of Taz submodules that can be turned on or off.
+ *
+ * @return array
+ *   An array of module information, keyed by machine name.
+ */
+function taz_get_modules() {
+  // Build list of features.
+  $features = array();
+
+  foreach (system_rebuild_module_data() as $module => $info) {
+    if (strpos($module, 'taz_') === 0) {
+      $features[$module] = $info;
+    }
+  }
+
+  return $features;
+}
