@@ -1,0 +1,10 @@
+name = Taz Admin
+description = Feature for creating administrative dashboards.
+core = 7.x
+package = Taz
+version = 7.x-1.0
+project = taz_admin
+dependencies[] = features
+dependencies[] = menu
+features[features_api][] = api:1
+features[menu_custom][] = menu-taz-admin
