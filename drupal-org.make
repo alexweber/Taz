@@ -258,15 +258,6 @@ projects[globalredirect][subdir] = contrib
 projects[metatag][type] = module
 projects[metatag][subdir] = contrib
 
-projects[metatag_views][type] = module
-projects[metatag_views][subdir] = custom
-projects[metatag_views][download][type] = git
-projects[metatag_views][download][url] = http://git.drupal.org/sandbox/davereid/1281614.git
-projects[metatag_views][download][branch] = 7.x-1.x
-projects[metatag_views][patch][] = http://drupal.org/files/1560024-views_metatags-ajax-error.patch
-projects[metatag_views][patch][] = http://drupal.org/files/1560088-display_extender-export.patch
-projects[metatag_views][patch][] = http://drupal.org/files/1361158-html_output.patch
-
 projects[redirect][type] = module
 projects[redirect][subdir] = contrib
 
