@@ -105,6 +105,24 @@ function taz_form_install_configure_form_alter(&$form, $form_state) {
     ),
   );
 
+  // Add checkboxes to enable submodules.
+  $form['taz']['submodules'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Submodules'),
+    '#description' => t('Enable additional Taz submodules'),
+    '#collapsible' => FALSE,
+    '#tree' => TRUE,
+  );
+
+  foreach (taz_get_modules() as $module => $info) {
+    $form['taz']['submodules'][$module] = array(
+      '#type' => 'checkbox',
+      '#title' => $info->info['name'],
+      '#description' => $info->info['description'],
+      '#default_value' => FALSE,
+    );
+  }
+
   $form['#submit'][] = 'taz_install_configure_form_submit';
 }
 
@@ -133,6 +151,17 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   }
   elseif ($values['i18n'] === 'i18n') {
     $modules[] = 'i18n';
+  }
+
+  // Enable additional modules.
+  if ($values['submodules']) {
+    $modules = array();
+
+    foreach ($values['submodules'] as $module => $enabled) {
+      if ($enabled) {
+        $modules[] = $module;
+      }
+    }
   }
 
   // Set variable to enable additional modules.
