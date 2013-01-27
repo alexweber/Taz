@@ -12,12 +12,12 @@ define('TAZ_ADMIN_RID', 3);
 /**
  * Implements hook_admin_paths().
  *
- * Make user pages use admin theme.
+ * Make user pages use admin theme. This is relatively harmless because users
+ * have to have the "View the administration theme" permission.
  */
 function taz_admin_paths() {
   return array(
-    'user' => TRUE,
-    'user/*' => TRUE,
+    'user*' => TRUE,
   );
 }
 
