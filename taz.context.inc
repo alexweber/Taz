@@ -41,7 +41,7 @@ function taz_context_default_contexts() {
 
   // Context for the front page.
   $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->disabled = TRUE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'taz_front';
   $context->description = 'Context for the front page.';
