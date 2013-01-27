@@ -762,7 +762,7 @@ function taz_set_menu() {
  * Setup default contexts.
  *
  * This is necessary because hook_context_default_contexts() doesn't get
- * invoked automatically when the installation profile is "installed".
+ * invoked automatically during profile installation.
  */
 function taz_set_contexts() {
   include_once 'taz.context.inc';
