@@ -8,8 +8,8 @@
  * Creates a dashboard landing page.
  */
 function taz_admin_page_dashboard() {
-  // @TODO does this need to be customizable?
-  return taz_admin_menu_table('menu-taz-admin', 4);
+  $cols = variable_get('taz_admin_cols', 4);
+  return taz_admin_menu_table('menu-taz-admin', $cols);
 }
 
 /**
