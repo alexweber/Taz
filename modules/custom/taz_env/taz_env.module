@@ -108,6 +108,7 @@ function taz_env_set($environment) {
       'preprocess_css' => 0,
       'preprocess_js' => 0,
       'jquery_update_jquery_cdn' => 'none',
+      'update_check_disabled' => 1,
     ),
     'stage' => array(),
     'prod' => array(
@@ -118,6 +119,7 @@ function taz_env_set($environment) {
       'devel_raw_names' => 0,
       'error_level' => 0,
       'jquery_update_jquery_cdn' => 'google',
+      'update_check_disabled' => 0,
     ),
   );
 
