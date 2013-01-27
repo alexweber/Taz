@@ -9,6 +9,9 @@
  */
 function taz_admin_permission() {
   return array(
+    'administer taz_admin' => array(
+      'title' => t('Administer Taz Admin'),
+    ),
     'use taz_admin' => array(
       'title' => t('Access the Taz Admin dashboard'),
     ),
@@ -27,6 +30,15 @@ function taz_admin_menu() {
     'access arguments' => array('use taz_admin'),
     'type' => MENU_NORMAL_ITEM,
     'file' => 'taz_admin.pages.inc',
+  );
+
+  $items['admin/config/administration/taz_admin'] = array(
+    'title' => 'Taz Admin',
+    'description' => 'Configure settings for Taz Admin',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('taz_admin_settings_form'),
+    'file' => 'taz_admin.admin.inc',
+    'access arguments' => array('administer taz_admin'),
   );
 
   return $items;
