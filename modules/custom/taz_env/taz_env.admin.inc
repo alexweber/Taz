@@ -11,9 +11,7 @@
  *
  * @see taz_env_menu()
  */
-function taz_env_settings_form() {
-  $form = array();
-
+function taz_env_settings_form($form, $form_state) {
   $form['wrapper'] = array(
     '#type' => 'fieldset',
     '#title' => t('Taz Env'),
