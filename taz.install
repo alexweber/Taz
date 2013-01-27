@@ -19,12 +19,140 @@ function taz_install_tasks() {
       'display_name' => st('Install additional modules'),
       'type' => 'batch',
     ),
+    'taz_install_wysiwyg' => array(
+      'display_name' => st('Configure WYSIWYG editor'),
+    ),
   );
+}
+
+/**
+ * Task callback: configures the selected WYSIWYG editor.
+ *
+ * @see taz_install_tasks()
+ */
+function taz_install_wysiwyg() {
+  $editor = variable_get('taz_install_wysiwyg', 'ckeditor');
+  // @TODO
+  $lang = 'en';
+
+  $settings_full = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => $lang,
+    'buttons' => array(
+      'default' => array(
+        'bold' => 1,
+        'italic' => 1,
+        'underline' => 1,
+        'justifyleft' => 1,
+        'justifycenter' => 1,
+        'justifyright' => 1,
+        'justifyfull' => 1,
+        'bullist' => 1,
+        'numlist' => 1,
+        'undo' => 1,
+        'redo' => 1,
+        'forecolor' => 1,
+        'backcolor' => 1,
+        'blockquote' => 1,
+      ),
+      'advimage' => array(
+        'advimage' => 1,
+      ),
+      'advlink' => array(
+        'advlink' => 1,
+      ),
+      'drupal' => array(
+        'media' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+    'css_setting' => 'theme',
+    'css_path' => '',
+    'css_classes' => '',
+  );
+
+  $fields = array(
+    'format' => 'full_html',
+    'editor' => $editor,
+    'settings' => serialize($settings_full),
+  );
+
+  db_insert('wysiwyg')->fields($fields)->execute();
+
+  $settings_filtered = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => $lang,
+    'buttons' => array(
+      'default' => array(
+        'bold' => 1,
+        'italic' => 1,
+        'underline' => 1,
+        'bullist' => 1,
+        'numlist' => 1,
+        'undo' => 1,
+        'redo' => 1,
+        'link' => 1,
+        'unlink' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+    'css_setting' => 'theme',
+    'css_path' => '',
+    'css_classes' => '',
+  );
+
+  $fields = array(
+    'format' => 'filtered_html',
+    'editor' => $editor,
+    'settings' => serialize($settings_filtered),
+  );
+
+  db_insert('wysiwyg')->fields($fields)->execute();
+
+  db_update('filter_format')
+    ->condition('format', 'filtered_html')
+    ->fields(array('weight' => 1))
+    ->execute();
+
+  db_update('filter_format')
+    ->condition('format', 'full_html')
+    ->fields(array('weight' => 0))
+    ->execute();
+
+  variable_del('taz_install_wysiwyg');
 }
 
 /**
  * Task callback: uses Batch API to install additional modules that should
  * be enabled by default but shouldn't be considered profile dependencies.
+ *
+ * @see taz_install_tasks()
  */
 function taz_install_additional_modules() {
   $modules = array(
@@ -49,8 +177,6 @@ function taz_install_additional_modules() {
       $modules = array_unique($modules);
     }
   }
-
-  variable_del('taz_install_extra_modules');
 
   // Resolve the dependencies now, so that module_enable() doesn't need
   // to do it later for each individual module (which kills performance).
@@ -84,6 +210,7 @@ function taz_install_additional_modules() {
     'operations' => $operations,
   );
 
+  variable_del('taz_install_extra_modules');
   return $batch;
 }
 
@@ -127,7 +254,6 @@ function taz_install() {
   taz_set_fields();
   taz_set_roles();
   taz_set_default_text_formats_and_perms();
-  taz_set_wysiwyg();
   taz_set_menu();
   taz_set_contexts();
   taz_set_admin_views();
@@ -628,121 +754,6 @@ function taz_set_default_text_formats_and_perms() {
 }
 
 /**
- * Sets default WYSIWYG settings for Taz.
- */
-function taz_set_wysiwyg() {
-  $settings_full = array(
-    'default' => 1,
-    'user_choose' => 0,
-    'show_toggle' => 1,
-    'theme' => 'advanced',
-    'language' => 'en',
-    'buttons' => array(
-      'default' => array(
-        'bold' => 1,
-        'italic' => 1,
-        'underline' => 1,
-        'justifyleft' => 1,
-        'justifycenter' => 1,
-        'justifyright' => 1,
-        'justifyfull' => 1,
-        'bullist' => 1,
-        'numlist' => 1,
-        'undo' => 1,
-        'redo' => 1,
-        'forecolor' => 1,
-        'backcolor' => 1,
-        'blockquote' => 1,
-      ),
-      'advimage' => array(
-        'advimage' => 1,
-      ),
-      'advlink' => array(
-        'advlink' => 1,
-      ),
-      'drupal' => array(
-        'media' => 1,
-      ),
-    ),
-    'toolbar_loc' => 'top',
-    'toolbar_align' => 'left',
-    'path_loc' => 'bottom',
-    'resizing' => 1,
-    'verify_html' => 1,
-    'preformatted' => 0,
-    'convert_fonts_to_spans' => 1,
-    'remove_linebreaks' => 1,
-    'apply_source_formatting' => 0,
-    'paste_auto_cleanup_on_paste' => 1,
-    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-    'css_setting' => 'theme',
-    'css_path' => '',
-    'css_classes' => '',
-  );
-
-  $fields = array(
-    'format' => 'full_html',
-    'editor' => 'tinymce',
-    'settings' => serialize($settings_full),
-  );
-
-  db_insert('wysiwyg')->fields($fields)->execute();
-
-  $settings_filtered = array(
-    'default' => 1,
-    'user_choose' => 0,
-    'show_toggle' => 1,
-    'theme' => 'advanced',
-    'language' => 'en',
-    'buttons' => array(
-      'default' => array(
-        'bold' => 1,
-        'italic' => 1,
-        'underline' => 1,
-        'bullist' => 1,
-        'numlist' => 1,
-        'undo' => 1,
-        'redo' => 1,
-        'link' => 1,
-        'unlink' => 1,
-      ),
-    ),
-    'toolbar_loc' => 'top',
-    'toolbar_align' => 'left',
-    'path_loc' => 'bottom',
-    'resizing' => 1,
-    'verify_html' => 1,
-    'preformatted' => 0,
-    'convert_fonts_to_spans' => 1,
-    'remove_linebreaks' => 1,
-    'apply_source_formatting' => 0,
-    'paste_auto_cleanup_on_paste' => 1,
-    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-    'css_setting' => 'theme',
-    'css_path' => '',
-    'css_classes' => '',
-  );
-
-  $fields = array(
-    'format' => 'filtered_html',
-    'editor' => 'tinymce',
-    'settings' => serialize($settings_filtered),
-  );
-
-  db_insert('wysiwyg')->fields($fields)->execute();
-
-  db_update('filter_format')
-    ->condition('format', 'filtered_html')
-    ->fields(array('weight' => 1))
-    ->execute();
-
-  db_update('filter_format')
-    ->condition('format', 'full_html')
-    ->fields(array('weight' => 0))
-    ->execute();
-}
-
-/**
  * Setup default menu items.
  */
 function taz_set_menu() {
@@ -782,7 +793,7 @@ function taz_set_admin_views() {
     if ($old_view = views_get_view($view->name, TRUE)) {
       // Delete current View.
       $old_view->delete();
-      // Replace it with out own.
+      // Replace it with our own.
       $view->save();
     }
   }
