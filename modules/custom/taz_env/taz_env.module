@@ -124,7 +124,7 @@ function taz_env_set($environment) {
   );
 
   // If Boost is disabled, enable standard Drupal cache variables for production mode.
-  if (!function_exists('boost_menu')) {
+  if (!module_exists('boost')) {
     $variables['prod']['cache'] = 1;
     $variables['prod']['preprocess_css'] = 1;
     $variables['prod']['preprocess_js'] = 1;
