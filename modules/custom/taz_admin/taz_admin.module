@@ -24,14 +24,7 @@ function taz_admin_permission() {
 function taz_admin_menu() {
   $items = array();
 
-  $items['admin/taz'] = array(
-    'title' => 'Administration Dashboard',
-    'page callback' => 'taz_admin_page_dashboard',
-    'access arguments' => array('use taz_admin'),
-    'type' => MENU_NORMAL_ITEM,
-    'file' => 'taz_admin.pages.inc',
-  );
-
+  // Settings form.
   $items['admin/config/administration/taz_admin'] = array(
     'title' => 'Taz Admin',
     'description' => 'Configure settings for Taz Admin',
@@ -39,6 +32,18 @@ function taz_admin_menu() {
     'page arguments' => array('taz_admin_settings_form'),
     'file' => 'taz_admin.admin.inc',
     'access arguments' => array('administer taz_admin'),
+  );
+
+  // Dashboard page.
+  $url = variable_get('taz_admin_url', 'admin/taz');
+  $title = variable_get('taz_admin_title', 'Admin Dashboard');
+
+  $items[$url] = array(
+    'title' => $title,
+    'page callback' => 'taz_admin_page_dashboard',
+    'access arguments' => array('use taz_admin'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'taz_admin.pages.inc',
   );
 
   return $items;
@@ -80,7 +85,6 @@ function taz_admin_page() {
 function taz_admin_preprocess_menu_link(&$variables) {
   if (isset($variables['element']['#theme']) && $variables['element']['#theme'] === 'menu_link__menu_taz_admin') {
     $url = $variables['element']['#href'];
-
     $custom_classes = taz_admin_custom_classes();
 
     if (array_key_exists($url, $custom_classes)) {
