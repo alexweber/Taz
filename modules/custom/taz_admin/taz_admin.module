@@ -1,5 +1,122 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Taz Admin module.
  */
+
+/**
+ * Implements hook_permission().
+ */
+function taz_admin_permission() {
+  return array(
+    'use taz_admin' => array(
+      'title' => t('Access the Taz Admin dashboard'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function taz_admin_menu() {
+  $items = array();
+
+  $items['admin/taz'] = array(
+    'title' => 'Administration Dashboard',
+    'page callback' => 'taz_admin_page_dashboard',
+    'access arguments' => array('use taz_admin'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'taz_admin.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function taz_admin_init() {
+  // Add admin section styles.
+  if (taz_admin_page()) {
+    drupal_add_css(drupal_get_path('module', 'taz_admin') . '/css/taz_admin.css', array(
+      'group' => CSS_THEME, 'every_page' => TRUE));
+  }
+}
+
+/**
+ * Returns whether either the "taz_admin" context is available.
+ */
+function taz_admin_page() {
+  static $contexts;
+  static $result;
+
+  if (!isset($result)) {
+    if (!isset($contexts)) {
+      $contexts = context_active_contexts();
+    }
+    $result = array_key_exists('taz_admin', $contexts);
+  }
+
+  return $result;
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ *
+ * Adds an extra class to Taz Admin menu items.
+ */
+function taz_admin_preprocess_menu_link(&$variables) {
+  if (isset($variables['element']['#theme']) && $variables['element']['#theme'] === 'menu_link__menu_taz_admin') {
+    $url = $variables['element']['#href'];
+
+    $custom_classes = taz_admin_custom_classes();
+
+    if (array_key_exists($url, $custom_classes)) {
+      $classname = $custom_classes[$url];
+    }
+    else {
+      $url_parts = explode('/', $url);
+      $classname = array_pop($url_parts);
+    }
+
+    $variables['element']['#attributes']['class'][] = $classname;
+  }
+}
+
+/**
+ * Returns a list of paths that should have custom menu link classes.
+ * The array is alterable via drupal_alter() in order for other modules to
+ * define their own classes for certain paths.
+ *
+ * @return array
+ *   An array of custom classnames, keyed by path.
+ *
+ * @code
+ *   For example:
+ *   return array('admin/config/foo' => 'settings');
+ * @endcode
+ *
+ * @see taz_admin_preprocess_menu_link()
+ * @see taz_admin_menu_table()
+ */
+function taz_admin_custom_classes() {
+  $custom_classes = array();
+  drupal_alter('taz_admin_custom_classes', $custom_classes);
+  return $custom_classes;
+}
+
+/**
+ * Returns a list of paths that should not have links rendered in the
+ * administrative dashboard page.
+ *
+ * @return array
+ *
+ * @see taz_admin_menu_table()
+ */
+function taz_admin_exclude_paths() {
+  $exclude_paths = array(
+    'user/logout',
+  );
+  drupal_alter('taz_admin_exclude_paths', $exclude_paths);
+  return $exclude_paths;
+}
