@@ -39,10 +39,13 @@ function taz_admin_menu_table($menu_name, $cols_per_row = 4) {
 
       // Check for permission.
       if ($item['access']) {
-        if (array_key_exists($url, $custom_classes)) {
-          $classname = $custom_classes[$url];
+        if (in_array($link['link_path'], $exclude)) {
+          continue;
         }
-        else if (!in_array ($link['link_path'], $exclude)) {
+        else if (array_key_exists($link['link_path'], $custom_classes)) {
+          $classname = $custom_classes[$link['link_path']];
+        }
+        else {
           $path = explode('/', $link['link_path']);
           $classname = array_pop($path);
         }
