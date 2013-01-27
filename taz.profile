@@ -105,6 +105,16 @@ function taz_form_install_configure_form_alter(&$form, $form_state) {
     ),
   );
 
+  $form['taz']['wysiwyg'] = array(
+    '#type' => 'select',
+    '#title' => st('WYSIWYG settings'),
+    '#options' => array(
+      'ckeditor' => st('CKEditor'),
+      'tinymce' => st('Tiny MCE'),
+    ),
+  );
+
+
   // Add checkboxes to enable submodules.
   $form['taz']['submodules'] = array(
     '#type' => 'fieldset',
@@ -164,8 +174,9 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
     }
   }
 
-  // Set variable to enable additional modules.
+  // Set variables for other install steps.
   variable_set('taz_install_extra_modules', $modules);
+  variable_set('taz_install_wysiwyg', $values['wysiwyg']);
 }
 
 /**
