@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Taz Core module.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function taz_core_views_api() {
+  return array('version' => '3.0');
+}

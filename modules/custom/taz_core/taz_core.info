@@ -1,0 +1,11 @@
+core = 7.x
+description = Provides core functionality for Taz.
+name = Taz Core
+package = Taz
+version = 7.x-1.0
+project = taz_core
+
+; Views includes
+files[] = taz.views.inc
+files[] = views_handler_field_node_link_devel.inc
+files[] = views_handler_field_user_link_devel.inc
