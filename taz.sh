@@ -163,10 +163,10 @@ if [ "$RESP" = "y" ]; then
 
   read -p "Use Search API? (y/n): " RESP
   if [ "$RESP" = "y" ]; then
-    drush dl search_api search_api_solr search_api_db search_api_page facetapi --destination=profiles/taz/modules/contrib -y
+    ;drush dl search_api search_api_solr search_api_db search_api_page facetapi --destination=profiles/taz/modules/contrib -y
     drush en search_api -y
   else
-    drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
+    ;drush dl search404 search_config --destination=profiles/taz/modules/contrib -y
     drush en search -y
   fi
 
@@ -176,7 +176,7 @@ if [ "$RESP" = "y" ]; then
 
   read -p "Setup multilingual site? (y/n): " RESP
   if [ "$RESP" = "y" ]; then
-    drush dl i18n l10n_update language_cookie languageicons i18nviews translation_overview l10n_client i18n_contrib --destination=profiles/taz/modules/contrib -y
+    ;drush dl i18n l10n_update language_cookie languageicons i18nviews translation_overview l10n_client i18n_contrib --destination=profiles/taz/modules/contrib -y
     drush en i18n l10n_update -y
   fi
 
