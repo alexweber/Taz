@@ -292,6 +292,14 @@ function taz_install() {
   variable_set('pathauto_node_pattern', 'node/[node:nid]');
   variable_set('pathauto_node_page_pattern', '[node:title]');
 
+  // Setup Global Redirect.
+  $globalredirect_settings = array(
+    'canonical' => 1,
+    'content_location_header' => 1,
+    'menu_check' => 1,
+  );
+  variable_set('globalredirect_settings', $globalredirect_settings);
+
   // Set sensible caching defaults.
   variable_set('cache', 0);
   variable_set('block_cache', 0);
