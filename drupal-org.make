@@ -204,8 +204,10 @@ projects[itoggle][subdir] = contrib
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 
+projects[wysiwyg][version] = 2.2
 projects[wysiwyg][type] = module
 projects[wysiwyg][subdir] = contrib
+projects[wysiwyg][patch][] = http://drupal.org/files/wysiwyg-support_v4_ckeditor-1853550-73.patch
 
 ; Development
 
@@ -310,8 +312,8 @@ libraries[colorbox][download][type] = get
 libraries[colorbox][download][url] = http://jacklmoore.com/colorbox/colorbox.zip
 
 libraries[ckeditor][download][type] = get
-;libraries[ckeditor][download][url] = http://ckeditor.com/downloads/ckeditor_4.0.1_basic.zip
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6/ckeditor_3.6.6.zip
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_full.tar.gz
+;libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6/ckeditor_3.6.6.zip
 
 libraries[engage.itoggle][download][type] = get
 libraries[engage.itoggle][download][url] = http://labs.engageinteractive.co.uk/itoggle/engage.itoggle.zip
