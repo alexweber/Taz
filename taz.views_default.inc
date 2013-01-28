@@ -329,6 +329,13 @@ function taz_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
+  /* Field: Content: Devel link */
+  $handler->display->display_options['fields']['devel_node']['id'] = 'devel_node';
+  $handler->display->display_options['fields']['devel_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['devel_node']['field'] = 'devel_node';
+  $handler->display->display_options['fields']['devel_node']['label'] = '';
+  $handler->display->display_options['fields']['devel_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['devel_node']['text'] = 'inspect';
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
