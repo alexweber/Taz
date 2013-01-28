@@ -58,6 +58,12 @@ projects[features_override][subdir] = contrib
 projects[field_collection][type] = module
 projects[field_collection][subdir] = contrib
 
+projects[ffc][type] = module
+projects[ffc][subdir] = contrib
+
+projects[field_formatter_settings][type] = module
+projects[field_formatter_settings][subdir] = contrib
+
 projects[field_group][type] = module
 projects[field_group][subdir] = contrib
 
