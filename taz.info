@@ -35,7 +35,4 @@ dependencies[] = token
 dependencies[] = transliteration
 dependencies[] = wysiwyg
 
-; Taz.
-;dependencies[] = taz_env
-
 files[] = taz.profile
