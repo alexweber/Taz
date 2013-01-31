@@ -12,6 +12,10 @@ projects[autocomplete_deluxe][subdir] = contrib
 projects[bean][type] = module
 projects[bean][subdir] = contrib
 
+projects[chosen][version] = 2.x-dev
+projects[chosen][type] = module
+projects[chosen][subdir] = contrib
+
 projects[colorbox][type] = module
 projects[colorbox][subdir] = contrib
 
