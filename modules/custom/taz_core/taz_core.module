@@ -4,6 +4,9 @@
  * Taz Core module.
  */
 
+// Load helper API functions.
+module_load_include('module', 'taz_core', 'taz_core.api');
+
 /**
  * Implements hook_admin_paths().
  *
