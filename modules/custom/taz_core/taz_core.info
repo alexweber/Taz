@@ -2,7 +2,7 @@ core = 7.x
 description = Provides core functionality for Taz.
 name = Taz Core
 package = Taz
-version = 7.x-1.0
+version = TAZ_VERSION
 project = taz_core
 
 ; Views includes
