@@ -4,6 +4,7 @@ name = Taz Core
 package = Taz
 version = TAZ_VERSION
 project = taz_core
+dependencies[] = libraries
 
 ; Views includes
 files[] = taz.views.inc
