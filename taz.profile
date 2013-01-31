@@ -5,6 +5,11 @@
  */
 
 /**
+ * Define the current profile version.
+ */
+define('TAZ_VERSION', '7.0-dev');
+
+/**
  * Role ID for administrator users; should match what's in the "role" table.
  */
 define('TAZ_ADMIN_RID', 3);
