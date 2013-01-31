@@ -15,18 +15,6 @@ define('TAZ_VERSION', '7.0-dev');
 define('TAZ_ADMIN_RID', 3);
 
 /**
- * Implements hook_admin_paths().
- *
- * Make user pages use admin theme. This is relatively harmless because users
- * have to have the "View the administration theme" permission.
- */
-function taz_admin_paths() {
-  return array(
-    'user*' => TRUE,
-  );
-}
-
-/**
  * Set Taz as default install profile.
  *
  * Must use system as the hook module because taz is not active yet
@@ -35,14 +23,6 @@ function system_form_install_select_profile_form_alter(&$form, $form_state) {
   foreach($form['profile'] as $key => $element) {
     $form['profile'][$key]['#value'] = 'taz';
   }
-}
-
-/**
- * Implements hook_admin_paths_alter().
- * A trick to enforce page refresh when theme is changed from an overlay.
- */
-function taz_admin_paths_alter(&$paths) {
-  $paths['admin/appearance/default*'] = FALSE;
 }
 
 /**
@@ -182,90 +162,6 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   // Set variables for other install steps.
   variable_set('taz_install_extra_modules', $modules);
   variable_set('taz_install_wysiwyg', $values['wysiwyg']);
-}
-
-/**
- * Implements hook_backup_migrate_profiles().
- */
-function taz_backup_migrate_profiles() {
-  return array(
-    'dev_snapshot' => backup_migrate_crud_create_item('profile', array(
-      'name' => t("Dev Snapshot"),
-      'profile_id' => 'dev_snapshot',
-      'filename' => '[site:name]',
-      'append_timestamp' => '0',
-      'filters' => array(
-        'compression' => 'gzip',
-        'notify_success_enable' => 0,
-        'notify_failure_enable' => 0,
-        'utils_site_offline' => 0,
-        'utils_site_offline_message' => 'This website is currently under maintenance. We should be back shortly. Thank you for your patience.',
-        'utils_description' => '',
-        'destinations' => array(
-          'db' => array(
-            'exclude_tables' => array(),
-            'nodata_tables' => array(
-              'cache' => 'cache',
-              'cache_admin_menu' => 'cache_admin_menu',
-              'cache_block' => 'cache_block',
-              'cache_bootstrap' => 'cache_bootstrap',
-              'cache_field' => 'cache_field',
-              'cache_filter' => 'cache_filter',
-              'cache_form' => 'cache_form',
-              'cache_image' => 'cache_image',
-              'cache_l10n_update' => 'cache_l10n_update',
-              'cache_libraries' => 'cache_libraries',
-              'cache_media_xml' => 'cache_media_xml',
-              'cache_menu' => 'cache_menu',
-              'cache_page' => 'cache_page',
-              'cache_path' => 'cache_path',
-              'cache_token' => 'cache_token',
-              'cache_update' => 'cache_update',
-              'cache_views' => 'cache_views',
-              'cache_views_data' => 'cache_views_data',
-              'ctools_css_cache' => 'ctools_css_cache',
-              'ctools_object_cache' => 'ctools_object_cache',
-              'search_dataset' => 'search_dataset',
-              'search_index' => 'search_index',
-              'search_total' => 'search_total',
-              'sessions' => 'sessions',
-              'watchdog' => 'watchdog',
-            ),
-            'utils_lock_tables' => 0,
-            'use_mysqldump' => 0,
-          ),
-        ),
-      ),
-    )),
-  );
-}
-
-/**
- * Implements hook_backup_migrate_schedules().
- */
-function taz_backup_migrate_schedules() {
-  return array(
-    'daily' => backup_migrate_crud_create_item('schedule', array(
-      'name' => 'Daily Backup',
-      'source_id' => 'db',
-      'destination_id' => 'scheduled',
-      'profile_id' => 'default',
-      'keep' => 90,
-      'period' => 28800,
-      'enabled' => 1,
-      'cron' => 1,
-    )),
-    'snapshot' => backup_migrate_crud_create_item('schedule', array(
-      'name' => 'Dev Snapshopt',
-      'source_id' => 'db',
-      'destination_id' => 'manual',
-      'profile_id' => 'dev_snapshot',
-      'keep' => 7,
-      'period' => 43200,
-      'enabled' => 1,
-      'cron' => 1,
-    )),
-  );
 }
 
 /**
