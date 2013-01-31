@@ -4,4 +4,4 @@ name = Taz Environment
 package = Taz
 version = TAZ_VERSION
 project = taz_env
-configure = admin/config/development
+configure = admin/config/development/taz_env
