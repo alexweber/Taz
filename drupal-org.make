@@ -316,6 +316,8 @@ projects[fubik][type] = theme
 
 ;projects[aurora][type] = theme
 
+;projects[zurb-foundation][type] = theme
+
 ; External Libraries
 
 libraries[SolrPhpClient][download][type] = get
