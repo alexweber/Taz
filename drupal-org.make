@@ -74,6 +74,9 @@ projects[field_formatter_settings][subdir] = contrib
 projects[field_group][type] = module
 projects[field_group][subdir] = contrib
 
+projects[field_permissions][type] = module
+projects[field_permissions][subdir] = contrib
+
 projects[file_entity][version] = 2.0-unstable7
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
