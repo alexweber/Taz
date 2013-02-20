@@ -30,6 +30,12 @@ function taz_env_settings_form($form, $form_state) {
     '#default_value' => variable_get('taz_env', TAZ_ENV_DEV),
   );
 
+  $form['wrapper']['taz_env_notify'] = array(
+    '#title' => t('Display a banner showing what environment you are in.'),
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('taz_env_notify', TRUE),
+  );
+
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',

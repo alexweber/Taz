@@ -1,0 +1,53 @@
+#taz-env-notify {
+  height: 18px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  -moz-box-shadow: 0 -10px 20px 13px #000;
+  -webkit-box-shadow: 0 -10px 20px 13px #000;
+  box-shadow: 0 -10px 20px 13px #000;
+}
+
+.admin-menu #taz-env-notify {
+  top: 31px;
+}
+
+#taz-env-notify.development {
+  background: #5FCD66;
+}
+
+#taz-env-notify.staging {
+  background: #FFC926;
+}
+
+#taz-env-notify.production {
+  background: #FF2626;
+}
+
+#taz-env-notify-msg {
+  text-align: center;
+  font-weight: bold;
+  font-family: "Lucida Grande", Verdana, sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+.production #taz-env-notify-msg {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+#taz-env-notify-close {
+  float: right;
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  margin-right: 6px;
+  text-indent: -9999px;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0;
+  background: url('close.png') 0 0 no-repeat;
+}

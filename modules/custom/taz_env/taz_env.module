@@ -19,6 +19,9 @@ function taz_env_permission() {
     'administer taz_env' => array(
       'title' => t('Administer Taz Env'),
     ),
+    'view taz_env notify' => array(
+      'title' => t('Vuew Taz Env notifications'),
+    ),
   );
 }
 
@@ -213,4 +216,55 @@ function taz_env_set($environment) {
       variable_set('taz_env', TAZ_ENV_DEV);
     }
   }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function taz_env_page_build(&$page) {
+  if (variable_get('taz_env_notify', TRUE) && user_access('view taz_env notify')) {
+    $path = drupal_get_path('module', 'taz_env');
+    $env = variable_get('taz_env', TAZ_ENV_DEV);
+
+    $page['page_bottom']['taz_env'] = array(
+      '#attached' => array(
+        'js' => array(
+          $path . '/taz_env.js',
+        ),
+        'css' => array(
+          $path . '/taz_env.css',
+        ),
+      ),
+      '#theme' => 'taz_env_notify',
+      '#env' => $env,
+    );
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function taz_env_theme($existing, $type, $theme, $path) {
+  return array(
+    'taz_env_notify' => array(
+      'template' => 'taz_env_notify',
+      'variables' => array('env' => '', 'env_message' => ''),
+    ),
+  );
+}
+
+function taz_env_preprocess_taz_env_notify(&$variables) {
+  switch ($variables['env']) {
+    case TAZ_ENV_DEV:
+      $env_name = t('Development');
+      break;
+    case TAZ_ENV_STAGE:
+      $env_name = t('Staging');
+      break;
+    case TAZ_ENV_PROD;
+      $env_name = t('Production');
+      break;
+  }
+
+  $variables['env_message'] = $env_name;
 }
