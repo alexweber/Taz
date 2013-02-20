@@ -165,6 +165,11 @@ projects[views_arguments_extras][subdir] = contrib
 projects[views_slideshow][type] = module
 projects[views_slideshow][subdir] = contrib
 
+projects[visualization][version] = 1.0-alpha1
+projects[visualization][type] = module
+projects[visualization][subdir] = contrib
+projects[visualization][patch][] = http://drupal.org/files/views_style_chart_title_field-1908688-7.patch
+
 projects[webform][type] = module
 projects[webform][subdir] = contrib
 
