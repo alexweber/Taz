@@ -355,3 +355,6 @@ libraries[jquery.coolinput][download][url] = https://github.com/alexweber/jquery
 
 libraries[chosen][download][type] = file
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/archive/v0.9.8.tar.gz
+
+libraries[highcharts][download][type] = file
+libraries[highcharts][download][url] = http://www.highcharts.com/downloads/zips/Highcharts-2.3.5.zip
