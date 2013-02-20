@@ -45,6 +45,9 @@ projects[entity][subdir] = contrib
 projects[entityreference][type] = module
 projects[entityreference][subdir] = contrib
 
+projects[entityreference_prepopulate][type] = module
+projects[entityreference_prepopulate][subdir] = contrib
+
 projects[facetapi][type] = module
 projects[facetapi][subdir] = contrib
 
