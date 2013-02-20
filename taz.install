@@ -250,6 +250,7 @@ function taz_install_additional_modules() {
     'globalredirect',
     'module_filter',
     'pathauto',
+    'role_export',
     'views_ui'
   );
 
