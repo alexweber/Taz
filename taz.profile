@@ -139,6 +139,8 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   }
   elseif ($values['search'] === 'search_api') {
     $modules[] = 'search_api';
+    $modules[] = 'search_api_db';
+    $modules[] = 'facetapi';
   }
 
   if ($values['i18n'] === 'foreign') {
@@ -146,6 +148,7 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   }
   elseif ($values['i18n'] === 'i18n') {
     $modules[] = 'i18n';
+    $modules[] = 'l10n_update';
   }
 
   // Enable additional modules.
