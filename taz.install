@@ -899,9 +899,11 @@ function taz_set_admin_views() {
 function taz_get_modules() {
   // Build list of features.
   $features = array();
+  $exclude = array('taz_core');
+
 
   foreach (system_rebuild_module_data() as $module => $info) {
-    if (strpos($module, 'taz_') === 0) {
+    if (strpos($module, 'taz_') === 0 && !in_array($module, $exclude)) {
       $features[$module] = $info;
     }
   }
