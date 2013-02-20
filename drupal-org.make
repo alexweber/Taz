@@ -75,6 +75,7 @@ projects[file_entity][version] = 2.0-unstable7
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 
+projects[flag][version] = 3
 projects[flag][type] = module
 projects[flag][subdir] = contrib
 
