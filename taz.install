@@ -32,8 +32,9 @@ function taz_install_tasks() {
  */
 function taz_install_wysiwyg() {
   $editor = variable_get('taz_install_wysiwyg', 'ckeditor');
-  // @TODO Determine language from settings form.
-  $lang = 'en';
+  $lang = isset($install_state['locales'][0]->langcode)
+    ? $install_state['locales'][0]->langcode
+    : 'en';
 
   $settings_full = array(
     'ckeditor' => array(
