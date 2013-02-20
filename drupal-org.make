@@ -243,6 +243,9 @@ projects[advanced_help][subdir] = contrib
 projects[devel][type] = module
 projects[devel][subdir] = contrib
 
+projects[diff][type] = module
+projects[diff][subdir] = contrib
+
 projects[drupal_ipsum][type] = module
 projects[drupal_ipsum][subdir] = contrib
 
