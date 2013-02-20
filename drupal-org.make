@@ -270,6 +270,9 @@ projects[migrate_extras][subdir] = contrib
 projects[module_filter][type] = module
 projects[module_filter][subdir] = contrib
 
+projects[role_export][type] = module
+projects[role_export][subdir] = contrib
+
 ;projects[omega_tools][type] = module
 ;projects[omega_tools][subdir] = contrib
 
