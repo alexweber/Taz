@@ -350,9 +350,10 @@ function taz_install() {
   // Set up date defaults so it doesn't yell at us anymore.
   variable_set('date_first_day', 1);
   variable_set('date_format_long', 'l, F j, Y - H:i');
-  variable_set('date_format_medium', 'D, Y-m-d H:i');
-  variable_set('date_format_short', 'Y-m-d H:i');
+  variable_set('date_format_medium', 'D, m-d-Y H:i');
+  variable_set('date_format_short', 'm-d-Y H:i');
   variable_set('date_default_timezone', 'America/Denver');
+//  variable_set('date_default_timezone', 'America/Sao_Paulo');
   variable_set('configurable_timezones', 0);
 
   // Set private file path.
