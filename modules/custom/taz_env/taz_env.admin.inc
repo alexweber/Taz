@@ -30,10 +30,16 @@ function taz_env_settings_form($form, $form_state) {
     '#default_value' => variable_get('taz_env', TAZ_ENV_DEV),
   );
 
-  $form['wrapper']['taz_env_notify'] = array(
-    '#title' => t('Display a banner showing what environment you are in.'),
+  $form['wrapper']['taz_env_banner'] = array(
+    '#title' => t('Display a small banner at the top of the site informing what the current environment is'),
     '#type' => 'checkbox',
-    '#default_value' => variable_get('taz_env_notify', TRUE),
+    '#default_value' => variable_get('taz_env_banner', TRUE),
+  );
+
+  $form['wrapper']['taz_env_message'] = array(
+    '#title' => t('Display a message on each page informing what the current environment is.'),
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('taz_env_message', FALSE),
   );
 
   $form['actions'] = array('#type' => 'actions');

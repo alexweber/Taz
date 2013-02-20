@@ -164,6 +164,7 @@ function taz_env_set($environment) {
     }
 
     variable_set('taz_env', TAZ_ENV_PROD);
+    // @TODO watchdog
   }
   else {
     // Enable/disable modules.
@@ -222,7 +223,7 @@ function taz_env_set($environment) {
  * Implements hook_page_build().
  */
 function taz_env_page_build(&$page) {
-  if (variable_get('taz_env_notify', TRUE) && user_access('view taz_env notify')) {
+  if (variable_get('taz_env_banner', TRUE) && user_access('view taz_env notify')) {
     $path = drupal_get_path('module', 'taz_env');
     $env = variable_get('taz_env', TAZ_ENV_DEV);
 
@@ -235,7 +236,7 @@ function taz_env_page_build(&$page) {
           $path . '/taz_env.css',
         ),
       ),
-      '#theme' => 'taz_env_notify',
+      '#theme' => 'taz_env_banner',
       '#env' => $env,
     );
   }
@@ -246,25 +247,57 @@ function taz_env_page_build(&$page) {
  */
 function taz_env_theme($existing, $type, $theme, $path) {
   return array(
-    'taz_env_notify' => array(
-      'template' => 'taz_env_notify',
+    'taz_env_banner' => array(
+      'template' => 'taz_env_banner',
       'variables' => array('env' => '', 'env_message' => ''),
     ),
   );
 }
 
-function taz_env_preprocess_taz_env_notify(&$variables) {
-  switch ($variables['env']) {
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function taz_env_preprocess_taz_env_banner(&$variables) {
+  $variables['env_message'] = taz_env_get_name($variables['env']);
+}
+
+/**
+ * Helper function to get an environment's full name.
+ *
+ * @param string The environment's
+ * @return string
+ */
+function taz_env_get_name($env) {
+  switch ($env) {
     case TAZ_ENV_DEV:
-      $env_name = t('Development');
+      return t('Development');
+    case TAZ_ENV_STAGE:
+      return t('Staging');
+    case TAZ_ENV_PROD;
+      return t('Production');
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function taz_env_init() {
+  if (variable_get('taz_env_message', TRUE) && user_access('view taz_env notify')) {
+    $env = variable_get('taz_env', TAZ_ENV_DEV);
+    $name = taz_env_get_name($env);
+
+  switch ($env) {
+    case TAZ_ENV_DEV:
+      $type = 'status';
       break;
     case TAZ_ENV_STAGE:
-      $env_name = t('Staging');
+      $type = 'warning';
       break;
     case TAZ_ENV_PROD;
-      $env_name = t('Production');
+      $class = 'error';
       break;
   }
 
-  $variables['env_message'] = $env_name;
+    drupal_set_message(t('Current environment: @name', array('@name' => $name)), $type, FALSE);
+  }
 }
