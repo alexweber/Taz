@@ -75,9 +75,11 @@ projects[file_entity][version] = 2.0-unstable7
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 
-projects[flag][version] = 3
+projects[flag][version] = 3.x-dev
 projects[flag][type] = module
 projects[flag][subdir] = contrib
+; All of these are about to get committed. Remove when they do.
+projects[flag][patch][] = http://drupal.org/files/flag-view-modes-1871426-26.patch
 
 projects[flexslider][type] = module
 projects[flexslider][subdir] = contrib
