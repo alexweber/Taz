@@ -144,10 +144,16 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   }
 
   if ($values['i18n'] === 'foreign') {
+    $modules[] = 'locale';
     $modules[] = 'l10n_update';
   }
   elseif ($values['i18n'] === 'i18n') {
+    $modules[] = 'locale';
     $modules[] = 'i18n';
+    $modules[] = 'i18n_node';
+    $modules[] = 'i18n_path';
+    $modules[] = 'i18n_redirect';
+    $modules[] = 'i18n_select';
     $modules[] = 'l10n_update';
   }
 
