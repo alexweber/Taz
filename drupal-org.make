@@ -148,9 +148,6 @@ projects[search_api][subdir] = contrib
 projects[search_api_db][type] = module
 projects[search_api_db][subdir] = contrib
 
-projects[search_api_page][type] = module
-projects[search_api_page][subdir] = contrib
-
 projects[search_api_solr][type] = module
 projects[search_api_solr][subdir] = contrib
 
