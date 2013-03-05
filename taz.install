@@ -247,7 +247,6 @@ function taz_install_additional_modules() {
     'ds',
     'ds_extras',
     'ds_ui',
-    'field_group',
     'filter_perms',
     'globalredirect',
     'module_filter',
