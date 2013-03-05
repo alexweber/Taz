@@ -71,7 +71,7 @@ function taz_context_default_contexts() {
   $context->conditions = array(
     'context' => array(
       'values' => array(
-        '~admin' => '~admin',
+        '~taz_admin' => '~taz_admin',
       ),
     ),
     'sitewide' => array(
