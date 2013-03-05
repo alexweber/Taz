@@ -125,6 +125,9 @@ projects[media_youtube][subdir] = contrib
 projects[media_vimeo][type] = module
 projects[media_vimeo][subdir] = contrib
 
+projects[modernizr][type] = module
+projects[modernizr][subdir] = contrib
+
 projects[override_node_options][type] = module
 projects[override_node_options][subdir] = contrib
 
