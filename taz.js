@@ -2,7 +2,6 @@
 var Taz = {};
 
 (function ($) {
-  "use strict";
 
   /**
    * Trims and returns a string.
