@@ -243,6 +243,7 @@ function taz_install_additional_modules() {
     'backup_migrate',
     'context_ui',
     'devel',
+    'diff',
     'ds',
     'ds_extras',
     'ds_ui',
