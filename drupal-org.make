@@ -33,8 +33,10 @@ projects[date][subdir] = contrib
 ;projects[delta][type] = module
 ;projects[delta][subdir] = contrib
 
+projects[ds][version] = 2.2
 projects[ds][type] = module
 projects[ds][subdir] = contrib
+projects[ds][patch][] = http://drupal.org/files/1924102-6.patch
 
 projects[email][type] = module
 projects[email][subdir] = contrib
