@@ -30,8 +30,8 @@ projects[ctools][patch][] = http://drupal.org/files/ctools-dependent-js-broken-w
 projects[date][type] = module
 projects[date][subdir] = contrib
 
-;projects[delta][type] = module
-;projects[delta][subdir] = contrib
+projects[delta][type] = module
+projects[delta][subdir] = contrib
 
 projects[ds][version] = 2.2
 projects[ds][type] = module
@@ -245,10 +245,8 @@ projects[addanother][subdir] = contrib
 projects[advanced_help][type] = module
 projects[advanced_help][subdir] = contrib
 
-;projects[coder][version] = 2.x-dev
-;projects[coder][type] = module
-;projects[coder][subdir] = contrib
-;projects[coder][patch][] = http://drupal.org/files/coder-silence_notice_from_bad_module-1828330-4.patch
+projects[coder][type] = module
+projects[coder][subdir] = contrib
 
 projects[devel][type] = module
 projects[devel][subdir] = contrib
@@ -280,11 +278,11 @@ projects[module_filter][subdir] = contrib
 projects[role_export][type] = module
 projects[role_export][subdir] = contrib
 
-;projects[omega_tools][type] = module
-;projects[omega_tools][subdir] = contrib
+projects[omega_tools][type] = module
+projects[omega_tools][subdir] = contrib
 
-;projects[borealis][type] = module
-;projects[borealis][subdir] = contrib
+projects[borealis][type] = module
+projects[borealis][subdir] = contrib
 
 ; SEO
 
@@ -331,13 +329,10 @@ projects[rubik][type] = theme
 
 projects[fubik][type] = theme
 
-;projects[omega][type] = theme
+projects[omega][type] = theme
 
-;projects[zen][type] = theme
+projects[aurora][type] = theme
 
-;projects[aurora][type] = theme
-
-;projects[zurb-foundation][type] = theme
 
 ; External Libraries
 
@@ -349,7 +344,6 @@ libraries[colorbox][download][url] = http://jacklmoore.com/colorbox/colorbox.zip
 
 libraries[ckeditor][download][type] = get
 libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_full.tar.gz
-;libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6/ckeditor_3.6.6.zip
 
 libraries[engage.itoggle][download][type] = get
 libraries[engage.itoggle][download][url] = http://labs.engageinteractive.co.uk/itoggle/engage.itoggle.zip
