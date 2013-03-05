@@ -1,4 +1,3 @@
-// Initialize namespace
 var Taz = {};
 
 (function ($) {
