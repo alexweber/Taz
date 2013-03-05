@@ -213,3 +213,25 @@ function taz_core_libraries_info() {
 
   return $libraries;
 }
+
+/**
+ * Implements hook_ds_layout_info().
+ */
+function taz_core_ds_layout_info() {
+  $path = drupal_get_path('module', 'taz_core');
+
+  $layouts = array(
+    'ds_3row' => array(
+      'label' => t('Three row'),
+      'path' => $path . '/layouts/ds_3row',
+      'regions' => array(
+        'header' => t('Header'),
+        'ds_content' => t('Content'),
+        'footer' => t('Footer'),
+      ),
+      'image' => TRUE,
+    ),
+  );
+
+  return $layouts;
+}
