@@ -107,8 +107,10 @@ projects[jquery_update][subdir] = contrib
 projects[libraries][type] = module
 projects[libraries][subdir] = contrib
 
+projects[link][version] = 1.1
 projects[link][type] = module
 projects[link][subdir] = contrib
+projects[link][patch][] = http://drupal.org/files/Fixed_title_value_in_link_field_update_instance_undefined-1914286-3.patch
 
 projects[media][version] = 2.0-unstable7
 projects[media][type] = module
