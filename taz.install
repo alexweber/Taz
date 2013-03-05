@@ -373,6 +373,7 @@ function taz_install() {
 
   // Set Pathauto default node pattern.
   variable_set('pathauto_node_pattern', 'node/[node:nid]');
+  variable_set('pathauto_node_article_pattern', 'content/[node:title]');
   variable_set('pathauto_node_page_pattern', '[node:title]');
 
   // Setup Global Redirect.
