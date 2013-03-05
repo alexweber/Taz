@@ -135,7 +135,7 @@ function taz_install_configure_form_submit(&$form, &$form_state) {
   if ($values['search'] === 'core') {
     $modules[] = 'search';
     $modules[] = 'search_config';
-    $modules[] = 'search_404';
+    $modules[] = 'search404';
   }
   elseif ($values['search'] === 'search_api') {
     $modules[] = 'search_api';
