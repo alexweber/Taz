@@ -383,6 +383,10 @@ function taz_install() {
   );
   variable_set('globalredirect_settings', $globalredirect_settings);
 
+  // Set Display Suite Extras defaults for minimal field templates.
+  variable_set('ds_extras_field_template', 1);
+  variable_set('ft-default', 'theme_ds_field_minimal');
+
   // Set sensible caching defaults.
   variable_set('cache', 0);
   variable_set('block_cache', 0);
