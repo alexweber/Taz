@@ -4,8 +4,6 @@
  * Taz Admin module.
  */
 
-include_once 'taz_admin.features.inc';
-
 /**
  * Implements hook_permission().
  */
