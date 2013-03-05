@@ -415,12 +415,6 @@ function taz_install() {
   // Module filter dynamic button placement.
   variable_set('module_filter_dynamic_save_position', 1);
 
-  // Display Suite extras settings.
-  variable_set('ds_extras_field_template', 1);
-  variable_set('ft-default', 'theme_ds_field_minimal');
-  variable_set('ds_extras_fields_extra', 1);
-  variable_set('ds_extras_contextual', 1);
-
   // Views UI development settings.
   variable_set('views_ui_show_listing_filters', 1);
   variable_set('views_ui_show_advanced_help_warning', 0);
@@ -428,7 +422,7 @@ function taz_install() {
   variable_set('views_ui_show_sql_query', 1);
 
   // Enable Apps Dev console.
-  variable_set('apps_enable_dev_console', 1);
+//  variable_set('apps_enable_dev_console', 1);
 }
 
 /**
