@@ -166,9 +166,6 @@ projects[variable][subdir] = contrib
 projects[views][type] = module
 projects[views][subdir] = contrib
 
-projects[views_arguments_extras][type] = module
-projects[views_arguments_extras][subdir] = contrib
-
 projects[views_slideshow][type] = module
 projects[views_slideshow][subdir] = contrib
 
