@@ -22,10 +22,9 @@ projects[colorbox][subdir] = contrib
 projects[context][type] = module
 projects[context][subdir] = contrib
 
-projects[ctools][version] = 1.2
+projects[ctools][version] = 1.3
 projects[ctools][type] = module
 projects[ctools][subdir] = contrib
-projects[ctools][patch][] = http://drupal.org/files/ctools-dependent-js-broken-with-jquery-1.7-1494860-30.patch
 
 projects[date][type] = module
 projects[date][subdir] = contrib
