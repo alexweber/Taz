@@ -4,6 +4,10 @@ Taz is a tool for VERY quickly spinning up Drupal 7 sites with a bunch of stuff 
 
 It includes a shell script, makfile and installation profile.
 
+## Updated! 11/06/13
+
+This hasn't been worked on in a while and was a good start but not the greatest implementation. Development has resumed in the new TazNG project.
+
 ## Getting started
 
 * Download or clone the "bin" branch.
